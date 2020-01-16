@@ -17,6 +17,7 @@
 		F578883623D0A7380019DF23 /* Starscream in Frameworks */ = {isa = PBXBuildFile; productRef = F578883523D0A7380019DF23 /* Starscream */; };
 		F578883823D0A7A70019DF23 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = F578883723D0A7A70019DF23 /* Store.swift */; };
 		F578883A23D0AA030019DF23 /* RoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F578883923D0AA030019DF23 /* RoomView.swift */; };
+		F57B768A23D0CD6000732C71 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57B768923D0CD6000732C71 /* Events.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +44,7 @@
 		834B702123D0951B00CC3BA2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F578883723D0A7A70019DF23 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		F578883923D0AA030019DF23 /* RoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomView.swift; sourceTree = "<group>"; };
+		F57B768923D0CD6000732C71 /* Events.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +92,7 @@
 				834B700C23D0951800CC3BA2 /* JoinRoomView.swift */,
 				F578883923D0AA030019DF23 /* RoomView.swift */,
 				F578883723D0A7A70019DF23 /* Store.swift */,
+				F57B768923D0CD6000732C71 /* Events.swift */,
 				834B700E23D0951B00CC3BA2 /* Assets.xcassets */,
 				834B701323D0951B00CC3BA2 /* LaunchScreen.storyboard */,
 				834B701623D0951B00CC3BA2 /* Info.plist */,
@@ -222,6 +225,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F57B768A23D0CD6000732C71 /* Events.swift in Sources */,
 				834B700923D0951800CC3BA2 /* AppDelegate.swift in Sources */,
 				834B700B23D0951800CC3BA2 /* SceneDelegate.swift in Sources */,
 				F578883A23D0AA030019DF23 /* RoomView.swift in Sources */,

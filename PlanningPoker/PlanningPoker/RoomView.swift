@@ -13,10 +13,9 @@ struct RoomView: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            
             Text("Participants")
                 .font(.headline)
-            
+
             HStack {
                 ScrollView(.horizontal) {
                     HStack {
@@ -29,10 +28,9 @@ struct RoomView: View {
             }
 
             Divider()
-            
+
             Text("Foo")
             Spacer()
-
         }
         .padding()
         .navigationBarTitle("Poker Room")

@@ -29,7 +29,8 @@ struct JoinRoomView: View {
                     }
                     .disabled(roomName.isEmpty)
                 }
-            }.navigationBarTitle("Planning Poker")
+            }
+            .navigationBarTitle("Planning Poker")
         }
     }
 }
