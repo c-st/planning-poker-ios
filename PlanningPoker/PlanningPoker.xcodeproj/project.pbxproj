@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,6 +14,9 @@
 		834B701223D0951B00CC3BA2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 834B701123D0951B00CC3BA2 /* Preview Assets.xcassets */; };
 		834B701523D0951B00CC3BA2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 834B701323D0951B00CC3BA2 /* LaunchScreen.storyboard */; };
 		834B702023D0951B00CC3BA2 /* PlanningPokerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834B701F23D0951B00CC3BA2 /* PlanningPokerTests.swift */; };
+		F578883623D0A7380019DF23 /* Starscream in Frameworks */ = {isa = PBXBuildFile; productRef = F578883523D0A7380019DF23 /* Starscream */; };
+		F578883823D0A7A70019DF23 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = F578883723D0A7A70019DF23 /* Store.swift */; };
+		F578883A23D0AA030019DF23 /* RoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F578883923D0AA030019DF23 /* RoomView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +41,8 @@
 		834B701B23D0951B00CC3BA2 /* PlanningPokerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlanningPokerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		834B701F23D0951B00CC3BA2 /* PlanningPokerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanningPokerTests.swift; sourceTree = "<group>"; };
 		834B702123D0951B00CC3BA2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F578883723D0A7A70019DF23 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		F578883923D0AA030019DF23 /* RoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +50,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F578883623D0A7380019DF23 /* Starscream in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,10 +88,12 @@
 				834B700823D0951800CC3BA2 /* AppDelegate.swift */,
 				834B700A23D0951800CC3BA2 /* SceneDelegate.swift */,
 				834B700C23D0951800CC3BA2 /* JoinRoomView.swift */,
+				F578883923D0AA030019DF23 /* RoomView.swift */,
 				834B700E23D0951B00CC3BA2 /* Assets.xcassets */,
 				834B701323D0951B00CC3BA2 /* LaunchScreen.storyboard */,
 				834B701623D0951B00CC3BA2 /* Info.plist */,
 				834B701023D0951B00CC3BA2 /* Preview Content */,
+				F578883723D0A7A70019DF23 /* Store.swift */,
 			);
 			path = PlanningPoker;
 			sourceTree = "<group>";
@@ -123,6 +131,9 @@
 			dependencies = (
 			);
 			name = PlanningPoker;
+			packageProductDependencies = (
+				F578883523D0A7380019DF23 /* Starscream */,
+			);
 			productName = PlanningPoker;
 			productReference = 834B700523D0951800CC3BA2 /* PlanningPoker.app */;
 			productType = "com.apple.product-type.application";
@@ -173,6 +184,9 @@
 				Base,
 			);
 			mainGroup = 834B6FFC23D0951800CC3BA2;
+			packageReferences = (
+				F578883423D0A7380019DF23 /* XCRemoteSwiftPackageReference "Starscream" */,
+			);
 			productRefGroup = 834B700623D0951800CC3BA2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -210,7 +224,9 @@
 			files = (
 				834B700923D0951800CC3BA2 /* AppDelegate.swift in Sources */,
 				834B700B23D0951800CC3BA2 /* SceneDelegate.swift in Sources */,
+				F578883A23D0AA030019DF23 /* RoomView.swift in Sources */,
 				834B700D23D0951800CC3BA2 /* JoinRoomView.swift in Sources */,
+				F578883823D0A7A70019DF23 /* Store.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -473,6 +489,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F578883423D0A7380019DF23 /* XCRemoteSwiftPackageReference "Starscream" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/daltoniam/Starscream.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F578883523D0A7380019DF23 /* Starscream */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F578883423D0A7380019DF23 /* XCRemoteSwiftPackageReference "Starscream" */;
+			productName = Starscream;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 834B6FFD23D0951800CC3BA2 /* Project object */;
 }

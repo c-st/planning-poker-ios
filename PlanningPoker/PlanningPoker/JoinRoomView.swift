@@ -10,27 +10,24 @@ import SwiftUI
 
 struct JoinRoomView: View {
     @State var roomName: String = ""
+    @EnvironmentObject var store: Store
 
     var body: some View {
         NavigationView {
-            VStack {
-                Form {
-                    Section(header: Text("Room")) {
-                        TextField("Name", text: self.$roomName)
-                    }
+            Form {
+                Section(header: Text("Room")) {
+                    TextField("Name", text: self.$roomName)
+                }
 
-                    Section {
-                        if !roomName.isEmpty {
-                            Text("You have chosen room: \(self.roomName)")
-                            // .animation(.spring())
-                        }
-
-                        Button(action: { print("You pressed the button") }) {
-                            Text("Join the room")
-                        }.disabled(roomName.isEmpty)
+                Section {
+                    if !roomName.isEmpty {
+                        Text("You have chosen room: \(self.roomName)")
                     }
-                }.navigationBarTitle("Planning Poker")
-            }
+                            
+                    NavigationLink(destination: RoomView()) {Text("Join the room")}
+                        .disabled(roomName.isEmpty)
+                }
+            }.navigationBarTitle("Planning Poker")
         }
     }
 }
