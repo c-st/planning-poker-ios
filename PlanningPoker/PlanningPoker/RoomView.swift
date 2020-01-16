@@ -10,12 +10,32 @@ import SwiftUI
 
 struct RoomView: View {
     @EnvironmentObject var store: Store
-    
+
     var body: some View {
-            Text("In the room")
-//            List(store.participants) { participant in
-//                Text(participant.name)
-//            }.navigationBarTitle("Poker Room")
+        VStack(alignment: .leading) {
+            
+            Text("Participants")
+                .font(.headline)
+            
+            HStack {
+                ScrollView(.horizontal) {
+                    HStack {
+                        ForEach(store.participants) { participant in
+                            Text(participant.name)
+                                .font(.caption)
+                        }
+                    }
+                }
+            }
+
+            Divider()
+            
+            Text("Foo")
+            Spacer()
+
+        }
+        .padding()
+        .navigationBarTitle("Poker Room")
     }
 }
 

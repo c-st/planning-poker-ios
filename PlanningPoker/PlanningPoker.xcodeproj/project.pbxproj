@@ -89,11 +89,11 @@
 				834B700A23D0951800CC3BA2 /* SceneDelegate.swift */,
 				834B700C23D0951800CC3BA2 /* JoinRoomView.swift */,
 				F578883923D0AA030019DF23 /* RoomView.swift */,
+				F578883723D0A7A70019DF23 /* Store.swift */,
 				834B700E23D0951B00CC3BA2 /* Assets.xcassets */,
 				834B701323D0951B00CC3BA2 /* LaunchScreen.storyboard */,
 				834B701623D0951B00CC3BA2 /* Info.plist */,
 				834B701023D0951B00CC3BA2 /* Preview Content */,
-				F578883723D0A7A70019DF23 /* Store.swift */,
 			);
 			path = PlanningPoker;
 			sourceTree = "<group>";
@@ -495,8 +495,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/daltoniam/Starscream.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 4.0.0;
+				kind = revision;
+				revision = 48a8a2cb9d704aa21f2031e181d132d2fd13df6c;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

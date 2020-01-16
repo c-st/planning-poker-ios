@@ -23,9 +23,11 @@ struct JoinRoomView: View {
                     if !roomName.isEmpty {
                         Text("You have chosen room: \(self.roomName)")
                     }
-                            
-                    NavigationLink(destination: RoomView()) {Text("Join the room")}
-                        .disabled(roomName.isEmpty)
+
+                    NavigationLink(destination: RoomView()) {
+                        Text("Join the room")
+                    }
+                    .disabled(roomName.isEmpty)
                 }
             }.navigationBarTitle("Planning Poker")
         }
