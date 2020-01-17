@@ -21,7 +21,7 @@ class EventHandlerTests: XCTestCase {
         let newState =
             EventHandler.handle(
                 userJoinedEvent,
-                state: EventHandler.initialState
+                state: AppState()
             )
 
         expect(newState.otherParticipants).to(haveCount(1))
@@ -41,7 +41,7 @@ class EventHandlerTests: XCTestCase {
         let intermediaryState =
             EventHandler.handle(
                 userJoinedEvent,
-                state: EventHandler.initialState
+                state: AppState()
             )
 
         let finalState = EventHandler.handle(
@@ -66,5 +66,25 @@ class EventHandlerTests: XCTestCase {
         )
 
         expect(finalState.otherParticipants).to(haveCount(1))
+    }
+    
+    func testUpdateEstimateState() {
+        let initialState = AppState(otherParticipants: [
+            Participant(id: .init(), name: "Foo"),
+            Participant(id: .init(), name: "Bar")
+        ])
+        
+        let requestStartEstimateEvent = RequestStartEstimation(
+            userName: "Foo",
+            taskName: "implementing planning poker",
+            startDate: "2020-01-17T14:13:07.501Z"
+        )
+        
+        let finalState = EventHandler.handle(
+            requestStartEstimateEvent,
+            state: initialState
+        )
+        
+        expect(finalState.estimationStatus).to(equal(.inProgress))
     }
 }

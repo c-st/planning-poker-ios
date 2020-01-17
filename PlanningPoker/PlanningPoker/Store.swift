@@ -11,7 +11,7 @@ import Foundation
 import Starscream
 
 final class Store: ObservableObject, WebSocketDelegate {
-    @Published var state: AppState = EventHandler.initialState
+    @Published var state: AppState = AppState()
 
     // TODO: see how Combine can be used to handle name/room state
 
@@ -35,34 +35,10 @@ final class Store: ObservableObject, WebSocketDelegate {
 
         switch event {
         case .text(let jsonString):
-            let jsonData = jsonString.data(using: .utf8)!
-            let baseEvent = try! decoder.decode(BaseEvent.self, from: jsonData)
-            print("event type: \(baseEvent)")
-
-            switch baseEvent.eventType {
-//            case .userJoined:
-//                let userJoinedEvent = try! decoder.decode(UserJoined.self, from: jsonData)
-////                otherParticipants.append(.init(id: .init(), name: userJoinedEvent.userName))
-////                print("Updated participants: \(otherParticipants)")
-//            case .userLeft:
-//                let userLeftEvent = try! decoder.decode(UserLeft.self, from: jsonData)
-//                otherParticipants = otherParticipants.filter { p in
-//                    p.name != userLeftEvent.userName
-//                }
-//                case .startEstimation:
-//                    print("Not handling event: \(event)")
-//                case .estimate:
-//                    print("Not handling event: \(event)")
-//                case .userHasEstimated:
-//                    print("Not handling event: \(event)")
-//                case .showResult:
-//                    print("Not handling event: \(event)")
-//                case .estimationResult:
-//                    print("Not handling event: \(event)")
-//                case .keepAlive:
-//                    print("Not handling event: \(event)")
-            default:
-                return
+            if let parsedEvent = EventParser.parse(jsonString) {
+                self.state = EventHandler.handle(parsedEvent, state: self.state)
+            } else {
+                print("Event could not be parsed: \(jsonString)")
             }
         default:
             print("Not handling event: \(event)")

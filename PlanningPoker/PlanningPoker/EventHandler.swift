@@ -9,7 +9,14 @@
 import Foundation
 
 public struct AppState {
-    var otherParticipants: [Participant]
+    var estimationStatus: EstimationStatus = .notStarted
+    var otherParticipants: [Participant] = []
+    
+    enum EstimationStatus {
+        case notStarted
+        case inProgress
+        case ended
+    }
 }
 
 struct Participant: Identifiable {
@@ -31,12 +38,16 @@ public class EventHandler {
                     $0.name != event.userName
                 }
             return AppState(otherParticipants: newParticipants)
+            
+        case is RequestStartEstimation:
+            return AppState(estimationStatus: .inProgress, otherParticipants: state.otherParticipants)
+            
+        case is HeartBeat:
+            return state
 
         default:
             print("Ignoring event", anyEvent)
             return state
         }
     }
-
-    public static let initialState: AppState = AppState(otherParticipants: [])
 }
