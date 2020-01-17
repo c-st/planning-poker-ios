@@ -37,7 +37,7 @@ struct RoomView: View {
         }
         .onAppear {
             print("joining room")
-            // self.store.joinRoom(...)
+            self.store.joinRoom(self.roomName, participantName: self.participantName)
         }
         .padding()
         .navigationBarTitle(self.roomName)
