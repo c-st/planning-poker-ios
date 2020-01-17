@@ -17,51 +17,51 @@ enum EventType: String, Codable {
     case keepAlive
 }
 
-struct Event: Codable {
-    var eventType: EventType
+struct BaseEvent: Codable {
+    let eventType: EventType
 }
 
 struct UserJoined: Codable {
-    var userName: String
-    var isSpectator: Bool
+    let userName: String
+    let isSpectator: Bool
 }
 
 struct UserLeft: Codable {
-    var userName: String
+    let userName: String = ""
 }
 
 struct RequestStartEstimation: Codable {
-    var userName: String
-    var taskName: String
-    var startDate: String
+    let userName: String = ""
+    let taskName: String = ""
+    let startDate: String = ""
 }
 
 struct UserEstimate: Codable {
-    var userName: String
-    var taskName: String
-    var estimate: String
+    let userName: String = ""
+    let taskName: String = ""
+    let estimate: String = ""
 }
 
 struct UserHasEstimated: Codable {
-    var userName: String
-    var taskName: String
+    let userName: String = ""
+    let taskName: String = ""
 }
 
 struct RequestShowEstimationResult: Codable {
-    var userName: String
+    let userName: String = ""
 }
 
 struct EstimationResult: Codable {
-    var taskName: String
-    var startDate: String
-    var endDate: String
-    var estimates: [UserEstimation]
+    let taskName: String = ""
+    let startDate: String = ""
+    let endDate: String = ""
+    let estimates: [UserEstimation] = []
 }
 
 struct HeartBeat: Codable {
 }
 
 struct UserEstimation: Codable {
-    var userName: String
-    var estimate: String
+    let userName: String
+    let estimate: String
 }

@@ -20,6 +20,9 @@
 		F578883823D0A7A70019DF23 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = F578883723D0A7A70019DF23 /* Store.swift */; };
 		F578883A23D0AA030019DF23 /* RoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F578883923D0AA030019DF23 /* RoomView.swift */; };
 		F57B768A23D0CD6000732C71 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57B768923D0CD6000732C71 /* Events.swift */; };
+		F57B768D23D1CD2700732C71 /* Nimble in Frameworks */ = {isa = PBXBuildFile; productRef = F57B768C23D1CD2700732C71 /* Nimble */; };
+		F57B768F23D1CF5100732C71 /* EventParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57B768E23D1CF5100732C71 /* EventParser.swift */; };
+		F57B769123D1D54100732C71 /* EventParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57B769023D1D54100732C71 /* EventParserTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +53,8 @@
 		F578883723D0A7A70019DF23 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		F578883923D0AA030019DF23 /* RoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomView.swift; sourceTree = "<group>"; };
 		F57B768923D0CD6000732C71 /* Events.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
+		F57B768E23D1CF5100732C71 /* EventParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventParser.swift; sourceTree = "<group>"; };
+		F57B769023D1D54100732C71 /* EventParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventParserTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +63,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F578883623D0A7380019DF23 /* Starscream in Frameworks */,
+				F57B768D23D1CD2700732C71 /* Nimble in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,6 +104,7 @@
 				F578883923D0AA030019DF23 /* RoomView.swift */,
 				F578883723D0A7A70019DF23 /* Store.swift */,
 				F57B768923D0CD6000732C71 /* Events.swift */,
+				F57B768E23D1CF5100732C71 /* EventParser.swift */,
 				834B700E23D0951B00CC3BA2 /* Assets.xcassets */,
 				834B701323D0951B00CC3BA2 /* LaunchScreen.storyboard */,
 				834B701623D0951B00CC3BA2 /* Info.plist */,
@@ -122,6 +129,7 @@
 			children = (
 				834B701F23D0951B00CC3BA2 /* PlanningPokerTests.swift */,
 				834B702123D0951B00CC3BA2 /* Info.plist */,
+				F57B769023D1D54100732C71 /* EventParserTests.swift */,
 			);
 			path = PlanningPokerTests;
 			sourceTree = "<group>";
@@ -144,6 +152,7 @@
 			name = PlanningPoker;
 			packageProductDependencies = (
 				F578883523D0A7380019DF23 /* Starscream */,
+				F57B768C23D1CD2700732C71 /* Nimble */,
 			);
 			productName = PlanningPoker;
 			productReference = 834B700523D0951800CC3BA2 /* PlanningPoker.app */;
@@ -197,6 +206,7 @@
 			mainGroup = 834B6FFC23D0951800CC3BA2;
 			packageReferences = (
 				F578883423D0A7380019DF23 /* XCRemoteSwiftPackageReference "Starscream" */,
+				F57B768B23D1CD2700732C71 /* XCRemoteSwiftPackageReference "Nimble" */,
 			);
 			productRefGroup = 834B700623D0951800CC3BA2 /* Products */;
 			projectDirPath = "";
@@ -237,6 +247,7 @@
 				F57B768A23D0CD6000732C71 /* Events.swift in Sources */,
 				8321F6E423D1B3C70027A212 /* ICloudUserDefault.swift in Sources */,
 				834B700923D0951800CC3BA2 /* AppDelegate.swift in Sources */,
+				F57B768F23D1CF5100732C71 /* EventParser.swift in Sources */,
 				834B700B23D0951800CC3BA2 /* SceneDelegate.swift in Sources */,
 				F578883A23D0AA030019DF23 /* RoomView.swift in Sources */,
 				834B700D23D0951800CC3BA2 /* JoinRoomView.swift in Sources */,
@@ -249,6 +260,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				834B702023D0951B00CC3BA2 /* PlanningPokerTests.swift in Sources */,
+				F57B769123D1D54100732C71 /* EventParserTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -517,6 +529,14 @@
 				revision = 48a8a2cb9d704aa21f2031e181d132d2fd13df6c;
 			};
 		};
+		F57B768B23D1CD2700732C71 /* XCRemoteSwiftPackageReference "Nimble" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Quick/Nimble.git";
+			requirement = {
+				kind = exactVersion;
+				version = 8.0.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -524,6 +544,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F578883423D0A7380019DF23 /* XCRemoteSwiftPackageReference "Starscream" */;
 			productName = Starscream;
+		};
+		F57B768C23D1CD2700732C71 /* Nimble */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F57B768B23D1CD2700732C71 /* XCRemoteSwiftPackageReference "Nimble" */;
+			productName = Nimble;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

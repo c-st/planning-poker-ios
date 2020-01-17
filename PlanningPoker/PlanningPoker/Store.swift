@@ -41,7 +41,7 @@ final class Store: ObservableObject, WebSocketDelegate {
         switch event {
         case .text(let jsonString):
             let jsonData = jsonString.data(using: .utf8)!
-            let baseEvent = try! decoder.decode(Event.self, from: jsonData)
+            let baseEvent = try! decoder.decode(BaseEvent.self, from: jsonData)
             print("event type: \(baseEvent)")
 
             switch baseEvent.eventType {
