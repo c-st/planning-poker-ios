@@ -28,7 +28,7 @@ struct RoomView: View {
                                 backgroundColor: Color.blue
                             )
 
-                            ForEach(store.otherParticipants) { participant in
+                            ForEach(store.state.otherParticipants) { participant in
                                 UserAvatarView(name: participant.name)
                             }
                         }.frame(minWidth: 50, minHeight: 50)

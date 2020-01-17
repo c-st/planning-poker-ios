@@ -27,35 +27,35 @@ struct UserJoined: Codable {
 }
 
 struct UserLeft: Codable {
-    let userName: String = ""
+    let userName: String
 }
 
 struct RequestStartEstimation: Codable {
-    let userName: String = ""
-    let taskName: String = ""
-    let startDate: String = ""
+    let userName: String
+    let taskName: String
+    let startDate: String
 }
 
 struct UserEstimate: Codable {
-    let userName: String = ""
-    let taskName: String = ""
-    let estimate: String = ""
+    let userName: String
+    let taskName: String
+    let estimate: String
 }
 
 struct UserHasEstimated: Codable {
-    let userName: String = ""
-    let taskName: String = ""
+    let userName: String
+    let taskName: String
 }
 
 struct RequestShowEstimationResult: Codable {
-    let userName: String = ""
+    let userName: String
 }
 
 struct EstimationResult: Codable {
-    let taskName: String = ""
-    let startDate: String = ""
-    let endDate: String = ""
-    let estimates: [UserEstimation] = []
+    let taskName: String
+    let startDate: String
+    let endDate: String
+    let estimates: [UserEstimation]
 }
 
 struct HeartBeat: Codable {

@@ -10,13 +10,8 @@ import Combine
 import Foundation
 import Starscream
 
-struct Participant: Identifiable {
-    var id: UUID
-    var name: String
-}
-
 final class Store: ObservableObject, WebSocketDelegate {
-    @Published var otherParticipants: [Participant] = []
+    @Published var state: AppState = EventHandler.initialState
 
     // TODO: see how Combine can be used to handle name/room state
 
@@ -45,15 +40,15 @@ final class Store: ObservableObject, WebSocketDelegate {
             print("event type: \(baseEvent)")
 
             switch baseEvent.eventType {
-            case .userJoined:
-                let userJoinedEvent = try! decoder.decode(UserJoined.self, from: jsonData)
-                otherParticipants.append(.init(id: .init(), name: userJoinedEvent.userName))
-                print("Updated participants: \(otherParticipants)")
-            case .userLeft:
-                let userLeftEvent = try! decoder.decode(UserLeft.self, from: jsonData)
-                otherParticipants = otherParticipants.filter { p in
-                    p.name != userLeftEvent.userName
-                }
+//            case .userJoined:
+//                let userJoinedEvent = try! decoder.decode(UserJoined.self, from: jsonData)
+////                otherParticipants.append(.init(id: .init(), name: userJoinedEvent.userName))
+////                print("Updated participants: \(otherParticipants)")
+//            case .userLeft:
+//                let userLeftEvent = try! decoder.decode(UserLeft.self, from: jsonData)
+//                otherParticipants = otherParticipants.filter { p in
+//                    p.name != userLeftEvent.userName
+//                }
 //                case .startEstimation:
 //                    print("Not handling event: \(event)")
 //                case .estimate:
