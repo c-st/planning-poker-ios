@@ -15,28 +15,33 @@ struct RoomView: View {
     @Binding var participantName: String
 
     var body: some View {
-        VStack(alignment: .leading) {
-            Text("Participants")
-                .font(.headline)
+        ScrollView {
+            VStack(alignment: .leading) {
+                Text("Participants")
+                    .font(.headline)
 
-            HStack {
-                ScrollView(.horizontal) {
-                    HStack {
-                        ForEach(store.participants) { participant in
-                            Text(participant.name)
-                                .font(.caption)
-                        }
+                HStack {
+                    ScrollView(.horizontal) {
+                        HStack {
+                            UserAvatarView(
+                                name: participantName,
+                                backgroundColor: Color.blue
+                            )
+
+                            ForEach(store.otherParticipants) { participant in
+                                UserAvatarView(name: participant.name)
+                            }
+                        }.frame(minWidth: 50, minHeight: 50)
                     }
                 }
+
+                Divider()
+
+                Text("You are: \(participantName)")
+                Spacer()
             }
-
-            Divider()
-
-            Text("You are: \(participantName)")
-            Spacer()
         }
         .onAppear {
-            print("joining room")
             self.store.joinRoom(self.roomName, participantName: self.participantName)
         }
         .padding()

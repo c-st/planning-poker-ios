@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8321F6E423D1B3C70027A212 /* ICloudUserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8321F6E323D1B3C70027A212 /* ICloudUserDefault.swift */; };
+		8321F6E723D1C6140027A212 /* UserAvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8321F6E623D1C6140027A212 /* UserAvatarView.swift */; };
 		834B700923D0951800CC3BA2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834B700823D0951800CC3BA2 /* AppDelegate.swift */; };
 		834B700B23D0951800CC3BA2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834B700A23D0951800CC3BA2 /* SceneDelegate.swift */; };
 		834B700D23D0951800CC3BA2 /* JoinRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834B700C23D0951800CC3BA2 /* JoinRoomView.swift */; };
@@ -34,6 +35,7 @@
 /* Begin PBXFileReference section */
 		8321F6E323D1B3C70027A212 /* ICloudUserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICloudUserDefault.swift; sourceTree = "<group>"; };
 		8321F6E523D1B4950027A212 /* PlanningPoker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PlanningPoker.entitlements; sourceTree = "<group>"; };
+		8321F6E623D1C6140027A212 /* UserAvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAvatarView.swift; sourceTree = "<group>"; };
 		834B700523D0951800CC3BA2 /* PlanningPoker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlanningPoker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		834B700823D0951800CC3BA2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		834B700A23D0951800CC3BA2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 				8321F6E523D1B4950027A212 /* PlanningPoker.entitlements */,
 				834B701023D0951B00CC3BA2 /* Preview Content */,
 				8321F6E323D1B3C70027A212 /* ICloudUserDefault.swift */,
+				8321F6E623D1C6140027A212 /* UserAvatarView.swift */,
 			);
 			path = PlanningPoker;
 			sourceTree = "<group>";
@@ -230,6 +233,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8321F6E723D1C6140027A212 /* UserAvatarView.swift in Sources */,
 				F57B768A23D0CD6000732C71 /* Events.swift in Sources */,
 				8321F6E423D1B3C70027A212 /* ICloudUserDefault.swift in Sources */,
 				834B700923D0951800CC3BA2 /* AppDelegate.swift in Sources */,

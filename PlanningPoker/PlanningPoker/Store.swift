@@ -16,7 +16,7 @@ struct Participant: Identifiable {
 }
 
 final class Store: ObservableObject, WebSocketDelegate {
-    @Published var participants: [Participant] = []
+    @Published var otherParticipants: [Participant] = []
 
     // TODO: see how Combine can be used to handle name/room state
 
@@ -25,13 +25,14 @@ final class Store: ObservableObject, WebSocketDelegate {
     private let decoder = JSONDecoder()
 
     func joinRoom(_ roomName: String, participantName: String) {
-        socket = WebSocket(request: URLRequest(url: URL(
+        let socket = WebSocket(request: URLRequest(url: URL(
             string: "wss://planningpoker.cc/poker/\(roomName)?name=\(participantName)&spectator=False"
         )!))
-        socket!.delegate = self
-        socket!.connect()
-
-        print("connected", socket)
+        
+        socket.delegate = self
+        socket.connect()
+        
+        self.socket = socket
     }
 
     func didReceive(event: WebSocketEvent, client: WebSocket) {
@@ -46,11 +47,11 @@ final class Store: ObservableObject, WebSocketDelegate {
             switch baseEvent.eventType {
             case .userJoined:
                 let userJoinedEvent = try! decoder.decode(UserJoined.self, from: jsonData)
-                participants.append(.init(id: .init(), name: userJoinedEvent.userName))
-                print("Updated participants: \(participants)")
+                otherParticipants.append(.init(id: .init(), name: userJoinedEvent.userName))
+                print("Updated participants: \(otherParticipants)")
             case .userLeft:
                 let userLeftEvent = try! decoder.decode(UserLeft.self, from: jsonData)
-                participants = participants.filter { p in
+                otherParticipants = otherParticipants.filter { p in
                     p.name != userLeftEvent.userName
                 }
 //                case .startEstimation:
