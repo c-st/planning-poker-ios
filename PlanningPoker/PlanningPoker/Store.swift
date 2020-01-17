@@ -17,7 +17,9 @@ struct Participant: Identifiable {
 
 final class Store: ObservableObject, WebSocketDelegate {
     @Published var participants: [Participant] = []
-
+    
+    // TODO: see how Combine can be used to handle name/room state
+    
     private let socket: WebSocket
 
     private let decoder = JSONDecoder()
@@ -31,6 +33,8 @@ final class Store: ObservableObject, WebSocketDelegate {
 
         print("connected", self.socket)
     }
+    
+//    func establishCon(roomName: String, partN: String)
 
     func didReceive(event: WebSocketEvent, client: WebSocket) {
         print("didReceive", event)

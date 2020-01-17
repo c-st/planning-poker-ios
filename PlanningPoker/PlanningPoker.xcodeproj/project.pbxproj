@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8321F6E423D1B3C70027A212 /* ICloudUserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8321F6E323D1B3C70027A212 /* ICloudUserDefault.swift */; };
 		834B700923D0951800CC3BA2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834B700823D0951800CC3BA2 /* AppDelegate.swift */; };
 		834B700B23D0951800CC3BA2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834B700A23D0951800CC3BA2 /* SceneDelegate.swift */; };
 		834B700D23D0951800CC3BA2 /* JoinRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834B700C23D0951800CC3BA2 /* JoinRoomView.swift */; };
@@ -31,6 +32,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8321F6E323D1B3C70027A212 /* ICloudUserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICloudUserDefault.swift; sourceTree = "<group>"; };
+		8321F6E523D1B4950027A212 /* PlanningPoker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PlanningPoker.entitlements; sourceTree = "<group>"; };
 		834B700523D0951800CC3BA2 /* PlanningPoker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlanningPoker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		834B700823D0951800CC3BA2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		834B700A23D0951800CC3BA2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -96,7 +99,9 @@
 				834B700E23D0951B00CC3BA2 /* Assets.xcassets */,
 				834B701323D0951B00CC3BA2 /* LaunchScreen.storyboard */,
 				834B701623D0951B00CC3BA2 /* Info.plist */,
+				8321F6E523D1B4950027A212 /* PlanningPoker.entitlements */,
 				834B701023D0951B00CC3BA2 /* Preview Content */,
+				8321F6E323D1B3C70027A212 /* ICloudUserDefault.swift */,
 			);
 			path = PlanningPoker;
 			sourceTree = "<group>";
@@ -226,6 +231,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F57B768A23D0CD6000732C71 /* Events.swift in Sources */,
+				8321F6E423D1B3C70027A212 /* ICloudUserDefault.swift in Sources */,
 				834B700923D0951800CC3BA2 /* AppDelegate.swift in Sources */,
 				834B700B23D0951800CC3BA2 /* SceneDelegate.swift in Sources */,
 				F578883A23D0AA030019DF23 /* RoomView.swift in Sources */,
@@ -382,17 +388,19 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_ENTITLEMENTS = PlanningPoker/PlanningPoker.entitlements;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_ASSET_PATHS = "\"PlanningPoker/Preview Content\"";
-				DEVELOPMENT_TEAM = 738626FVRF;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = PlanningPoker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = de.codecentric.PlanningPoker;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.codecentric.Planning-Poker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -402,17 +410,19 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_ENTITLEMENTS = PlanningPoker/PlanningPoker.entitlements;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_ASSET_PATHS = "\"PlanningPoker/Preview Content\"";
-				DEVELOPMENT_TEAM = 738626FVRF;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = PlanningPoker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = de.codecentric.PlanningPoker;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.codecentric.Planning-Poker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

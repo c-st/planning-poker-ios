@@ -11,6 +11,9 @@ import SwiftUI
 struct RoomView: View {
     @EnvironmentObject var store: Store
 
+    @Binding var roomName: String
+    @Binding var participantName: String
+
     var body: some View {
         VStack(alignment: .leading) {
             Text("Participants")
@@ -29,16 +32,23 @@ struct RoomView: View {
 
             Divider()
 
-            Text("Foo")
+            Text("You are: \(participantName)")
             Spacer()
         }
+        .onAppear {
+            print("joining room")
+            // self.store.joinRoom(...)
+        }
         .padding()
-        .navigationBarTitle("Poker Room")
+        .navigationBarTitle(self.roomName)
     }
 }
 
 struct RoomView_Previews: PreviewProvider {
     static var previews: some View {
-        RoomView().environmentObject(Store())
+        RoomView(
+            roomName: .constant("foo"),
+            participantName: .constant("Test")
+        ).environmentObject(Store())
     }
 }
