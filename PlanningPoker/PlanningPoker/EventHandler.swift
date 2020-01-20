@@ -34,14 +34,28 @@ public class EventHandler {
         case let event as UserJoined:
             let newParticipants =
                 state.otherParticipants + [Participant(id: .init(), name: event.userName)]
-            return AppState(otherParticipants: newParticipants)
+            return AppState(
+                estimationStatus: state.estimationStatus,
+                participantName: state.participantName,
+                otherParticipants: newParticipants,
+                roomName: state.roomName,
+                currentTaskName: state.currentTaskName,
+                estimationStart: state.estimationStart
+            )
 
         case let event as UserLeft:
             let newParticipants =
                 state.otherParticipants.filter {
                     $0.name != event.userName
                 }
-            return AppState(otherParticipants: newParticipants)
+            return AppState(
+                estimationStatus: state.estimationStatus,
+                participantName: state.participantName,
+                otherParticipants: newParticipants,
+                roomName: state.roomName,
+                currentTaskName: state.currentTaskName,
+                estimationStart: state.estimationStart
+            )
 
         case let event as RequestStartEstimation:
             return AppState(
