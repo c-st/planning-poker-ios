@@ -53,10 +53,12 @@ class EventHandlerTests: XCTestCase {
     }
 
     func testUserLeaving() {
-        let initialState = AppState(otherParticipants: [
-            Participant(id: .init(), name: "Foo"),
-            Participant(id: .init(), name: "Bar")
-        ])
+        let initialState = AppState(
+            otherParticipants: [
+                Participant(id: .init(), name: "Foo"),
+                Participant(id: .init(), name: "Bar")
+            ]
+        )
 
         let userLeftEvent = UserLeft(userName: "Bar")
 
@@ -67,24 +69,33 @@ class EventHandlerTests: XCTestCase {
 
         expect(finalState.otherParticipants).to(haveCount(1))
     }
-    
+
     func testUpdateEstimateState() {
-        let initialState = AppState(otherParticipants: [
-            Participant(id: .init(), name: "Foo"),
-            Participant(id: .init(), name: "Bar")
-        ])
-        
+        let initialState = AppState(
+            otherParticipants: [
+                Participant(id: .init(), name: "Foo"),
+                Participant(id: .init(), name: "Bar")
+            ]
+        )
+
+        // current backend does not send the timezone at the moment!
+        let formatter = ISO8601DateFormatter()
+        print(formatter.string(from: Date()))
+        let date = DateFormatter.iso8601WithoutTimezone.date(from: "2020-01-17T14:13:07")
+
         let requestStartEstimateEvent = RequestStartEstimation(
             userName: "Foo",
             taskName: "implementing planning poker",
-            startDate: "2020-01-17T14:13:07.501Z"
+            startDate: date ?? Date()
         )
-        
+
         let finalState = EventHandler.handle(
             requestStartEstimateEvent,
             state: initialState
         )
-        
+
         expect(finalState.estimationStatus).to(equal(.inProgress))
+        expect(finalState.estimationStart).to(equal(date))
+        expect(finalState.currentTaskName).to(equal("implementing planning poker"))
     }
 }

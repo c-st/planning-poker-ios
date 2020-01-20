@@ -6,6 +6,8 @@
 //  Copyright © 2020 Christian Stangier. All rights reserved.
 //
 
+import Foundation
+
 enum EventType: String, Codable {
     case userJoined
     case userLeft
@@ -33,7 +35,7 @@ struct UserLeft: Codable {
 struct RequestStartEstimation: Codable {
     let userName: String
     let taskName: String
-    let startDate: String
+    let startDate: Date
 }
 
 struct UserEstimate: Codable {
@@ -53,8 +55,8 @@ struct RequestShowEstimationResult: Codable {
 
 struct EstimationResult: Codable {
     let taskName: String
-    let startDate: String
-    let endDate: String
+    let startDate: Date
+    let endDate: Date
     let estimates: [UserEstimation]
 }
 

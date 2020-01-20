@@ -9,7 +9,11 @@
 import Foundation
 
 final class EventParser {
-    private static let decoder = JSONDecoder()
+    private static let decoder: JSONDecoder = {
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601WithoutTimezone)
+        return decoder
+    }()
 
     static func parse(_ jsonString: String) -> Any? {
         let jsonData = jsonString.data(using: .utf8)!

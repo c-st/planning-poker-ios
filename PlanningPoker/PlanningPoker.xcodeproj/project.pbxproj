@@ -18,6 +18,7 @@
 		834B701223D0951B00CC3BA2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 834B701123D0951B00CC3BA2 /* Preview Assets.xcassets */; };
 		834B701523D0951B00CC3BA2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 834B701323D0951B00CC3BA2 /* LaunchScreen.storyboard */; };
 		834B702023D0951B00CC3BA2 /* PlanningPokerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834B701F23D0951B00CC3BA2 /* PlanningPokerTests.swift */; };
+		83A55E0623D5BF2600496561 /* DateFormatter+CustomFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A55E0523D5BF2600496561 /* DateFormatter+CustomFormat.swift */; };
 		F578883623D0A7380019DF23 /* Starscream in Frameworks */ = {isa = PBXBuildFile; productRef = F578883523D0A7380019DF23 /* Starscream */; };
 		F578883823D0A7A70019DF23 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = F578883723D0A7A70019DF23 /* Store.swift */; };
 		F578883A23D0AA030019DF23 /* RoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F578883923D0AA030019DF23 /* RoomView.swift */; };
@@ -54,6 +55,7 @@
 		834B701B23D0951B00CC3BA2 /* PlanningPokerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlanningPokerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		834B701F23D0951B00CC3BA2 /* PlanningPokerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanningPokerTests.swift; sourceTree = "<group>"; };
 		834B702123D0951B00CC3BA2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		83A55E0523D5BF2600496561 /* DateFormatter+CustomFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+CustomFormat.swift"; sourceTree = "<group>"; };
 		F578883723D0A7A70019DF23 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		F578883923D0AA030019DF23 /* RoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomView.swift; sourceTree = "<group>"; };
 		F57B768923D0CD6000732C71 /* Events.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 				F57B768923D0CD6000732C71 /* Events.swift */,
 				F57B768E23D1CF5100732C71 /* EventParser.swift */,
 				83135B2F23D1EB4E0072F005 /* EventHandler.swift */,
+				83A55E0423D5BF0E00496561 /* Extensions */,
 				834B700E23D0951B00CC3BA2 /* Assets.xcassets */,
 				834B701323D0951B00CC3BA2 /* LaunchScreen.storyboard */,
 				834B701623D0951B00CC3BA2 /* Info.plist */,
@@ -146,6 +149,14 @@
 				83135B3123D1EDAF0072F005 /* EventHandlerTests.swift */,
 			);
 			path = PlanningPokerTests;
+			sourceTree = "<group>";
+		};
+		83A55E0423D5BF0E00496561 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				83A55E0523D5BF2600496561 /* DateFormatter+CustomFormat.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -261,6 +272,7 @@
 				F57B768A23D0CD6000732C71 /* Events.swift in Sources */,
 				8321F6E423D1B3C70027A212 /* ICloudUserDefault.swift in Sources */,
 				834B700923D0951800CC3BA2 /* AppDelegate.swift in Sources */,
+				83A55E0623D5BF2600496561 /* DateFormatter+CustomFormat.swift in Sources */,
 				F57B768F23D1CF5100732C71 /* EventParser.swift in Sources */,
 				834B700B23D0951800CC3BA2 /* SceneDelegate.swift in Sources */,
 				F578883A23D0AA030019DF23 /* RoomView.swift in Sources */,
