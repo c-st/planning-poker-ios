@@ -32,8 +32,17 @@ public class EventHandler {
     public static func handle(_ anyEvent: Any, state: AppState) -> AppState {
         switch anyEvent {
         case let event as UserJoined:
-            let newParticipants =
-                state.otherParticipants + [Participant(id: .init(), name: event.userName)]
+            let alreadyHasParticipant = state.otherParticipants.contains {
+                $0.name == event.userName
+            }
+
+            if alreadyHasParticipant {
+                return state
+            }
+
+            let newParticipants = state.otherParticipants +
+                [Participant(id: .init(), name: event.userName)]
+
             return AppState(
                 estimationStatus: state.estimationStatus,
                 participantName: state.participantName,

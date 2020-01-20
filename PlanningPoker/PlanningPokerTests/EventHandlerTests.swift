@@ -51,6 +51,32 @@ class EventHandlerTests: XCTestCase {
 
         expect(finalState.otherParticipants).to(haveCount(2))
     }
+    
+    func testSameUserJoiningMultipleTimes() {
+        let initialState = AppState(
+            otherParticipants: [
+                Participant(id: .init(), name: "Bar")
+            ]
+        )
+        
+        let userJoinedEvent = UserJoined(
+            userName: "Foo",
+            isSpectator: false
+        )
+        
+        let intermediateState = EventHandler.handle(
+            userJoinedEvent,
+            state: initialState
+        )
+        
+        let finalState = EventHandler.handle(
+            userJoinedEvent,
+            state: intermediateState
+        )
+        
+        expect(finalState.otherParticipants).to(haveCount(2))
+        
+    }
 
     func testUserLeaving() {
         let initialState = AppState(
