@@ -44,6 +44,9 @@ struct RoomView: View {
         .onAppear {
             self.store.joinRoom(self.roomName, participantName: self.participantName)
         }
+        .onDisappear {
+            self.store.leaveRoom()
+        }
         .padding()
         .navigationBarTitle(self.roomName)
     }

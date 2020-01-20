@@ -23,11 +23,18 @@ final class Store: ObservableObject, WebSocketDelegate {
         let socket = WebSocket(request: URLRequest(url: URL(
             string: "wss://planningpoker.cc/poker/\(roomName)?name=\(participantName)&spectator=False"
         )!))
-        
+
         socket.delegate = self
         socket.connect()
-        
+
         self.socket = socket
+    }
+    
+    func leaveRoom() {
+        if let socket = self.socket {
+            print("User left room. Disconnecting socket")
+            socket.disconnect()
+        }
     }
 
     func didReceive(event: WebSocketEvent, client: WebSocket) {
