@@ -36,12 +36,14 @@ struct RequestStartEstimation: Codable {
     let userName: String
     let taskName: String
     let startDate: Date
+    let eventType = EventType.startEstimation
 }
 
 struct UserEstimate: Codable {
     let userName: String
     let taskName: String
     let estimate: String
+    let eventType = EventType.estimate
 }
 
 struct UserHasEstimated: Codable {
@@ -51,6 +53,7 @@ struct UserHasEstimated: Codable {
 
 struct RequestShowEstimationResult: Codable {
     let userName: String
+    let eventType = EventType.showResult
 }
 
 struct EstimationResult: Codable {

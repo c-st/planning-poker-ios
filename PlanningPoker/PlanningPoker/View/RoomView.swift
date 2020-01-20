@@ -13,6 +13,7 @@ struct RoomView: View {
 
     @Binding var roomName: String
     @Binding var participantName: String
+    @State var newTaskName: String = ""
 
     var body: some View {
         ScrollView {
@@ -39,6 +40,25 @@ struct RoomView: View {
 
                 Text("You are: \(participantName)")
                 Spacer()
+
+                if store.state.estimationStatus == .notStarted {
+                    VStack {
+                        Text("Waiting for estimation start...")
+
+                        TextField("Task name", text: self.$newTaskName)
+                        Button(action: { self.store.startEstimationFor(self.newTaskName) }) {
+                            Text("Start")
+                        }
+                    }
+                }
+
+                if store.state.estimationStatus == .inProgress {
+                    Text("Please start your estimation...")
+                }
+
+                if store.state.estimationStatus == .ended {
+                    Text("Estimation results...")
+                }
             }
         }
         .onAppear {

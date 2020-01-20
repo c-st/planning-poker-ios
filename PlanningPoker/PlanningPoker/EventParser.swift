@@ -38,4 +38,28 @@ final class EventParser {
                 return try? decoder.decode(HeartBeat.self, from: jsonData)
         }
     }
+
+    static func serialize(_ event: Encodable) -> String {
+        let dictionary = event.dictionary
+        let data = try! JSONSerialization.data(withJSONObject: dictionary, options: .prettyPrinted)
+        return String(decoding: data, as: UTF8.self)
+    }
+}
+
+struct JSON {
+    static let encoder: JSONEncoder = {
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .formatted(DateFormatter.iso8601WithoutTimezone)
+        return encoder
+    }()
+}
+
+extension Encodable {
+    subscript(key: String) -> Any? {
+        return dictionary[key]
+    }
+
+    var dictionary: [String: Any] {
+        return (try? JSONSerialization.jsonObject(with: JSON.encoder.encode(self))) as? [String: Any] ?? [:]
+    }
 }

@@ -20,9 +20,12 @@ final class Store: ObservableObject, WebSocketDelegate {
     private let decoder = JSONDecoder()
 
     func joinRoom(_ roomName: String, participantName: String) {
+        self.state.participantName = participantName
+        self.state.roomName = roomName
+
         let socketUrl = "wss://planningpoker.cc/poker/\(roomName)?name=\(participantName)&spectator=False"
             .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-        
+
         let socket = WebSocket(request: URLRequest(url: URL(string: socketUrl)!))
 
         socket.delegate = self
@@ -30,11 +33,30 @@ final class Store: ObservableObject, WebSocketDelegate {
 
         self.socket = socket
     }
-    
+
     func leaveRoom() {
         if let socket = self.socket {
             print("User left room. Disconnecting socket")
             socket.disconnect()
+        }
+    }
+
+    func startEstimationFor(_ newTaskName: String) {
+        print("State: \(state)")
+        let requestStartEstimationEvent = RequestStartEstimation(
+            userName: state.participantName!,
+            taskName: newTaskName,
+            startDate: Date()
+        )
+
+        let serializedEvent = EventParser.serialize(requestStartEstimationEvent)
+
+        print("serialized event: \(serializedEvent)")
+        if let socket = self.socket {
+            socket.write(string: serializedEvent, completion: { print("done! i sent the things") })
+
+        } else {
+            print("uhoh")
         }
     }
 

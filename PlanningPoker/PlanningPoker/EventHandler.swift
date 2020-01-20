@@ -10,9 +10,11 @@ import Foundation
 
 public struct AppState {
     var estimationStatus: EstimationStatus = .notStarted
+    var participantName: String?
     var otherParticipants: [Participant] = []
-    var estimationStart: Date?
+    var roomName: String?
     var currentTaskName: String?
+    var estimationStart: Date?
 
     enum EstimationStatus {
         case notStarted
@@ -44,9 +46,11 @@ public class EventHandler {
         case let event as RequestStartEstimation:
             return AppState(
                 estimationStatus: .inProgress,
+                participantName: state.participantName,
                 otherParticipants: state.otherParticipants,
-                estimationStart: event.startDate,
-                currentTaskName: event.taskName
+                roomName: state.roomName,
+                currentTaskName: event.taskName,
+                estimationStart: event.startDate
             )
 
         case is HeartBeat:
