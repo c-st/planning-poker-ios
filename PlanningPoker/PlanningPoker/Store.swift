@@ -20,9 +20,10 @@ final class Store: ObservableObject, WebSocketDelegate {
     private let decoder = JSONDecoder()
 
     func joinRoom(_ roomName: String, participantName: String) {
-        let socket = WebSocket(request: URLRequest(url: URL(
-            string: "wss://planningpoker.cc/poker/\(roomName)?name=\(participantName)&spectator=False"
-        )!))
+        let socketUrl = "wss://planningpoker.cc/poker/\(roomName)?name=\(participantName)&spectator=False"
+            .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        
+        let socket = WebSocket(request: URLRequest(url: URL(string: socketUrl)!))
 
         socket.delegate = self
         socket.connect()
@@ -38,8 +39,6 @@ final class Store: ObservableObject, WebSocketDelegate {
     }
 
     func didReceive(event: WebSocketEvent, client: WebSocket) {
-        print("didReceive", event)
-
         switch event {
         case .text(let jsonString):
             if let parsedEvent = EventParser.parse(jsonString) {
