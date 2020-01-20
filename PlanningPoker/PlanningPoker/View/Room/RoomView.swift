@@ -42,22 +42,18 @@ struct RoomView: View {
                 Spacer()
 
                 if store.state.estimationStatus == .notStarted {
-                    VStack {
-                        Text("Waiting for estimation start...")
-
-                        TextField("Task name", text: self.$newTaskName)
-                        Button(action: { self.store.startEstimationFor(self.newTaskName) }) {
-                            Text("Start")
-                        }
-                    }
+                    NotYetStartedView(
+                        newTaskName: self.$newTaskName,
+                        onStartEstimation: { self.store.startEstimationFor(self.newTaskName) }
+                    )
                 }
 
                 if store.state.estimationStatus == .inProgress {
-                    Text("Please start your estimation...")
+                    InProgressView()
                 }
 
                 if store.state.estimationStatus == .ended {
-                    Text("Estimation results...")
+                    EndedView()
                 }
             }
         }
