@@ -47,6 +47,7 @@ public class EventHandler {
             )
 
         case let event as RequestStartEstimation:
+            print("request start estimation: \(event)")
             func resetEstimationStatus(participant: Participant) -> Participant {
                 Participant(
                     id: participant.id,

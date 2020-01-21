@@ -23,12 +23,16 @@ struct InProgressView: View {
         "???"
     ]
 
+    var currentTaskName: String?
     var participantEstimate: String?
     let onEstimate: (String) -> Void
     let onShowResult: () -> Void
 
     var body: some View {
         VStack(alignment: .center, spacing: 10) {
+            Text("Current task: \(currentTaskName!)")
+                .font(.headline)
+            
             Button(action: self.onShowResult) {
                 Text("Show result")
             }

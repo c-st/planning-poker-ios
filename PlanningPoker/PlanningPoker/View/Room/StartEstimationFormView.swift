@@ -17,7 +17,7 @@ struct StartEstimationFormView: View {
             TextField("Task name", text: self.$newTaskName)
             Button(action: { self.onStartEstimation(self.newTaskName) }) {
                 Text("Start")
-            }
+            }.disabled(newTaskName.isEmpty)
         }
     }
 }

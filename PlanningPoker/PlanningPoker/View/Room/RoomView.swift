@@ -34,6 +34,7 @@ struct RoomView: View {
 
                 if store.state.estimationStatus == .inProgress {
                     InProgressView(
+                        currentTaskName: self.store.state.currentTaskName,
                         participantEstimate: self.store.state.participant!.currentEstimate,
                         onEstimate: { self.store.sendEstimate($0) },
                         onShowResult: { self.store.sendEstimationResultRequest() }
@@ -42,6 +43,7 @@ struct RoomView: View {
 
                 if store.state.estimationStatus == .ended {
                     EndedView(
+                        participants: self.store.state.otherParticipants + [self.store.state.participant!],
                         onStartEstimation: { self.store.sendStartEstimationRequestFor($0) }
                     )
                 }
