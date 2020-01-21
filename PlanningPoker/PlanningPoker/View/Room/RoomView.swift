@@ -11,35 +11,21 @@ import SwiftUI
 struct RoomView: View {
     @EnvironmentObject var store: Store
 
-    @Binding var roomName: String
-    @Binding var participantName: String
+    @State var joinRoomData: JoinRoomData
     @State var newTaskName: String = ""
 
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading) {
+            VStack {
                 Text("Participants")
                     .font(.headline)
 
-                HStack {
-                    ScrollView(.horizontal) {
-                        HStack {
-                            UserAvatarView(
-                                name: participantName,
-                                backgroundColor: Color.blue
-                            )
-
-                            ForEach(store.state.otherParticipants) { participant in
-                                UserAvatarView(name: participant.name)
-                            }
-                        }.frame(minWidth: 50, minHeight: 50)
-                    }
-                }
+                ParticipantsView(
+                    currentParticipant: store.state.participant,
+                    otherParticipants: store.state.otherParticipants
+                )
 
                 Divider()
-
-                Text("You are: \(participantName)")
-                Spacer()
 
                 if store.state.estimationStatus == .notStarted {
                     NotYetStartedView(
@@ -59,23 +45,43 @@ struct RoomView: View {
                     EndedView()
                 }
             }
+            .padding()
+            .navigationBarTitle(self.joinRoomData.roomName)
+            .onAppear { self.store.joinRoom(self.joinRoomData) }
+            .onDisappear { self.store.leaveRoom() }
         }
-        .onAppear {
-            self.store.joinRoom(self.roomName, participantName: self.participantName)
-        }
-        .onDisappear {
-            self.store.leaveRoom()
-        }
-        .padding()
-        .navigationBarTitle(self.roomName)
     }
 }
+
+//    var body: some View {
+//        ScrollView {
+//            VStack { // (alignment: .leading) {
+//                Text("Participants")
+//                    .font(.headline)
+//
+//                ParticipantsView(
+//                    currentParticipant: store.state.participant!,
+//                    otherParticipants: store.state.otherParticipants
+//                )
+//
+/// /                Divider()
+//
+
+//            }
+//        }
+
+// .padding()
+// .navigationBarTitle(self.roomName)
+//    }
+// }
 
 struct RoomView_Previews: PreviewProvider {
     static var previews: some View {
         RoomView(
-            roomName: .constant("foo"),
-            participantName: .constant("Test")
+            joinRoomData: JoinRoomData(
+                roomName: "Room",
+                participantName: "Foo"
+            )
         ).environmentObject(Store())
     }
 }

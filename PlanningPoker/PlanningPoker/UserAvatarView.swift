@@ -9,16 +9,16 @@
 import SwiftUI
 
 struct UserAvatarView: View {
-    var name: String
+    var participant: Participant
     var backgroundColor: Color = Color.black
 
     var body: some View {
-        Text(name)
+        Text(participant.name)
             .font(.caption)
             .fontWeight(.heavy)
             .multilineTextAlignment(.center)
             .frame(width: 50, height: 50)
-            .background(backgroundColor)
+            .background(participant.hasEstimated ? .green : backgroundColor)
             .foregroundColor(Color.white)
             .clipShape(Circle())
     }
@@ -26,6 +26,10 @@ struct UserAvatarView: View {
 
 struct UserAvatarView_Previews: PreviewProvider {
     static var previews: some View {
-        UserAvatarView(name: "Some user")
+        HStack {
+            UserAvatarView(participant: Participant(name: "Foo", hasEstimated: false))
+            UserAvatarView(participant: Participant(name: "Foo", hasEstimated: false))
+            UserAvatarView(participant: Participant(name: "Foo", hasEstimated: true))
+        }
     }
 }

@@ -76,17 +76,20 @@ public class EventHandler {
                 currentTaskName: event.taskName,
                 estimationStart: event.startDate
             )
-            
+
         case let event as UserHasEstimated:
+            print("UserHasEstimated \(event)")
+            func markAsEstimatedIfNecessary(participant: Participant) -> Participant {
+                if participant.name == event.userName {
+                    return Participant(name: participant.name, hasEstimated: true)
+                }
+                return participant
+            }
+            
             return AppState(
                 estimationStatus: state.estimationStatus,
-                participant: state.participant,
-                otherParticipants: state.otherParticipants.map { participant in
-                    if participant.name == event.userName {
-                        return Participant(name: participant.name, hasEstimated: true)
-                    }
-                    return participant
-                },
+                participant: state.participant.map(markAsEstimatedIfNecessary),
+                otherParticipants: state.otherParticipants.map(markAsEstimatedIfNecessary),
                 roomName: state.roomName,
                 currentTaskName: state.currentTaskName,
                 estimationStart: state.estimationStart

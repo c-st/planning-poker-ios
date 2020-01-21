@@ -136,11 +136,16 @@ class EventHandlerTests: XCTestCase {
             currentTaskName: "Test task",
             estimationStart: Date()
         )
-        
-        let userHasEstimatedEvent = UserHasEstimated(userName: "Foo", taskName: "Test task")
-        
-        let finalState = EventHandler.handle(userHasEstimatedEvent, state: initialState)
-        
+
+        let userHasEstimatedEvent = UserHasEstimated(
+            userName: "Foo",
+            taskName: "Test task"
+        )
+
+        let finalState = EventHandler.handle(
+            userHasEstimatedEvent, state: initialState
+        )
+
         expect(finalState.otherParticipants.first!.hasEstimated).to(beTrue())
     }
 }

@@ -22,6 +22,7 @@
 		83A55E0923D5F0DA00496561 /* NotYetStartedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A55E0823D5F0DA00496561 /* NotYetStartedView.swift */; };
 		83A55E0B23D5F24E00496561 /* InProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A55E0A23D5F24E00496561 /* InProgressView.swift */; };
 		83A55E0D23D5F28100496561 /* EndedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A55E0C23D5F28100496561 /* EndedView.swift */; };
+		83A55E0F23D7129D00496561 /* ParticipantsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A55E0E23D7129D00496561 /* ParticipantsView.swift */; };
 		F578883623D0A7380019DF23 /* Starscream in Frameworks */ = {isa = PBXBuildFile; productRef = F578883523D0A7380019DF23 /* Starscream */; };
 		F578883823D0A7A70019DF23 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = F578883723D0A7A70019DF23 /* Store.swift */; };
 		F578883A23D0AA030019DF23 /* RoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F578883923D0AA030019DF23 /* RoomView.swift */; };
@@ -62,6 +63,7 @@
 		83A55E0823D5F0DA00496561 /* NotYetStartedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotYetStartedView.swift; sourceTree = "<group>"; };
 		83A55E0A23D5F24E00496561 /* InProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InProgressView.swift; sourceTree = "<group>"; };
 		83A55E0C23D5F28100496561 /* EndedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndedView.swift; sourceTree = "<group>"; };
+		83A55E0E23D7129D00496561 /* ParticipantsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantsView.swift; sourceTree = "<group>"; };
 		F578883723D0A7A70019DF23 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		F578883923D0AA030019DF23 /* RoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomView.swift; sourceTree = "<group>"; };
 		F57B768923D0CD6000732C71 /* Events.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
@@ -92,8 +94,8 @@
 		83135B2E23D1EAFB0072F005 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				83A55E0723D5F0A800496561 /* Room */,
 				834B700C23D0951800CC3BA2 /* JoinRoomView.swift */,
+				83A55E0723D5F0A800496561 /* Room */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -172,6 +174,7 @@
 				83A55E0823D5F0DA00496561 /* NotYetStartedView.swift */,
 				83A55E0A23D5F24E00496561 /* InProgressView.swift */,
 				83A55E0C23D5F28100496561 /* EndedView.swift */,
+				83A55E0E23D7129D00496561 /* ParticipantsView.swift */,
 			);
 			path = Room;
 			sourceTree = "<group>";
@@ -296,6 +299,7 @@
 				834B700B23D0951800CC3BA2 /* SceneDelegate.swift in Sources */,
 				F578883A23D0AA030019DF23 /* RoomView.swift in Sources */,
 				834B700D23D0951800CC3BA2 /* JoinRoomView.swift in Sources */,
+				83A55E0F23D7129D00496561 /* ParticipantsView.swift in Sources */,
 				F578883823D0A7A70019DF23 /* Store.swift in Sources */,
 				83135B3023D1EB4E0072F005 /* EventHandler.swift in Sources */,
 				83A55E0923D5F0DA00496561 /* NotYetStartedView.swift in Sources */,

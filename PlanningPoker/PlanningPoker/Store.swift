@@ -10,20 +10,24 @@ import Combine
 import Foundation
 import Starscream
 
+struct JoinRoomData {
+     var roomName: String = ""
+     var participantName: String = ""
+ }
+
 final class Store: ObservableObject, WebSocketDelegate {
     @Published var state: AppState = AppState()
-
+    
     // TODO: see how Combine can be used to handle name/room state
 
     private var socket: WebSocket?
-
     private let decoder = JSONDecoder()
 
-    func joinRoom(_ roomName: String, participantName: String) {
-        self.state.participant = Participant(name: participantName)
-        self.state.roomName = roomName
+    func joinRoom(_ roomData: JoinRoomData) {
+        self.state.roomName = roomData.roomName
+        self.state.participant = Participant(name: roomData.participantName)
 
-        let socketUrl = "wss://planningpoker.cc/poker/\(roomName)?name=\(participantName)&spectator=False"
+        let socketUrl = "wss://planningpoker.cc/poker/\(self.state.roomName!)?name=\(self.state.participant!.name)&spectator=False"
             .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
 
         let socket = WebSocket(request: URLRequest(url: URL(string: socketUrl)!))

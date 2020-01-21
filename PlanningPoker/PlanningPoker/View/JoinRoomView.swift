@@ -10,7 +10,8 @@ import SwiftUI
 
 struct JoinRoomView: View {
     @State var roomName: String = ""
-    @State var participantName: String
+    @State var participantName: String = ""
+    @State var navigationSelection: Int? = nil
 
     @EnvironmentObject var store: Store
 
@@ -23,15 +24,15 @@ struct JoinRoomView: View {
                 }
 
                 Section {
-                    if !roomName.isEmpty && !participantName.isEmpty {
-                        Text("You have chosen room: \(self.roomName)")
-                    }
-
-                    //
                     NavigationLink(
                         destination: RoomView(
-                            roomName: self.$roomName,
-                            participantName: self.$participantName)) {
+                            joinRoomData: JoinRoomData(
+                                roomName: self.roomName,
+                                participantName: self.participantName
+                            )
+                        )
+
+                    ) {
                         Text("Join the room")
                     }
                     .disabled(roomName.isEmpty || participantName.isEmpty)
