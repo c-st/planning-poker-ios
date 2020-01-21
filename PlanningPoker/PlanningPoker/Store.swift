@@ -41,22 +41,27 @@ final class Store: ObservableObject, WebSocketDelegate {
         }
     }
 
-    func startEstimationFor(_ newTaskName: String) {
-        print("State: \(state)")
+    func sendStartEstimationRequestFor(_ newTaskName: String) {
         let requestStartEstimationEvent = RequestStartEstimation(
             userName: state.participantName!,
             taskName: newTaskName,
             startDate: Date()
         )
 
-        let serializedEvent = EventParser.serialize(requestStartEstimationEvent)
-
-        print("serialized event: \(serializedEvent)")
         if let socket = self.socket {
-            socket.write(string: serializedEvent, completion: { print("done! i sent the things") })
+            socket.write(string: EventParser.serialize(requestStartEstimationEvent))
+        }
+    }
 
-        } else {
-            print("uhoh")
+    func sendEstimate(_ estimate: String) {
+        let estimationEvent = UserEstimate(
+            userName: state.participantName!,
+            taskName: self.state.currentTaskName!,
+            estimate: estimate
+        )
+        
+        if let socket = self.socket {
+            socket.write(string: EventParser.serialize(estimationEvent))
         }
     }
 

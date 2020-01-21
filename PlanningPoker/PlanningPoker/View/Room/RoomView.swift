@@ -44,12 +44,12 @@ struct RoomView: View {
                 if store.state.estimationStatus == .notStarted {
                     NotYetStartedView(
                         newTaskName: self.$newTaskName,
-                        onStartEstimation: { self.store.startEstimationFor(self.newTaskName) }
+                        onStartEstimation: { self.store.sendStartEstimationRequestFor(self.newTaskName) }
                     )
                 }
 
                 if store.state.estimationStatus == .inProgress {
-                    InProgressView()
+                    InProgressView(onEstimate: { self.store.sendEstimate($0) })
                 }
 
                 if store.state.estimationStatus == .ended {
