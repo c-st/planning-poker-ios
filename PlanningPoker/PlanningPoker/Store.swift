@@ -20,7 +20,7 @@ final class Store: ObservableObject, WebSocketDelegate {
     private let decoder = JSONDecoder()
 
     func joinRoom(_ roomName: String, participantName: String) {
-        self.state.participantName = participantName
+        self.state.participant = Participant(name: participantName)
         self.state.roomName = roomName
 
         let socketUrl = "wss://planningpoker.cc/poker/\(roomName)?name=\(participantName)&spectator=False"
@@ -43,7 +43,7 @@ final class Store: ObservableObject, WebSocketDelegate {
 
     func sendStartEstimationRequestFor(_ newTaskName: String) {
         let requestStartEstimationEvent = RequestStartEstimation(
-            userName: state.participantName!,
+            userName: state.participant!.name,
             taskName: newTaskName,
             startDate: Date()
         )
@@ -55,13 +55,23 @@ final class Store: ObservableObject, WebSocketDelegate {
 
     func sendEstimate(_ estimate: String) {
         let estimationEvent = UserEstimate(
-            userName: state.participantName!,
+            userName: state.participant!.name,
             taskName: self.state.currentTaskName!,
             estimate: estimate
         )
         
         if let socket = self.socket {
             socket.write(string: EventParser.serialize(estimationEvent))
+        }
+    }
+    
+    func sendEstimationResultRequest() {
+        let event = RequestShowEstimationResult(
+            userName: state.participant!.name
+        )
+        
+        if let socket = self.socket {
+            socket.write(string: EventParser.serialize(event))
         }
     }
 

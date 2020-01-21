@@ -49,7 +49,10 @@ struct RoomView: View {
                 }
 
                 if store.state.estimationStatus == .inProgress {
-                    InProgressView(onEstimate: { self.store.sendEstimate($0) })
+                    InProgressView(
+                        onEstimate: { self.store.sendEstimate($0) },
+                        onShowResult: { self.store.sendEstimationResultRequest() }
+                    )
                 }
 
                 if store.state.estimationStatus == .ended {

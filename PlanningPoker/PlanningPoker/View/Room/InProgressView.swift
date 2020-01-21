@@ -24,9 +24,13 @@ struct InProgressView: View {
     ]
 
     let onEstimate: (String) -> Void
+    let onShowResult: () -> Void
 
     var body: some View {
         VStack(alignment: .center, spacing: 10) {
+            Button(action: self.onShowResult) {
+                Text("Show result")
+            }
             ForEach(self.possibleEstimates, id: \.self) { estimate in
                 Button(action: { self.onEstimate(estimate) }) {
                     Text(estimate)
@@ -44,6 +48,6 @@ struct InProgressView: View {
 
 struct InProgressView_Previews: PreviewProvider {
     static var previews: some View {
-        InProgressView(onEstimate: { print("You estimated \($0)") })
+        InProgressView(onEstimate: {_ in }, onShowResult: {})
     }
 }

@@ -51,38 +51,37 @@ class EventHandlerTests: XCTestCase {
 
         expect(finalState.otherParticipants).to(haveCount(2))
     }
-    
+
     func testSameUserJoiningMultipleTimes() {
         let initialState = AppState(
             otherParticipants: [
-                Participant(id: .init(), name: "Bar")
+                Participant(name: "Bar")
             ]
         )
-        
+
         let userJoinedEvent = UserJoined(
             userName: "Foo",
             isSpectator: false
         )
-        
+
         let intermediateState = EventHandler.handle(
             userJoinedEvent,
             state: initialState
         )
-        
+
         let finalState = EventHandler.handle(
             userJoinedEvent,
             state: intermediateState
         )
-        
+
         expect(finalState.otherParticipants).to(haveCount(2))
-        
     }
 
     func testUserLeaving() {
         let initialState = AppState(
             otherParticipants: [
-                Participant(id: .init(), name: "Foo"),
-                Participant(id: .init(), name: "Bar")
+                Participant(name: "Foo"),
+                Participant(name: "Bar")
             ]
         )
 
@@ -99,8 +98,8 @@ class EventHandlerTests: XCTestCase {
     func testUpdateEstimateState() {
         let initialState = AppState(
             otherParticipants: [
-                Participant(id: .init(), name: "Foo"),
-                Participant(id: .init(), name: "Bar")
+                Participant(name: "Foo"),
+                Participant(name: "Bar")
             ]
         )
 
@@ -123,5 +122,25 @@ class EventHandlerTests: XCTestCase {
         expect(finalState.estimationStatus).to(equal(.inProgress))
         expect(finalState.estimationStart).to(equal(date))
         expect(finalState.currentTaskName).to(equal("implementing planning poker"))
+    }
+
+    func testUserHasEstimated() {
+        let initialState = AppState(
+            estimationStatus: .inProgress,
+            participant: Participant(name: "Test user"),
+            otherParticipants: [
+                Participant(name: "Foo"),
+                Participant(name: "Bar")
+            ],
+            roomName: "Test room",
+            currentTaskName: "Test task",
+            estimationStart: Date()
+        )
+        
+        let userHasEstimatedEvent = UserHasEstimated(userName: "Foo", taskName: "Test task")
+        
+        let finalState = EventHandler.handle(userHasEstimatedEvent, state: initialState)
+        
+        expect(finalState.otherParticipants.first!.hasEstimated).to(beTrue())
     }
 }

@@ -10,7 +10,7 @@ import Foundation
 
 public struct AppState {
     var estimationStatus: EstimationStatus = .notStarted
-    var participantName: String?
+    var participant: Participant?
     var otherParticipants: [Participant] = []
     var roomName: String?
     var currentTaskName: String?
@@ -24,8 +24,9 @@ public struct AppState {
 }
 
 struct Participant: Identifiable {
-    var id: UUID
+    var id: UUID = UUID()
     var name: String
+    var hasEstimated: Bool = false
 }
 
 public class EventHandler {
@@ -41,11 +42,11 @@ public class EventHandler {
             }
 
             let newParticipants = state.otherParticipants +
-                [Participant(id: .init(), name: event.userName)]
+                [Participant(name: event.userName)]
 
             return AppState(
                 estimationStatus: state.estimationStatus,
-                participantName: state.participantName,
+                participant: state.participant,
                 otherParticipants: newParticipants,
                 roomName: state.roomName,
                 currentTaskName: state.currentTaskName,
@@ -59,7 +60,7 @@ public class EventHandler {
                 }
             return AppState(
                 estimationStatus: state.estimationStatus,
-                participantName: state.participantName,
+                participant: state.participant,
                 otherParticipants: newParticipants,
                 roomName: state.roomName,
                 currentTaskName: state.currentTaskName,
@@ -69,11 +70,26 @@ public class EventHandler {
         case let event as RequestStartEstimation:
             return AppState(
                 estimationStatus: .inProgress,
-                participantName: state.participantName,
+                participant: state.participant,
                 otherParticipants: state.otherParticipants,
                 roomName: state.roomName,
                 currentTaskName: event.taskName,
                 estimationStart: event.startDate
+            )
+            
+        case let event as UserHasEstimated:
+            return AppState(
+                estimationStatus: state.estimationStatus,
+                participant: state.participant,
+                otherParticipants: state.otherParticipants.map { participant in
+                    if participant.name == event.userName {
+                        return Participant(name: participant.name, hasEstimated: true)
+                    }
+                    return participant
+                },
+                roomName: state.roomName,
+                currentTaskName: state.currentTaskName,
+                estimationStart: state.estimationStart
             )
 
         case is HeartBeat:
