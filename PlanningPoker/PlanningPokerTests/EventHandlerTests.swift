@@ -95,7 +95,7 @@ class EventHandlerTests: XCTestCase {
         expect(finalState.otherParticipants).to(haveCount(1))
     }
 
-    func testUpdateEstimateState() {
+    func testStartNewEstimation() {
         let initialState = AppState(
             otherParticipants: [
                 Participant(name: "Foo"),
@@ -123,11 +123,36 @@ class EventHandlerTests: XCTestCase {
         expect(finalState.estimationStart).to(equal(date))
         expect(finalState.currentTaskName).to(equal("implementing planning poker"))
     }
-
-    func testUserHasEstimated() {
+    
+    func testOurUserHasEstimated() {
         let initialState = AppState(
             estimationStatus: .inProgress,
-            participant: Participant(name: "Test user"),
+            participant: Participant(name: "Our user"),
+            otherParticipants: [
+                Participant(name: "Foo"),
+                Participant(name: "Bar")
+            ],
+            roomName: "Test room",
+            currentTaskName: "Test task",
+            estimationStart: Date()
+        )
+
+        let userHasEstimatedEvent = UserHasEstimated(
+            userName: "Our user",
+            taskName: "Test task"
+        )
+
+        let finalState = EventHandler.handle(
+            userHasEstimatedEvent, state: initialState
+        )
+
+        expect(finalState.participant!.hasEstimated).to(beTrue())
+    }
+
+    func testOtherUserHasEstimated() {
+        let initialState = AppState(
+            estimationStatus: .inProgress,
+            participant: Participant(name: "Our user"),
             otherParticipants: [
                 Participant(name: "Foo"),
                 Participant(name: "Bar")
@@ -147,5 +172,40 @@ class EventHandlerTests: XCTestCase {
         )
 
         expect(finalState.otherParticipants.first!.hasEstimated).to(beTrue())
+    }
+    
+    func testFinishEstimation() {
+        let taskName = "Test task"
+        let start = Date()
+        
+        let initialState = AppState(
+            estimationStatus: .inProgress,
+            participant: Participant(name: "Our user"),
+            otherParticipants: [
+                Participant(name: "Foo"),
+                Participant(name: "Bar")
+            ],
+            roomName: "Test room",
+            currentTaskName: taskName,
+            estimationStart: start
+        )
+        
+        let estimationResultEvent = EstimationResult(
+            taskName: "Test task",
+            startDate: start,
+            endDate: Date(),
+            estimates: [
+                UserEstimation(userName: "Our user", estimate: "1"),
+                UserEstimation(userName: "Foo", estimate: "3"),
+                UserEstimation(userName: "Bar", estimate: "5")
+            ]
+        )
+        
+        let finalState = EventHandler.handle(estimationResultEvent, state: initialState)
+        
+        expect(finalState.estimationStatus).to(equal(.ended))
+        
+        expect(finalState.otherParticipants.first!.currentEstimate).to(equal("3"))
+        expect(finalState.otherParticipants.last!.currentEstimate).to(equal("5"))
     }
 }

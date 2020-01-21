@@ -23,7 +23,10 @@ struct InProgressView: View {
         "???"
     ]
 
+    let participantEstimate: String?
+
     let onEstimate: (String) -> Void
+
     let onShowResult: () -> Void
 
     var body: some View {
@@ -38,7 +41,7 @@ struct InProgressView: View {
                         .fontWeight(.bold)
                         .frame(width: 30)
                         .padding()
-                        .background(Color.blue)
+                        .background(self.participantEstimate == estimate ? Color.green : Color.blue)
                         .foregroundColor(Color.white)
                 }
             }
@@ -48,6 +51,6 @@ struct InProgressView: View {
 
 struct InProgressView_Previews: PreviewProvider {
     static var previews: some View {
-        InProgressView(onEstimate: {_ in }, onShowResult: {})
+        InProgressView(participantEstimate: "5", onEstimate: {_ in }, onShowResult: {})
     }
 }

@@ -27,6 +27,7 @@ struct Participant: Identifiable {
     var id: UUID = UUID()
     var name: String
     var hasEstimated: Bool = false
+    var currentEstimate: String?
 }
 
 public class EventHandler {
@@ -78,18 +79,42 @@ public class EventHandler {
             )
 
         case let event as UserHasEstimated:
-            print("UserHasEstimated \(event)")
             func markAsEstimatedIfNecessary(participant: Participant) -> Participant {
                 if participant.name == event.userName {
                     return Participant(name: participant.name, hasEstimated: true)
                 }
                 return participant
             }
-            
+
             return AppState(
                 estimationStatus: state.estimationStatus,
                 participant: state.participant.map(markAsEstimatedIfNecessary),
                 otherParticipants: state.otherParticipants.map(markAsEstimatedIfNecessary),
+                roomName: state.roomName,
+                currentTaskName: state.currentTaskName,
+                estimationStart: state.estimationStart
+            )
+
+        case let event as EstimationResult:
+            func updateEstimateIfNecessary(participant: Participant) -> Participant {
+                let participantEstimate = event.estimates.first { estimate in
+                    estimate.userName == participant.name
+                }
+                guard participantEstimate != nil else {
+                    return participant
+                }
+
+                return Participant(
+                    name: participant.name,
+                    hasEstimated: true,
+                    currentEstimate: participantEstimate!.estimate
+                )
+            }
+
+            return AppState(
+                estimationStatus: .ended,
+                participant: state.participant.map(updateEstimateIfNecessary),
+                otherParticipants: state.otherParticipants.map(updateEstimateIfNecessary),
                 roomName: state.roomName,
                 currentTaskName: state.currentTaskName,
                 estimationStart: state.estimationStart

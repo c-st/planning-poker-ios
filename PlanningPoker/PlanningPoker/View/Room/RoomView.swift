@@ -36,6 +36,7 @@ struct RoomView: View {
 
                 if store.state.estimationStatus == .inProgress {
                     InProgressView(
+                        participantEstimate: self.store.state.participant?.currentEstimate,
                         onEstimate: { self.store.sendEstimate($0) },
                         onShowResult: { self.store.sendEstimationResultRequest() }
                     )
@@ -52,28 +53,6 @@ struct RoomView: View {
         }
     }
 }
-
-//    var body: some View {
-//        ScrollView {
-//            VStack { // (alignment: .leading) {
-//                Text("Participants")
-//                    .font(.headline)
-//
-//                ParticipantsView(
-//                    currentParticipant: store.state.participant!,
-//                    otherParticipants: store.state.otherParticipants
-//                )
-//
-/// /                Divider()
-//
-
-//            }
-//        }
-
-// .padding()
-// .navigationBarTitle(self.roomName)
-//    }
-// }
 
 struct RoomView_Previews: PreviewProvider {
     static var previews: some View {

@@ -39,6 +39,8 @@ final class Store: ObservableObject, WebSocketDelegate {
     }
 
     func leaveRoom() {
+        self.state = AppState()
+        
         if let socket = self.socket {
             print("User left room. Disconnecting socket")
             socket.disconnect()
@@ -58,6 +60,12 @@ final class Store: ObservableObject, WebSocketDelegate {
     }
 
     func sendEstimate(_ estimate: String) {
+        self.state.participant = Participant(
+            name: self.state.participant!.name,
+            hasEstimated: true,
+            currentEstimate: estimate
+        )
+        
         let estimationEvent = UserEstimate(
             userName: state.participant!.name,
             taskName: self.state.currentTaskName!,
