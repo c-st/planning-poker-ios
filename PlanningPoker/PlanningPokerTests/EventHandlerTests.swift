@@ -103,9 +103,6 @@ class EventHandlerTests: XCTestCase {
             ]
         )
 
-        // current backend does not send the timezone at the moment!
-        let formatter = ISO8601DateFormatter()
-        print(formatter.string(from: Date()))
         let date = DateFormatter.iso8601WithoutTimezone.date(from: "2020-01-17T14:13:07")
 
         let requestStartEstimateEvent = RequestStartEstimation(
@@ -123,7 +120,7 @@ class EventHandlerTests: XCTestCase {
         expect(finalState.estimationStart).to(equal(date))
         expect(finalState.currentTaskName).to(equal("implementing planning poker"))
     }
-    
+
     func testOurUserHasEstimated() {
         let initialState = AppState(
             estimationStatus: .inProgress,
@@ -173,11 +170,11 @@ class EventHandlerTests: XCTestCase {
 
         expect(finalState.otherParticipants.first!.hasEstimated).to(beTrue())
     }
-    
+
     func testFinishEstimation() {
         let taskName = "Test task"
         let start = Date()
-        
+
         let initialState = AppState(
             estimationStatus: .inProgress,
             participant: Participant(name: "Our user"),
@@ -189,7 +186,7 @@ class EventHandlerTests: XCTestCase {
             currentTaskName: taskName,
             estimationStart: start
         )
-        
+
         let estimationResultEvent = EstimationResult(
             taskName: "Test task",
             startDate: start,
@@ -200,12 +197,56 @@ class EventHandlerTests: XCTestCase {
                 UserEstimation(userName: "Bar", estimate: "5")
             ]
         )
-        
+
         let finalState = EventHandler.handle(estimationResultEvent, state: initialState)
-        
+
         expect(finalState.estimationStatus).to(equal(.ended))
-        
         expect(finalState.otherParticipants.first!.currentEstimate).to(equal("3"))
         expect(finalState.otherParticipants.last!.currentEstimate).to(equal("5"))
+    }
+
+    func testStartNextNewEstimation() {
+        let initialState = AppState(
+            estimationStatus: .ended,
+            participant: Participant(
+                name: "Our user",
+                hasEstimated: true,
+                currentEstimate: "1"
+            ),
+            otherParticipants: [
+                Participant(
+                    name: "Foo",
+                    hasEstimated: true,
+                    currentEstimate: "5"
+                ),
+                Participant(
+                    name: "Bar",
+                    hasEstimated: true,
+                    currentEstimate: "3"
+                )
+            ]
+        )
+
+        let requestStartEstimateEvent = RequestStartEstimation(
+            userName: "Foo",
+            taskName: "Another task",
+            startDate: Date()
+        )
+
+        let finalState = EventHandler.handle(
+            requestStartEstimateEvent,
+            state: initialState
+        )
+
+        expect(finalState.estimationStatus).to(equal(.inProgress))
+        expect(finalState.participant?.hasEstimated).to(beFalse())
+        expect(finalState.participant?.currentEstimate).to(beNil())
+        
+        expect(finalState.otherParticipants.first!.hasEstimated).to(beFalse())
+        expect(finalState.otherParticipants.first!.currentEstimate).to(beNil())
+        
+        expect(finalState.otherParticipants.last!.hasEstimated).to(beFalse())
+        expect(finalState.otherParticipants.last!.currentEstimate).to(beNil())
+        
     }
 }

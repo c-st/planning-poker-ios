@@ -9,18 +9,14 @@
 import SwiftUI
 
 struct NotYetStartedView: View {
-    @Binding var newTaskName: String
-
-    let onStartEstimation: () -> Void
+    let onStartEstimation: (String) -> Void
 
     var body: some View {
         VStack {
             Text("Waiting for estimation start...")
-
-            TextField("Task name", text: self.$newTaskName)
-            Button(action: { self.onStartEstimation() }) {
-                Text("Start")
-            }
+            StartEstimationFormView(
+                onStartEstimation: onStartEstimation
+            )
         }
     }
 }
@@ -28,8 +24,7 @@ struct NotYetStartedView: View {
 struct NotYetStartedView_Previews: PreviewProvider {
     static var previews: some View {
         NotYetStartedView(
-            newTaskName: .constant("Implement view"),
-            onStartEstimation: { print("Start estimating!") }
+            onStartEstimation: { _ in print("Start estimating!") }
         )
     }
 }

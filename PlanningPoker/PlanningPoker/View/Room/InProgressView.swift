@@ -23,10 +23,8 @@ struct InProgressView: View {
         "???"
     ]
 
-    let participantEstimate: String?
-
+    var participantEstimate: String?
     let onEstimate: (String) -> Void
-
     let onShowResult: () -> Void
 
     var body: some View {
@@ -34,6 +32,7 @@ struct InProgressView: View {
             Button(action: self.onShowResult) {
                 Text("Show result")
             }
+            
             ForEach(self.possibleEstimates, id: \.self) { estimate in
                 Button(action: { self.onEstimate(estimate) }) {
                     Text(estimate)
@@ -51,6 +50,10 @@ struct InProgressView: View {
 
 struct InProgressView_Previews: PreviewProvider {
     static var previews: some View {
-        InProgressView(participantEstimate: "5", onEstimate: {_ in }, onShowResult: {})
+        InProgressView(
+            participantEstimate: "5",
+            onEstimate: { _ in },
+            onShowResult: {}
+        )
     }
 }

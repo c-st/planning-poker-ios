@@ -8,28 +8,6 @@
 
 import Foundation
 
-public struct AppState {
-    var estimationStatus: EstimationStatus = .notStarted
-    var participant: Participant?
-    var otherParticipants: [Participant] = []
-    var roomName: String?
-    var currentTaskName: String?
-    var estimationStart: Date?
-
-    enum EstimationStatus {
-        case notStarted
-        case inProgress
-        case ended
-    }
-}
-
-struct Participant: Identifiable {
-    var id: UUID = UUID()
-    var name: String
-    var hasEstimated: Bool = false
-    var currentEstimate: String?
-}
-
 public class EventHandler {
     public static func handle(_ anyEvent: Any, state: AppState) -> AppState {
         switch anyEvent {
@@ -69,19 +47,35 @@ public class EventHandler {
             )
 
         case let event as RequestStartEstimation:
+            func resetEstimationStatus(participant: Participant) -> Participant {
+                Participant(
+                    id: participant.id,
+                    name: participant.name,
+                    hasEstimated: false,
+                    currentEstimate: nil
+                )
+            }
+
             return AppState(
                 estimationStatus: .inProgress,
-                participant: state.participant,
-                otherParticipants: state.otherParticipants,
+                participant: state.participant.map(resetEstimationStatus),
+                otherParticipants: state.otherParticipants.map(resetEstimationStatus),
                 roomName: state.roomName,
                 currentTaskName: event.taskName,
                 estimationStart: event.startDate
             )
 
         case let event as UserHasEstimated:
+            print("User has estimated \(event.userName)")
+            
             func markAsEstimatedIfNecessary(participant: Participant) -> Participant {
                 if participant.name == event.userName {
-                    return Participant(name: participant.name, hasEstimated: true)
+                    return Participant(
+                        id: participant.id,
+                        name: participant.name,
+                        hasEstimated: true,
+                        currentEstimate: participant.currentEstimate
+                    )
                 }
                 return participant
             }
@@ -105,6 +99,7 @@ public class EventHandler {
                 }
 
                 return Participant(
+                    id: participant.id,
                     name: participant.name,
                     hasEstimated: true,
                     currentEstimate: participantEstimate!.estimate

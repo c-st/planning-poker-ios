@@ -12,7 +12,6 @@ struct RoomView: View {
     @EnvironmentObject var store: Store
 
     @State var joinRoomData: JoinRoomData
-    @State var newTaskName: String = ""
 
     var body: some View {
         ScrollView {
@@ -29,21 +28,22 @@ struct RoomView: View {
 
                 if store.state.estimationStatus == .notStarted {
                     NotYetStartedView(
-                        newTaskName: self.$newTaskName,
-                        onStartEstimation: { self.store.sendStartEstimationRequestFor(self.newTaskName) }
+                        onStartEstimation: { self.store.sendStartEstimationRequestFor($0) }
                     )
                 }
 
                 if store.state.estimationStatus == .inProgress {
                     InProgressView(
-                        participantEstimate: self.store.state.participant?.currentEstimate,
+                        participantEstimate: self.store.state.participant!.currentEstimate,
                         onEstimate: { self.store.sendEstimate($0) },
                         onShowResult: { self.store.sendEstimationResultRequest() }
                     )
                 }
 
                 if store.state.estimationStatus == .ended {
-                    EndedView()
+                    EndedView(
+                        onStartEstimation: { self.store.sendStartEstimationRequestFor($0) }
+                    )
                 }
             }
             .padding()

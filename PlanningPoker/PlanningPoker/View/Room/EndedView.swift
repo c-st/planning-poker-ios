@@ -9,13 +9,20 @@
 import SwiftUI
 
 struct EndedView: View {
+    let onStartEstimation: (String) -> Void
+
     var body: some View {
-         Text("Estimation results...")
+        VStack {
+            Text("Estimation results...")
+            StartEstimationFormView(
+                onStartEstimation: onStartEstimation
+            )
+        }
     }
 }
 
 struct EndedView_Previews: PreviewProvider {
     static var previews: some View {
-        EndedView()
+        EndedView(onStartEstimation: { _ in })
     }
 }

@@ -10,10 +10,32 @@ import Combine
 import Foundation
 import Starscream
 
+public struct AppState {
+    var estimationStatus: EstimationStatus = .notStarted
+    var participant: Participant?
+    var otherParticipants: [Participant] = []
+    var roomName: String?
+    var currentTaskName: String?
+    var estimationStart: Date?
+
+    enum EstimationStatus {
+        case notStarted
+        case inProgress
+        case ended
+    }
+}
+
+struct Participant: Identifiable {
+    var id: UUID = UUID()
+    var name: String
+    var hasEstimated: Bool = false
+    var currentEstimate: String?
+}
+
 struct JoinRoomData {
-     var roomName: String = ""
-     var participantName: String = ""
- }
+    var roomName: String = ""
+    var participantName: String = ""
+}
 
 final class Store: ObservableObject, WebSocketDelegate {
     @Published var state: AppState = AppState()
@@ -71,6 +93,8 @@ final class Store: ObservableObject, WebSocketDelegate {
             taskName: self.state.currentTaskName!,
             estimate: estimate
         )
+        
+        print("Set estimate to \(estimate)")
         
         if let socket = self.socket {
             socket.write(string: EventParser.serialize(estimationEvent))
