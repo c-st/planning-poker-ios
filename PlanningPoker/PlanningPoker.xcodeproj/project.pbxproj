@@ -28,7 +28,6 @@
 		F578883823D0A7A70019DF23 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = F578883723D0A7A70019DF23 /* Store.swift */; };
 		F578883A23D0AA030019DF23 /* RoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F578883923D0AA030019DF23 /* RoomView.swift */; };
 		F57B768A23D0CD6000732C71 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57B768923D0CD6000732C71 /* Events.swift */; };
-		F57B768D23D1CD2700732C71 /* Nimble in Frameworks */ = {isa = PBXBuildFile; productRef = F57B768C23D1CD2700732C71 /* Nimble */; };
 		F57B768F23D1CF5100732C71 /* EventParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57B768E23D1CF5100732C71 /* EventParser.swift */; };
 		F57B769123D1D54100732C71 /* EventParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57B769023D1D54100732C71 /* EventParserTests.swift */; };
 /* End PBXBuildFile section */
@@ -79,7 +78,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F578883623D0A7380019DF23 /* Starscream in Frameworks */,
-				F57B768D23D1CD2700732C71 /* Nimble in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,7 +198,6 @@
 			name = PlanningPoker;
 			packageProductDependencies = (
 				F578883523D0A7380019DF23 /* Starscream */,
-				F57B768C23D1CD2700732C71 /* Nimble */,
 			);
 			productName = PlanningPoker;
 			productReference = 834B700523D0951800CC3BA2 /* PlanningPoker.app */;
@@ -600,11 +597,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F578883423D0A7380019DF23 /* XCRemoteSwiftPackageReference "Starscream" */;
 			productName = Starscream;
-		};
-		F57B768C23D1CD2700732C71 /* Nimble */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = F57B768B23D1CD2700732C71 /* XCRemoteSwiftPackageReference "Nimble" */;
-			productName = Nimble;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
