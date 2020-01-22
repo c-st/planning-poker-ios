@@ -13,21 +13,26 @@ struct ParticipantsView: View {
     let otherParticipants: [Participant]
 
     var body: some View {
-        HStack {
-            ScrollView(.horizontal) {
-                HStack {
-                    if currentParticipant != nil {
-                        UserAvatarView(
-                            participant: currentParticipant!,
-                            backgroundColor: Color.blue
-                        )
-                    }
-                    
+        VStack(alignment: .leading) {
+            Text("Participants")
+                .font(.caption)
+                .fontWeight(.bold)
 
-                    ForEach(otherParticipants) { participant in
-                        UserAvatarView(participant: participant)
-                    }
-                }.frame(minWidth: 50, minHeight: 50)
+            HStack {
+                ScrollView(.horizontal) {
+                    HStack {
+                        if currentParticipant != nil {
+                            UserAvatarView(
+                                participant: currentParticipant!,
+                                backgroundColor: Color.blue
+                            )
+                        }
+
+                        ForEach(otherParticipants) { participant in
+                            UserAvatarView(participant: participant)
+                        }
+                    }.frame(minWidth: 50, minHeight: 50)
+                }
             }
         }
     }

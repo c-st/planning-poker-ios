@@ -15,10 +15,7 @@ struct RoomView: View {
 
     var body: some View {
         ScrollView {
-            VStack {
-                Text("Participants")
-                    .font(.headline)
-
+            VStack(alignment: .center) {
                 ParticipantsView(
                     currentParticipant: store.state.participant,
                     otherParticipants: store.state.otherParticipants

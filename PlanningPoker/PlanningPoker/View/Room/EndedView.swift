@@ -15,11 +15,7 @@ struct EndedView: View {
     var body: some View {
         VStack {
             Text("Estimation result")
-                .font(.headline)
-
-            StartEstimationFormView(
-                onStartEstimation: onStartEstimation
-            )
+                .font(.title)
 
             HStack {
                 Text("Name").font(.headline)
@@ -34,7 +30,17 @@ struct EndedView: View {
                     Text(participant.currentEstimate!)
                 }
             }
+            
+            Divider()
+            
+            StartEstimationFormView(
+                onStartEstimation: onStartEstimation
+            )
         }
+        .frame(maxWidth: 300)
+        .padding()
+        .background(Color(UIColor.systemGray5))
+        .cornerRadius(10)
     }
 }
 
