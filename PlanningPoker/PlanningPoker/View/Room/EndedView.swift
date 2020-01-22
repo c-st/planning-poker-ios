@@ -17,13 +17,13 @@ struct EndedView: View {
             Text("Result")
                 .font(.title)
                 .fontWeight(.bold)
-            
+
             VStack(spacing: 10) {
                 HStack {
                     Text("Name")
                         .font(.headline)
                         .fontWeight(.bold)
-                    
+
                     Spacer()
                     Text("Estimate")
                         .font(.headline)
@@ -35,8 +35,11 @@ struct EndedView: View {
                         Text(participant.name)
                             .font(.headline)
                         Spacer()
-                        Text(participant.currentEstimate!)
-                            .font(.headline)
+
+                        if participant.currentEstimate != nil {
+                            Text(participant.currentEstimate!)
+                                .font(.headline)
+                        }
                     }
                 }
             }
@@ -59,6 +62,6 @@ struct EndedView_Previews: PreviewProvider {
             ],
             onStartEstimation: { _ in }
         )
-            //.colorScheme(.dark)
+        // .colorScheme(.dark)
     }
 }
