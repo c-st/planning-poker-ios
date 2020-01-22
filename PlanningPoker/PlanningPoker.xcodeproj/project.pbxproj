@@ -28,6 +28,7 @@
 		83F8ED1323D8A7C3006E76AB /* PokerCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F8ED1223D8A7C2006E76AB /* PokerCardView.swift */; };
 		83F8ED1523D8A7E5006E76AB /* View+Stacked.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F8ED1423D8A7E5006E76AB /* View+Stacked.swift */; };
 		83F8ED1C23D8C168006E76AB /* CardDeckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F8ED1B23D8C168006E76AB /* CardDeckView.swift */; };
+		83F8ED1E23D8C5BC006E76AB /* Haptics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F8ED1D23D8C5BC006E76AB /* Haptics.swift */; };
 		F578883623D0A7380019DF23 /* Starscream in Frameworks */ = {isa = PBXBuildFile; productRef = F578883523D0A7380019DF23 /* Starscream */; };
 		F578883823D0A7A70019DF23 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = F578883723D0A7A70019DF23 /* Store.swift */; };
 		F578883A23D0AA030019DF23 /* RoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F578883923D0AA030019DF23 /* RoomView.swift */; };
@@ -52,7 +53,7 @@
 		8321F6E323D1B3C70027A212 /* ICloudUserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICloudUserDefault.swift; sourceTree = "<group>"; };
 		8321F6E523D1B4950027A212 /* PlanningPoker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PlanningPoker.entitlements; sourceTree = "<group>"; };
 		8321F6E623D1C6140027A212 /* UserAvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAvatarView.swift; sourceTree = "<group>"; };
-		834B700523D0951800CC3BA2 /* PlanningPoker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlanningPoker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		834B700523D0951800CC3BA2 /* Planning Poker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Planning Poker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		834B700823D0951800CC3BA2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		834B700A23D0951800CC3BA2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		834B700C23D0951800CC3BA2 /* JoinRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinRoomView.swift; sourceTree = "<group>"; };
@@ -72,6 +73,7 @@
 		83F8ED1223D8A7C2006E76AB /* PokerCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PokerCardView.swift; sourceTree = "<group>"; };
 		83F8ED1423D8A7E5006E76AB /* View+Stacked.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+Stacked.swift"; sourceTree = "<group>"; };
 		83F8ED1B23D8C168006E76AB /* CardDeckView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDeckView.swift; sourceTree = "<group>"; };
+		83F8ED1D23D8C5BC006E76AB /* Haptics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Haptics.swift; sourceTree = "<group>"; };
 		F578883723D0A7A70019DF23 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		F578883923D0AA030019DF23 /* RoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomView.swift; sourceTree = "<group>"; };
 		F57B768923D0CD6000732C71 /* Events.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 			children = (
 				834B700C23D0951800CC3BA2 /* JoinRoomView.swift */,
 				83A55E0723D5F0A800496561 /* Room */,
+				8321F6E623D1C6140027A212 /* UserAvatarView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -128,7 +131,7 @@
 		834B700623D0951800CC3BA2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				834B700523D0951800CC3BA2 /* PlanningPoker.app */,
+				834B700523D0951800CC3BA2 /* Planning Poker.app */,
 				834B701B23D0951B00CC3BA2 /* PlanningPokerTests.xctest */,
 			);
 			name = Products;
@@ -140,18 +143,14 @@
 				834B700823D0951800CC3BA2 /* AppDelegate.swift */,
 				834B700A23D0951800CC3BA2 /* SceneDelegate.swift */,
 				83135B2E23D1EAFB0072F005 /* View */,
-				F578883723D0A7A70019DF23 /* Store.swift */,
-				F57B768923D0CD6000732C71 /* Events.swift */,
-				F57B768E23D1CF5100732C71 /* EventParser.swift */,
-				83135B2F23D1EB4E0072F005 /* EventHandler.swift */,
+				83F8ED1F23D8C5CF006E76AB /* Event handling */,
 				83A55E0423D5BF0E00496561 /* Extensions */,
+				83F8ED2023D8C5EF006E76AB /* Util */,
 				834B700E23D0951B00CC3BA2 /* Assets.xcassets */,
 				834B701323D0951B00CC3BA2 /* LaunchScreen.storyboard */,
 				834B701623D0951B00CC3BA2 /* Info.plist */,
 				8321F6E523D1B4950027A212 /* PlanningPoker.entitlements */,
 				834B701023D0951B00CC3BA2 /* Preview Content */,
-				8321F6E323D1B3C70027A212 /* ICloudUserDefault.swift */,
-				8321F6E623D1C6140027A212 /* UserAvatarView.swift */,
 			);
 			path = PlanningPoker;
 			sourceTree = "<group>";
@@ -199,6 +198,26 @@
 			path = Room;
 			sourceTree = "<group>";
 		};
+		83F8ED1F23D8C5CF006E76AB /* Event handling */ = {
+			isa = PBXGroup;
+			children = (
+				F578883723D0A7A70019DF23 /* Store.swift */,
+				F57B768923D0CD6000732C71 /* Events.swift */,
+				F57B768E23D1CF5100732C71 /* EventParser.swift */,
+				83135B2F23D1EB4E0072F005 /* EventHandler.swift */,
+			);
+			path = "Event handling";
+			sourceTree = "<group>";
+		};
+		83F8ED2023D8C5EF006E76AB /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				8321F6E323D1B3C70027A212 /* ICloudUserDefault.swift */,
+				83F8ED1D23D8C5BC006E76AB /* Haptics.swift */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -219,7 +238,7 @@
 				F578883523D0A7380019DF23 /* Starscream */,
 			);
 			productName = PlanningPoker;
-			productReference = 834B700523D0951800CC3BA2 /* PlanningPoker.app */;
+			productReference = 834B700523D0951800CC3BA2 /* Planning Poker.app */;
 			productType = "com.apple.product-type.application";
 		};
 		834B701A23D0951B00CC3BA2 /* PlanningPokerTests */ = {
@@ -322,6 +341,7 @@
 				83A55E0D23D5F28100496561 /* EndedView.swift in Sources */,
 				834B700B23D0951800CC3BA2 /* SceneDelegate.swift in Sources */,
 				83F8ED1C23D8C168006E76AB /* CardDeckView.swift in Sources */,
+				83F8ED1E23D8C5BC006E76AB /* Haptics.swift in Sources */,
 				F578883A23D0AA030019DF23 /* RoomView.swift in Sources */,
 				834B700D23D0951800CC3BA2 /* JoinRoomView.swift in Sources */,
 				83A55E0F23D7129D00496561 /* ParticipantsView.swift in Sources */,
@@ -485,7 +505,7 @@
 				CODE_SIGN_ENTITLEMENTS = PlanningPoker/PlanningPoker.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"PlanningPoker/Preview Content\"";
 				DEVELOPMENT_TEAM = 738626FVRF;
 				ENABLE_PREVIEWS = YES;
@@ -495,7 +515,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "cc.codecentric.planning-poker";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Planning Poker";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -510,7 +530,7 @@
 				CODE_SIGN_ENTITLEMENTS = PlanningPoker/PlanningPoker.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"PlanningPoker/Preview Content\"";
 				DEVELOPMENT_TEAM = 738626FVRF;
 				ENABLE_PREVIEWS = YES;
@@ -520,7 +540,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "cc.codecentric.planning-poker";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Planning Poker";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

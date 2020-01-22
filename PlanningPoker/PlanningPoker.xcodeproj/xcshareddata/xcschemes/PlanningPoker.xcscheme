@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "834B700423D0951800CC3BA2"
-               BuildableName = "PlanningPoker.app"
+               BuildableName = "Planning Poker.app"
                BlueprintName = "PlanningPoker"
                ReferencedContainer = "container:PlanningPoker.xcodeproj">
             </BuildableReference>
@@ -55,7 +55,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "834B700423D0951800CC3BA2"
-            BuildableName = "PlanningPoker.app"
+            BuildableName = "Planning Poker.app"
             BlueprintName = "PlanningPoker"
             ReferencedContainer = "container:PlanningPoker.xcodeproj">
          </BuildableReference>
@@ -72,7 +72,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "834B700423D0951800CC3BA2"
-            BuildableName = "PlanningPoker.app"
+            BuildableName = "Planning Poker.app"
             BlueprintName = "PlanningPoker"
             ReferencedContainer = "container:PlanningPoker.xcodeproj">
          </BuildableReference>

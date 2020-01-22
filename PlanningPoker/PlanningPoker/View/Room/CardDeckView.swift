@@ -28,7 +28,7 @@ struct CardDeckView: View {
                         .font(.largeTitle)
                         .fontWeight(.heavy)
                         .padding(EdgeInsets(top: 0, leading: 0, bottom: 100, trailing: 0))
-                        .opacity(0.6)
+                        .opacity(0.8)
                 }
 
                 ZStack {

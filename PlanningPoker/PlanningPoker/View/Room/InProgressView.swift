@@ -44,7 +44,6 @@ struct InProgressView: View {
 //                }
 //            }
 
-            Divider()
             Button(action: self.onShowResult) {
                 Text("Show result")
                     .font(.caption)
