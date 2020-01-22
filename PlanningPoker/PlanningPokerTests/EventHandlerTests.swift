@@ -76,6 +76,28 @@ class EventHandlerTests: XCTestCase {
 
         expect(finalState.otherParticipants).to(haveCount(2))
     }
+    
+    func testOurUsingJoining() {
+        let initialState = AppState(
+            participant: Participant(name: "Our user"),
+            otherParticipants: [
+                Participant(name: "Foo"),
+                Participant(name: "Bar")
+            ]
+        )
+        
+        let userJoinedEvent = UserJoined(
+            userName: "Our user",
+            isSpectator: false
+        )
+        
+        let finalState = EventHandler.handle(
+            userJoinedEvent,
+            state: initialState
+        )
+        
+        expect(finalState.otherParticipants).to(haveCount(2))
+    }
 
     func testUserLeaving() {
         let initialState = AppState(

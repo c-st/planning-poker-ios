@@ -12,11 +12,12 @@ public class EventHandler {
     public static func handle(_ anyEvent: Any, state: AppState) -> AppState {
         switch anyEvent {
         case let event as UserJoined:
-            let alreadyHasParticipant = state.otherParticipants.contains {
+            let isCurrentParticipant = state.participant?.name == event.userName
+            let isAnotherParticipant = state.otherParticipants.contains {
                 $0.name == event.userName
             }
 
-            if alreadyHasParticipant {
+            if isCurrentParticipant || isAnotherParticipant {
                 return state
             }
 
@@ -68,7 +69,7 @@ public class EventHandler {
 
         case let event as UserHasEstimated:
             print("User has estimated \(event.userName)")
-            
+
             func markAsEstimatedIfNecessary(participant: Participant) -> Participant {
                 if participant.name == event.userName {
                     return Participant(
