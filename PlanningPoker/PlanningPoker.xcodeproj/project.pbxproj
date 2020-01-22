@@ -11,6 +11,7 @@
 		83135B3223D1EDAF0072F005 /* EventHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83135B3123D1EDAF0072F005 /* EventHandlerTests.swift */; };
 		8321F6E423D1B3C70027A212 /* ICloudUserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8321F6E323D1B3C70027A212 /* ICloudUserDefault.swift */; };
 		8321F6E723D1C6140027A212 /* UserAvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8321F6E623D1C6140027A212 /* UserAvatarView.swift */; };
+		83376DF423D86F4100AFBAEA /* Nimble in Frameworks */ = {isa = PBXBuildFile; productRef = 83376DF323D86F4100AFBAEA /* Nimble */; };
 		834B700923D0951800CC3BA2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834B700823D0951800CC3BA2 /* AppDelegate.swift */; };
 		834B700B23D0951800CC3BA2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834B700A23D0951800CC3BA2 /* SceneDelegate.swift */; };
 		834B700D23D0951800CC3BA2 /* JoinRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834B700C23D0951800CC3BA2 /* JoinRoomView.swift */; };
@@ -85,6 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83376DF423D86F4100AFBAEA /* Nimble in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,12 +102,20 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		83376DF223D86F4100AFBAEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		834B6FFC23D0951800CC3BA2 = {
 			isa = PBXGroup;
 			children = (
 				834B700723D0951800CC3BA2 /* PlanningPoker */,
 				834B701E23D0951B00CC3BA2 /* PlanningPokerTests */,
 				834B700623D0951800CC3BA2 /* Products */,
+				83376DF223D86F4100AFBAEA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -217,6 +227,9 @@
 				834B701D23D0951B00CC3BA2 /* PBXTargetDependency */,
 			);
 			name = PlanningPokerTests;
+			packageProductDependencies = (
+				83376DF323D86F4100AFBAEA /* Nimble */,
+			);
 			productName = PlanningPokerTests;
 			productReference = 834B701B23D0951B00CC3BA2 /* PlanningPokerTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -599,6 +612,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		83376DF323D86F4100AFBAEA /* Nimble */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F57B768B23D1CD2700732C71 /* XCRemoteSwiftPackageReference "Nimble" */;
+			productName = Nimble;
+		};
 		F578883523D0A7380019DF23 /* Starscream */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = F578883423D0A7380019DF23 /* XCRemoteSwiftPackageReference "Starscream" */;
