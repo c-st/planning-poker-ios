@@ -13,34 +13,40 @@ struct EndedView: View {
     let onStartEstimation: (String) -> Void
 
     var body: some View {
-        VStack {
-            Text("Estimation result")
+        VStack(spacing: 20) {
+            Text("Result")
                 .font(.title)
-
-            HStack {
-                Text("Name").font(.headline)
-                Spacer()
-                Text("Estimate").font(.headline)
-            }
-
-            ForEach(self.participants) { participant in
+                .fontWeight(.bold)
+            
+            VStack(spacing: 10) {
                 HStack {
-                    Text(participant.name)
+                    Text("Name")
+                        .font(.headline)
+                        .fontWeight(.bold)
+                    
                     Spacer()
-                    Text(participant.currentEstimate!)
+                    Text("Estimate")
+                        .font(.headline)
+                        .fontWeight(.bold)
+                }
+
+                ForEach(self.participants) { participant in
+                    HStack {
+                        Text(participant.name)
+                            .font(.headline)
+                        Spacer()
+                        Text(participant.currentEstimate!)
+                            .font(.headline)
+                    }
                 }
             }
-            
+
             Divider()
-            
+
             StartEstimationFormView(
                 onStartEstimation: onStartEstimation
             )
         }
-        .frame(maxWidth: 300)
-        .padding()
-        .background(Color(UIColor.systemGray5))
-        .cornerRadius(10)
     }
 }
 
@@ -53,5 +59,6 @@ struct EndedView_Previews: PreviewProvider {
             ],
             onStartEstimation: { _ in }
         )
+            //.colorScheme(.dark)
     }
 }

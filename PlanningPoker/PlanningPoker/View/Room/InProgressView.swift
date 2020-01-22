@@ -27,30 +27,38 @@ struct InProgressView: View {
                 .font(.title)
                 .fontWeight(.black)
 
-            Button(action: self.onShowResult) {
-                Text("Show result")
-            }
-
-            VStack(spacing: 0) {
+            VStack(alignment: .leading, spacing: 0) {
                 ForEach(self.possibleEstimates, id: \.self) { estimateRow in
-                    HStack(alignment: .firstTextBaseline, spacing: 0) {
+                    HStack(spacing: 0) {
                         ForEach(estimateRow, id: \.self) { estimate in
                             Button(action: { self.onEstimate(estimate) }) {
                                 Text(estimate)
                                     .font(.caption)
                                     .fontWeight(.bold)
-                                    .frame(width: 30, height: 30)
+                                    .frame(width: 30, height: 40)
                                     .animation(.spring())
                                     .padding()
                                     .background(
-                                        self.participantEstimate == estimate ? Color.green : Color.blue
+                                        self.participantEstimate == estimate ? Color.green : Color.white.opacity(0.4)
                                     )
                                     .foregroundColor(Color.white)
-                                    .padding()
+                                    .cornerRadius(10)
+                                    .padding(5)
                             }
                         }
                     }
                 }
+            }
+
+            Divider()
+            Button(action: self.onShowResult) {
+                Text("Show result")
+                    .font(.caption)
+                    .fontWeight(.bold)
+                    .padding(20)
+                    .foregroundColor(Color.blue)
+                    .background(Color.white)
+                    .cornerRadius(10)
             }
         }
     }

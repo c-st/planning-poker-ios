@@ -23,27 +23,34 @@ struct RoomView: View {
 
                 Divider()
 
-                if store.state.estimationStatus == .notStarted {
-                    NotYetStartedView(
-                        onStartEstimation: { self.store.sendStartEstimationRequestFor($0) }
-                    )
-                }
+                Group {
+                    if store.state.estimationStatus == .notStarted {
+                        NotYetStartedView(
+                            onStartEstimation: { self.store.sendStartEstimationRequestFor($0) }
+                        )
+                    }
 
-                if store.state.estimationStatus == .inProgress {
-                    InProgressView(
-                        currentTaskName: self.store.state.currentTaskName,
-                        participantEstimate: self.store.state.participant!.currentEstimate,
-                        onEstimate: { self.store.sendEstimate($0) },
-                        onShowResult: { self.store.sendEstimationResultRequest() }
-                    )
-                }
+                    if store.state.estimationStatus == .inProgress {
+                        InProgressView(
+                            currentTaskName: self.store.state.currentTaskName,
+                            participantEstimate: self.store.state.participant!.currentEstimate,
+                            onEstimate: { self.store.sendEstimate($0) },
+                            onShowResult: { self.store.sendEstimationResultRequest() }
+                        )
+                    }
 
-                if store.state.estimationStatus == .ended {
-                    EndedView(
-                        participants: self.store.state.otherParticipants + [self.store.state.participant!],
-                        onStartEstimation: { self.store.sendStartEstimationRequestFor($0) }
-                    )
+                    if store.state.estimationStatus == .ended {
+                        EndedView(
+                            participants: self.store.state.otherParticipants + [self.store.state.participant!],
+                            onStartEstimation: { self.store.sendStartEstimationRequestFor($0) }
+                        )
+                    }
                 }
+                .frame(maxWidth: 300)
+                .padding()
+                .foregroundColor(Color.white)
+                .background(Color.blue)
+                .cornerRadius(10)
             }
             .padding()
             .navigationBarTitle(self.joinRoomData.roomName)

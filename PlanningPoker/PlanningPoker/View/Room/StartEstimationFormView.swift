@@ -14,11 +14,35 @@ struct StartEstimationFormView: View {
 
     var body: some View {
         VStack {
-            TextField("Task name", text: self.$newTaskName).multilineTextAlignment(.center)
+            ZStack {
+                if self.newTaskName.isEmpty {
+                    Text("Enter task")
+                        .foregroundColor(Color(UIColor.systemGray))
+                        .opacity(0.5)
+                }
+                TextField("", text: self.$newTaskName)
+            }
+            .frame(minHeight: 40)
+            .background(Color.white)
+            .foregroundColor(Color.black)
+            .cornerRadius(10)
+            .padding(.vertical)
+            .multilineTextAlignment(.center)
+
             VStack(alignment: .center) {
                 Button(action: { self.onStartEstimation(self.newTaskName) }) {
+                    Image(systemName: "play.fill")
                     Text("Start")
-                }.disabled(newTaskName.isEmpty)
+                        .font(.caption)
+                        .fontWeight(.bold)
+                }
+                .disabled(newTaskName.isEmpty)
+                .frame(minWidth: 100)
+                .padding(15)
+                .foregroundColor(Color.blue)
+                .background(Color.white)
+                .cornerRadius(10)
+            .shadow(radius: 10)
             }
         }
     }
@@ -28,6 +52,6 @@ struct StartEstimationFormView_Previews: PreviewProvider {
     static var previews: some View {
         StartEstimationFormView(
             onStartEstimation: { _ in }
-        )
+        ).colorScheme(.dark)
     }
 }

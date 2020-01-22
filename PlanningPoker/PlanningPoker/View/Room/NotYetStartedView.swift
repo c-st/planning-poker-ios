@@ -15,6 +15,8 @@ struct NotYetStartedView: View {
         VStack {
             Text("Estimate a new task")
                 .font(.headline)
+                .fontWeight(.bold)
+            
             StartEstimationFormView(
                 onStartEstimation: onStartEstimation
             )
