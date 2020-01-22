@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct NewInProgressView: View {
-    let possibleEstimates = ["0", "1", "2", "3", "5"]
+    let possibleEstimates = ["0", "1", "2", "3", "5", "8", "13", "20", "40", "100", "???"]
 
     static let threshold: CGFloat = 100
 

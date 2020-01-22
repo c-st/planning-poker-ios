@@ -10,19 +10,30 @@ import SwiftUI
 
 struct PokerCardView: View {
     let value: String
-    
+
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 15)
                 .fill(Color.green)
                 .shadow(radius: 2)
-
-            Text(value)
-                .font(.largeTitle)
-                .fontWeight(.bold)
-                .foregroundColor(Color.white)
+            VStack {
+                HStack {
+                    Text(value)
+                        .font(.headline)
+                        .fontWeight(.bold)
+                        .foregroundColor(Color.white)
+                    Spacer()
+                }
+                Spacer()
+            }.padding(5)
+            VStack {
+                Text(value)
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                    .foregroundColor(Color.white)
+            }
         }
-        .frame(width: 150, height: 250)
+        .frame(width: 130, height: 190)
     }
 }
 
