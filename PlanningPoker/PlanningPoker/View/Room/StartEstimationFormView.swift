@@ -14,10 +14,12 @@ struct StartEstimationFormView: View {
 
     var body: some View {
         VStack {
-            TextField("Task name", text: self.$newTaskName)
-            Button(action: { self.onStartEstimation(self.newTaskName) }) {
-                Text("Start")
-            }.disabled(newTaskName.isEmpty)
+            TextField("Task name", text: self.$newTaskName).multilineTextAlignment(.center)
+            VStack(alignment: .center) {
+                Button(action: { self.onStartEstimation(self.newTaskName) }) {
+                    Text("Start")
+                }.disabled(newTaskName.isEmpty)
+            }
         }
     }
 }

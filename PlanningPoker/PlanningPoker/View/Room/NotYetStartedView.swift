@@ -13,7 +13,8 @@ struct NotYetStartedView: View {
 
     var body: some View {
         VStack {
-            Text("Waiting for estimation start...")
+            Text("Estimate a new task")
+                .font(.headline)
             StartEstimationFormView(
                 onStartEstimation: onStartEstimation
             )
