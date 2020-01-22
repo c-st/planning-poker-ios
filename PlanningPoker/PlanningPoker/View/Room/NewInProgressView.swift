@@ -9,8 +9,13 @@
 import SwiftUI
 
 struct NewInProgressView: View {
-//    let possibleEstimates = [
-//        ["0", "1", "2"],
+    let possibleEstimates = ["0", "1", "2", "3", "5"]
+
+    static let threshold: CGFloat = 100
+
+    @State private var offset = CGSize.zero
+    @State private var draggedCardIndex = 0
+
 //        ["3", "5", "8"],
 //        ["13", "20", "40"],
 //        ["100", "???"],
@@ -24,60 +29,57 @@ struct NewInProgressView: View {
     var body: some View {
         ZStack {
             VStack {
+                Text("Threshold: \(self.offset.height)")
+                
                 ZStack {
-                    PokerCardView().stacked(at: 0, in: 3)
-                    PokerCardView().stacked(at: 1, in: 3)
-                    PokerCardView().stacked(at: 2, in: 3)
+                    ForEach(0..<possibleEstimates.count, id: \.self) { index in
+                        PokerCardView(value: self.possibleEstimates[index])
+                            .rotationEffect(
+                                Angle(
+                                    degrees: self.calculateAngle(
+                                        index,
+                                        totalCards: self.possibleEstimates.count,
+                                        isCardDragged: self.draggedCardIndex == index
+                                    )
+                                ),
+                                anchor: .bottom
+                            )
+                            .animation(.spring())
+                            .offset(self.draggedCardIndex == index ? self.offset : .zero)
+                            .gesture(
+                                DragGesture()
+                                    .onChanged { gesture in
+                                        self.draggedCardIndex = index
+                                        self.offset = gesture.translation
+                                    }
+                                    .onEnded { _ in
+                                        if abs(self.offset.height) > NewInProgressView.threshold {
+                                            // remove the card
+                                        } else {
+                                            self.offset = .zero
+                                        }
+                                    }
+                            )
+                    }
                 }
             }
         }
-        
-        
-//        Text("5")
-//            .font(.caption)
-//            .fontWeight(.bold)
-//            .frame(width: 30, height: 40)
-//            .animation(.spring())
-//            .padding()
-//            .background(Color.green)
-//            .foregroundColor(Color.white)
-//            .cornerRadius(10)
-//            .padding(5)
+    }
 
-//            VStack(alignment: .leading, spacing: 0) {
-//                ForEach(self.possibleEstimates, id: \.self) { estimateRow in
-//                    HStack(spacing: 0) {
-//                        ForEach(estimateRow, id: \.self) { estimate in
-//                            Button(action: { self.onEstimate(estimate) }) {
-//                                Text(estimate)
-//                                    .font(.caption)
-//                                    .fontWeight(.bold)
-//                                    .frame(width: 30, height: 40)
-//                                    .animation(.spring())
-//                                    .padding()
-//                                    .background(
-//                                        self.participantEstimate == estimate ? Color.green : Color.white.opacity(0.4)
-//                                    )
-//                                    .foregroundColor(Color.white)
-//                                    .cornerRadius(10)
-//                                    .padding(5)
-//                            }
-//                        }
-//                    }
-//                }
-//            }
+    private func calculateAngle(_ index: Int, totalCards: Int, isCardDragged: Bool = false) -> Double {
+        let percent = !isCardDragged ? Int(1) : Int(floor(abs(self.offset.height) / NewInProgressView.threshold))
 
-//            Divider()
-//            Button(action: self.onShowResult) {
-//                Text("Show result")
-//                    .font(.caption)
-//                    .fontWeight(.bold)
-//                    .padding(20)
-//                    .foregroundColor(Color.blue)
-//                    .background(Color.white)
-//                    .cornerRadius(10)
-//            }
-//        }
+        let middleCardIndex = Int(floor(Double(totalCards) / Double(2)))
+
+        if index < middleCardIndex {
+            return Double((middleCardIndex - index) * -10 * percent)
+        }
+
+        if index > middleCardIndex {
+            return Double((index - middleCardIndex) * 10 * percent)
+        }
+
+        return 0
     }
 }
 

@@ -25,6 +25,9 @@
 		83A55E0B23D5F24E00496561 /* InProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A55E0A23D5F24E00496561 /* InProgressView.swift */; };
 		83A55E0D23D5F28100496561 /* EndedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A55E0C23D5F28100496561 /* EndedView.swift */; };
 		83A55E0F23D7129D00496561 /* ParticipantsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A55E0E23D7129D00496561 /* ParticipantsView.swift */; };
+		83F8ED1123D8A78D006E76AB /* NewInProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F8ED1023D8A78D006E76AB /* NewInProgressView.swift */; };
+		83F8ED1323D8A7C3006E76AB /* PokerCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F8ED1223D8A7C2006E76AB /* PokerCardView.swift */; };
+		83F8ED1523D8A7E5006E76AB /* View+Stacked.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F8ED1423D8A7E5006E76AB /* View+Stacked.swift */; };
 		F578883623D0A7380019DF23 /* Starscream in Frameworks */ = {isa = PBXBuildFile; productRef = F578883523D0A7380019DF23 /* Starscream */; };
 		F578883823D0A7A70019DF23 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = F578883723D0A7A70019DF23 /* Store.swift */; };
 		F578883A23D0AA030019DF23 /* RoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F578883923D0AA030019DF23 /* RoomView.swift */; };
@@ -66,6 +69,9 @@
 		83A55E0A23D5F24E00496561 /* InProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InProgressView.swift; sourceTree = "<group>"; };
 		83A55E0C23D5F28100496561 /* EndedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndedView.swift; sourceTree = "<group>"; };
 		83A55E0E23D7129D00496561 /* ParticipantsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantsView.swift; sourceTree = "<group>"; };
+		83F8ED1023D8A78D006E76AB /* NewInProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewInProgressView.swift; sourceTree = "<group>"; };
+		83F8ED1223D8A7C2006E76AB /* PokerCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PokerCardView.swift; sourceTree = "<group>"; };
+		83F8ED1423D8A7E5006E76AB /* View+Stacked.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+Stacked.swift"; sourceTree = "<group>"; };
 		F578883723D0A7A70019DF23 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		F578883923D0AA030019DF23 /* RoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomView.swift; sourceTree = "<group>"; };
 		F57B768923D0CD6000732C71 /* Events.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
@@ -172,6 +178,7 @@
 		83A55E0423D5BF0E00496561 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				83F8ED1423D8A7E5006E76AB /* View+Stacked.swift */,
 				83A55E0523D5BF2600496561 /* DateFormatter+CustomFormat.swift */,
 			);
 			path = Extensions;
@@ -186,6 +193,8 @@
 				83A55E0C23D5F28100496561 /* EndedView.swift */,
 				83A55E0E23D7129D00496561 /* ParticipantsView.swift */,
 				8392EA8223D74273005CAE07 /* StartEstimationFormView.swift */,
+				83F8ED1023D8A78D006E76AB /* NewInProgressView.swift */,
+				83F8ED1223D8A7C2006E76AB /* PokerCardView.swift */,
 			);
 			path = Room;
 			sourceTree = "<group>";
@@ -305,6 +314,7 @@
 				8321F6E723D1C6140027A212 /* UserAvatarView.swift in Sources */,
 				8392EA8323D74273005CAE07 /* StartEstimationFormView.swift in Sources */,
 				F57B768A23D0CD6000732C71 /* Events.swift in Sources */,
+				83F8ED1523D8A7E5006E76AB /* View+Stacked.swift in Sources */,
 				8321F6E423D1B3C70027A212 /* ICloudUserDefault.swift in Sources */,
 				834B700923D0951800CC3BA2 /* AppDelegate.swift in Sources */,
 				83A55E0623D5BF2600496561 /* DateFormatter+CustomFormat.swift in Sources */,
@@ -312,10 +322,12 @@
 				83A55E0D23D5F28100496561 /* EndedView.swift in Sources */,
 				834B700B23D0951800CC3BA2 /* SceneDelegate.swift in Sources */,
 				F578883A23D0AA030019DF23 /* RoomView.swift in Sources */,
+				83F8ED1123D8A78D006E76AB /* NewInProgressView.swift in Sources */,
 				834B700D23D0951800CC3BA2 /* JoinRoomView.swift in Sources */,
 				83A55E0F23D7129D00496561 /* ParticipantsView.swift in Sources */,
 				F578883823D0A7A70019DF23 /* Store.swift in Sources */,
 				83135B3023D1EB4E0072F005 /* EventHandler.swift in Sources */,
+				83F8ED1323D8A7C3006E76AB /* PokerCardView.swift in Sources */,
 				83A55E0923D5F0DA00496561 /* NotYetStartedView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

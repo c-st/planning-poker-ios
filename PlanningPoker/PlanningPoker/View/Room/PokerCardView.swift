@@ -9,14 +9,16 @@
 import SwiftUI
 
 struct PokerCardView: View {
+    let value: String
+    
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 15)
                 .fill(Color.green)
                 .shadow(radius: 2)
 
-            Text("5")
-                .font(.caption)
+            Text(value)
+                .font(.largeTitle)
                 .fontWeight(.bold)
                 .foregroundColor(Color.white)
         }
@@ -26,6 +28,6 @@ struct PokerCardView: View {
 
 struct PokerCardView_Previews: PreviewProvider {
     static var previews: some View {
-        PokerCardView()
+        PokerCardView(value: "5")
     }
 }
