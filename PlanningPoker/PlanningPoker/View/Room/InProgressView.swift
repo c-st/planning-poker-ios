@@ -9,13 +9,6 @@
 import SwiftUI
 
 struct InProgressView: View {
-    let possibleEstimates = [
-        ["0", "1", "2"],
-        ["3", "5", "8"],
-        ["13", "20", "40"],
-        ["100", "???"],
-    ]
-
     var currentTaskName: String?
     var participantEstimate: String?
     let onEstimate: (String) -> Void
@@ -23,32 +16,33 @@ struct InProgressView: View {
 
     var body: some View {
         VStack(alignment: .center, spacing: 10) {
-            Text(currentTaskName!)
-                .font(.title)
-                .fontWeight(.black)
+            CardDeckView(
+                currentTaskName: currentTaskName!,
+                onEstimate: { estimate in self.onEstimate(estimate) }
+            )
 
-            VStack(alignment: .leading, spacing: 0) {
-                ForEach(self.possibleEstimates, id: \.self) { estimateRow in
-                    HStack(spacing: 0) {
-                        ForEach(estimateRow, id: \.self) { estimate in
-                            Button(action: { self.onEstimate(estimate) }) {
-                                Text(estimate)
-                                    .font(.caption)
-                                    .fontWeight(.bold)
-                                    .frame(width: 30, height: 40)
-                                    .animation(.spring())
-                                    .padding()
-                                    .background(
-                                        self.participantEstimate == estimate ? Color.green : Color.white.opacity(0.4)
-                                    )
-                                    .foregroundColor(Color.white)
-                                    .cornerRadius(10)
-                                    .padding(5)
-                            }
-                        }
-                    }
-                }
-            }
+//            VStack(alignment: .leading, spacing: 0) {
+//                ForEach(self.possibleEstimates, id: \.self) { estimateRow in
+//                    HStack(spacing: 0) {
+//                        ForEach(estimateRow, id: \.self) { estimate in
+//                            Button(action: { self.onEstimate(estimate) }) {
+//                                Text(estimate)
+//                                    .font(.caption)
+//                                    .fontWeight(.bold)
+//                                    .frame(width: 30, height: 40)
+//                                    .animation(.spring())
+//                                    .padding()
+//                                    .background(
+//                                        self.participantEstimate == estimate ? Color.green : Color.white.opacity(0.4)
+//                                    )
+//                                    .foregroundColor(Color.white)
+//                                    .cornerRadius(10)
+//                                    .padding(5)
+//                            }
+//                        }
+//                    }
+//                }
+//            }
 
             Divider()
             Button(action: self.onShowResult) {

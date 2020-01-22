@@ -8,32 +8,33 @@
 
 import SwiftUI
 
-struct NewInProgressView: View {
-    let possibleEstimates = ["0", "1", "2", "3", "5", "8", "13", "20", "40", "100", "???"]
-
+struct CardDeckView: View {
     static let threshold: CGFloat = 100
+
+    let possibleEstimates = ["0", "1", "2", "3", "5", "8", "13", "20", "40", "100", "???"]
 
     @State private var offset = CGSize.zero
     @State private var draggedCardIndex = 0
 
-//        ["3", "5", "8"],
-//        ["13", "20", "40"],
-//        ["100", "???"],
-//    ]
-//
-//    var currentTaskName: String?
-//    var participantEstimate: String?
-//    let onEstimate: (String) -> Void
-//    let onShowResult: () -> Void
+    var currentTaskName: String?
+//    var participantEstimate: String? // show initial estimate?
+    let onEstimate: (String) -> Void
 
     var body: some View {
         ZStack {
             VStack {
-                Text("Threshold: \(self.offset.height)")
-                
+                if currentTaskName != nil {
+                    Text("\(currentTaskName!)")
+                        .font(.largeTitle)
+                        .fontWeight(.heavy)
+                        .padding(EdgeInsets(top: 0, leading: 0, bottom: 100, trailing: 0))
+                        .opacity(0.6)
+                }
+
                 ZStack {
                     ForEach(0..<possibleEstimates.count, id: \.self) { index in
                         PokerCardView(value: self.possibleEstimates[index])
+                            .opacity(self.draggedCardIndex == index ? 0.9 : 1.0)
                             .rotationEffect(
                                 Angle(
                                     degrees: self.calculateAngle(
@@ -53,8 +54,8 @@ struct NewInProgressView: View {
                                         self.offset = gesture.translation
                                     }
                                     .onEnded { _ in
-                                        if abs(self.offset.height) > NewInProgressView.threshold {
-                                            // remove the card
+                                        if abs(self.offset.height) > CardDeckView.threshold {
+                                            self.onEstimate(self.possibleEstimates[index])
                                         } else {
                                             self.offset = .zero
                                         }
@@ -67,7 +68,7 @@ struct NewInProgressView: View {
     }
 
     private func calculateAngle(_ index: Int, totalCards: Int, isCardDragged: Bool = false) -> Double {
-        let percent = !isCardDragged ? Int(1) : Int(floor(abs(self.offset.height) / NewInProgressView.threshold))
+        let percent = !isCardDragged ? Int(1) : Int(floor(abs(self.offset.height) / CardDeckView.threshold))
 
         let middleCardIndex = Int(floor(Double(totalCards) / Double(2)))
 
@@ -83,11 +84,12 @@ struct NewInProgressView: View {
     }
 }
 
-struct NewInProgressView_Previews: PreviewProvider {
+struct CardDeckView_Previews: PreviewProvider {
     static var previews: some View {
-        NewInProgressView(
+        CardDeckView(
+            currentTaskName: "Foo",
 //            participantEstimate: "5",
-//            onEstimate: { _ in },
+            onEstimate: { _ in }
 //            onShowResult: {}
         )
     }
