@@ -27,3 +27,6 @@ DerivedData/
 ## Gcc Patch
 /*.gcno
 .DS_Store
+*.zip
+*.ipa
+/PlanningPoker/fastlane/report.xml
