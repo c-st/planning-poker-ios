@@ -41,7 +41,7 @@ struct JoinRoomView: View {
             .navigationBarTitle("Planning Poker")
             .listStyle(GroupedListStyle())
             .environment(\.horizontalSizeClass, .regular)
-        }
+        }.navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
