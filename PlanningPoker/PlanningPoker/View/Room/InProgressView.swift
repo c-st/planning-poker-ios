@@ -16,10 +16,24 @@ struct InProgressView: View {
 
     var body: some View {
         VStack(alignment: .center, spacing: 10) {
-            CardDeckView(
-                currentTaskName: currentTaskName!,
+            PokerCardDeckView(
                 onEstimate: { estimate in self.onEstimate(estimate) }
-            )
+            ) {
+                if currentTaskName != nil {
+                    Text("\(currentTaskName!)")
+                        .font(.largeTitle)
+                        .fontWeight(.heavy)
+                        .padding(
+                            EdgeInsets(
+                                top: 0,
+                                leading: 0,
+                                bottom: 100,
+                                trailing: 0
+                            )
+                        )
+                        .opacity(0.8)
+                }
+            }
 
 //            VStack(alignment: .leading, spacing: 0) {
 //                ForEach(self.possibleEstimates, id: \.self) { estimateRow in
