@@ -38,7 +38,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		834B701C23D0951B00CC3BA2 /* PBXContainerItemProxy */ = {
+		83D377B223D9B7110019A4DB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 834B6FFD23D0951800CC3BA2 /* Project object */;
 			proxyType = 1;
@@ -252,7 +252,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				834B701D23D0951B00CC3BA2 /* PBXTargetDependency */,
+				83D377B323D9B7110019A4DB /* PBXTargetDependency */,
 			);
 			name = PlanningPokerTests;
 			packageProductDependencies = (
@@ -365,10 +365,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		834B701D23D0951B00CC3BA2 /* PBXTargetDependency */ = {
+		83D377B323D9B7110019A4DB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 834B700423D0951800CC3BA2 /* PlanningPoker */;
-			targetProxy = 834B701C23D0951B00CC3BA2 /* PBXContainerItemProxy */;
+			targetProxy = 83D377B223D9B7110019A4DB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -566,7 +566,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PlanningPoker.app/PlanningPoker";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Planning Poker.app/Planning Poker";
 			};
 			name = Debug;
 		};
@@ -588,7 +588,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PlanningPoker.app/PlanningPoker";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Planning Poker.app/Planning Poker";
 			};
 			name = Release;
 		};

@@ -8,7 +8,7 @@
 
 import XCTest
 import Nimble
-@testable import PlanningPoker
+@testable import Planning_Poker
 
 class PlanningPokerTests: XCTestCase {
 

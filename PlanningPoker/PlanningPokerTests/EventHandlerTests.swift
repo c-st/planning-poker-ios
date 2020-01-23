@@ -9,7 +9,7 @@
 import Nimble
 import XCTest
 
-@testable import PlanningPoker
+@testable import Planning_Poker
 
 class EventHandlerTests: XCTestCase {
     func testSingleUserJoining() {

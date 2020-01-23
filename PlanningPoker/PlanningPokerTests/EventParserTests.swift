@@ -7,7 +7,7 @@
 //
 
 import Nimble
-@testable import PlanningPoker
+@testable import Planning_Poker
 import XCTest
 
 class EventParserTests: XCTestCase {
