@@ -70,6 +70,20 @@ struct RoomView_Previews: PreviewProvider {
                 roomName: "Room",
                 participantName: "Foo"
             )
-        ).environmentObject(Store())
+        ).environmentObject(
+            Store(
+                initialState: AppState(
+                    estimationStatus: .inProgress,
+                    participant: Participant(name: "Our user"),
+                    otherParticipants: [
+                        Participant(name: "Foo"),
+                        Participant(name: "Bar")
+                    ],
+                    roomName: "Test room",
+                    currentTaskName: "Test task",
+                    estimationStart: Date()
+                )
+            )
+        )
     }
 }

@@ -39,11 +39,17 @@ struct JoinRoomData {
 
 final class Store: ObservableObject, WebSocketDelegate {
     @Published var state: AppState = AppState()
-    
+
     // TODO: see how Combine can be used to handle name/room state
 
     private var socket: WebSocket?
     private let decoder = JSONDecoder()
+
+    init() {}
+
+    init(initialState: AppState) {
+        self.state = initialState
+    }
 
     func joinRoom(_ roomData: JoinRoomData) {
         self.state.roomName = roomData.roomName
@@ -62,7 +68,7 @@ final class Store: ObservableObject, WebSocketDelegate {
 
     func leaveRoom() {
         self.state = AppState()
-        
+
         if let socket = self.socket {
             print("User left room. Disconnecting socket")
             socket.disconnect()
@@ -87,25 +93,25 @@ final class Store: ObservableObject, WebSocketDelegate {
             hasEstimated: true,
             currentEstimate: estimate
         )
-        
+
         let estimationEvent = UserEstimate(
             userName: state.participant!.name,
             taskName: self.state.currentTaskName!,
             estimate: estimate
         )
-        
+
         print("Set estimate to \(estimate)")
-        
+
         if let socket = self.socket {
             socket.write(string: EventParser.serialize(estimationEvent))
         }
     }
-    
+
     func sendEstimationResultRequest() {
         let event = RequestShowEstimationResult(
             userName: state.participant!.name
         )
-        
+
         if let socket = self.socket {
             socket.write(string: EventParser.serialize(event))
         }
