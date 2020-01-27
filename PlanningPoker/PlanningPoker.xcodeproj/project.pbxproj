@@ -31,6 +31,7 @@
 		83F8ED1E23D8C5BC006E76AB /* Haptics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F8ED1D23D8C5BC006E76AB /* Haptics.swift */; };
 		F54BEDC523DF2AEB0095E098 /* AppStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54BEDC423DF2AEB0095E098 /* AppStateTests.swift */; };
 		F54BEDC823DF3B3B0095E098 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = F54BEDC723DF3B3B0095E098 /* SDWebImageSwiftUI */; };
+		F54BEDCF23DF41340095E098 /* PieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54BEDCE23DF41340095E098 /* PieChartView.swift */; };
 		F578883623D0A7380019DF23 /* Starscream in Frameworks */ = {isa = PBXBuildFile; productRef = F578883523D0A7380019DF23 /* Starscream */; };
 		F578883823D0A7A70019DF23 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = F578883723D0A7A70019DF23 /* Store.swift */; };
 		F578883A23D0AA030019DF23 /* RoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F578883923D0AA030019DF23 /* RoomView.swift */; };
@@ -77,6 +78,7 @@
 		83F8ED1B23D8C168006E76AB /* PokerCardDeckView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PokerCardDeckView.swift; sourceTree = "<group>"; };
 		83F8ED1D23D8C5BC006E76AB /* Haptics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Haptics.swift; sourceTree = "<group>"; };
 		F54BEDC423DF2AEB0095E098 /* AppStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStateTests.swift; sourceTree = "<group>"; };
+		F54BEDCE23DF41340095E098 /* PieChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartView.swift; sourceTree = "<group>"; };
 		F578883723D0A7A70019DF23 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		F578883923D0AA030019DF23 /* RoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomView.swift; sourceTree = "<group>"; };
 		F57B768923D0CD6000732C71 /* Events.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 		83135B2E23D1EAFB0072F005 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				F54BEDC923DF40CC0095E098 /* PieChart */,
 				834B700C23D0951800CC3BA2 /* JoinRoomView.swift */,
 				83A55E0723D5F0A800496561 /* Room */,
 				8321F6E623D1C6140027A212 /* UserAvatarView.swift */,
@@ -221,6 +224,14 @@
 				83F8ED1D23D8C5BC006E76AB /* Haptics.swift */,
 			);
 			path = Util;
+			sourceTree = "<group>";
+		};
+		F54BEDC923DF40CC0095E098 /* PieChart */ = {
+			isa = PBXGroup;
+			children = (
+				F54BEDCE23DF41340095E098 /* PieChartView.swift */,
+			);
+			path = PieChart;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -341,6 +352,7 @@
 				8392EA8323D74273005CAE07 /* StartEstimationFormView.swift in Sources */,
 				F57B768A23D0CD6000732C71 /* Events.swift in Sources */,
 				83F8ED1523D8A7E5006E76AB /* View+Stacked.swift in Sources */,
+				F54BEDCF23DF41340095E098 /* PieChartView.swift in Sources */,
 				8321F6E423D1B3C70027A212 /* ICloudUserDefault.swift in Sources */,
 				834B700923D0951800CC3BA2 /* AppDelegate.swift in Sources */,
 				83A55E0623D5BF2600496561 /* DateFormatter+CustomFormat.swift in Sources */,
