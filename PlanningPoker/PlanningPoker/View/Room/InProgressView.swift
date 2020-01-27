@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct InProgressView: View {
-    var currentTaskName: String?
+    var currentTaskName: String
     var participantEstimate: String?
     let onEstimate: (String) -> Void
     let onShowResult: () -> Void
@@ -17,23 +17,9 @@ struct InProgressView: View {
     var body: some View {
         VStack(alignment: .center, spacing: 10) {
             PokerCardDeckView(
-                onEstimate: { estimate in self.onEstimate(estimate) }
-            ) {
-                if currentTaskName != nil {
-                    Text("\(currentTaskName!)")
-                        .font(.largeTitle)
-                        .fontWeight(.heavy)
-                        .padding(
-                            EdgeInsets(
-                                top: 0,
-                                leading: 0,
-                                bottom: 100,
-                                trailing: 0
-                            )
-                        )
-                        .opacity(0.8)
-                }
-            }
+                onEstimate: { estimate in self.onEstimate(estimate) },
+                currentTaskName: currentTaskName
+            )
 
 //            VStack(alignment: .leading, spacing: 0) {
 //                ForEach(self.possibleEstimates, id: \.self) { estimateRow in
@@ -74,6 +60,7 @@ struct InProgressView: View {
 struct InProgressView_Previews: PreviewProvider {
     static var previews: some View {
         InProgressView(
+            currentTaskName: "Implement the feature",
             participantEstimate: "5",
             onEstimate: { _ in },
             onShowResult: {}

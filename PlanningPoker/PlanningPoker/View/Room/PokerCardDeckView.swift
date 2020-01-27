@@ -8,16 +8,9 @@
 
 import SwiftUI
 
-struct PokerCardDeckView<Content: View>: View {
+struct PokerCardDeckView: View {
     let threshold: CGFloat = 100
     let degree: Int = 12
-
-    let content: Content
-
-    init(onEstimate: @escaping (String) -> Void, @ViewBuilder content: () -> Content) {
-        self.onEstimate = onEstimate
-        self.content = content()
-    }
 
     let possibleEstimates: [String] = [
         "0", "1", "2", "3",
@@ -29,11 +22,37 @@ struct PokerCardDeckView<Content: View>: View {
     @State private var draggedCardIndex = 0
 
     let onEstimate: (String) -> Void
+    var currentTaskName: String
 
     var body: some View {
         VStack {
-            content
+            GeometryReader { geometry in
+                HStack {
+                    Text(self.currentTaskName)
+                        .font(.title)
+                        .fontWeight(.bold)
+                        .padding(30)
+                        .lineLimit(4)
+                        .multilineTextAlignment(.center)
+                        .foregroundColor(.gray)
+                }
+                .frame(minWidth: geometry.size.width - 30, minHeight: 150)
+                .overlay(
+                    Rectangle()
+                        .strokeBorder(
+                            style: StrokeStyle(
+                                lineWidth: 2,
+                                dash: [5]
+                            )
+                        )
+                        .foregroundColor(.gray)
+                        .opacity(0.4)
+                )
+//                .background(Color.red)
+            }
+
             Spacer()
+
             ZStack {
                 ForEach(0..<possibleEstimates.count, id: \.self) { index in
                     self.buildPokerCardViewAt(index)
@@ -91,7 +110,7 @@ struct PokerCardDeckView<Content: View>: View {
 
         return 0
     }
-    
+
     private func isDraggedOverThreshold() -> Bool {
         return abs(self.offset.height) > self.threshold
     }
@@ -99,13 +118,9 @@ struct PokerCardDeckView<Content: View>: View {
 
 struct PokerCardDeckView_Previews: PreviewProvider {
     static var previews: some View {
-        PokerCardDeckView(onEstimate: { _ in }) {
-            Text("Implement the card swipe view ")
-                .font(.title)
-                .fontWeight(.bold)
-                .multilineTextAlignment(.center)
-                .padding(20)
-                .opacity(0.4)
-        }
+        PokerCardDeckView(
+            onEstimate: { _ in },
+            currentTaskName: "Please estimate this very long deslkjdlksjdkldjslkdsjlkds sadkhdskjhdjskhdsjk skjdhkjdshkjdshjkdsh"
+        )
     }
 }
