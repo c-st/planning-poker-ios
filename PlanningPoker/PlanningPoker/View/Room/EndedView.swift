@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct EndedView: View {
     var participants: [Participant]
@@ -44,7 +45,13 @@ struct EndedView: View {
                     }
                 }
                 
-                Text(isCatConsensus.map { $0 ? "😻😻😻" : "🐶🐶🐶"} ?? "")
+                if isCatConsensus != nil && isCatConsensus! {
+                    WebImage(url: URL(string: "https://thecatapi.com/api/images/get?format=src&type=gif"))
+                    .resizable()
+                    .animated() // Supports Animated Image
+                    .scaledToFit()
+                    .frame(width: 300, height: 300, alignment: .center)
+                }
             }
 
             Divider()
@@ -68,7 +75,7 @@ struct EndedView_Previews: PreviewProvider {
                 Participant(name: "Foo", hasEstimated: true, currentEstimate: "3"),
                 Participant(name: "Bar", hasEstimated: true, currentEstimate: "5")
             ],
-            isCatConsensus: false,
+            isCatConsensus: true,
             onStartEstimation: { _ in }
         )
         // .colorScheme(.dark)

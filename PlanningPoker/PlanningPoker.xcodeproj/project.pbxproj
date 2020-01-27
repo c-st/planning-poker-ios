@@ -30,6 +30,7 @@
 		83F8ED1C23D8C168006E76AB /* PokerCardDeckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F8ED1B23D8C168006E76AB /* PokerCardDeckView.swift */; };
 		83F8ED1E23D8C5BC006E76AB /* Haptics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F8ED1D23D8C5BC006E76AB /* Haptics.swift */; };
 		F54BEDC523DF2AEB0095E098 /* AppStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54BEDC423DF2AEB0095E098 /* AppStateTests.swift */; };
+		F54BEDC823DF3B3B0095E098 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = F54BEDC723DF3B3B0095E098 /* SDWebImageSwiftUI */; };
 		F578883623D0A7380019DF23 /* Starscream in Frameworks */ = {isa = PBXBuildFile; productRef = F578883523D0A7380019DF23 /* Starscream */; };
 		F578883823D0A7A70019DF23 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = F578883723D0A7A70019DF23 /* Store.swift */; };
 		F578883A23D0AA030019DF23 /* RoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F578883923D0AA030019DF23 /* RoomView.swift */; };
@@ -88,6 +89,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F54BEDC823DF3B3B0095E098 /* SDWebImageSwiftUI in Frameworks */,
 				F578883623D0A7380019DF23 /* Starscream in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -239,6 +241,7 @@
 			name = PlanningPoker;
 			packageProductDependencies = (
 				F578883523D0A7380019DF23 /* Starscream */,
+				F54BEDC723DF3B3B0095E098 /* SDWebImageSwiftUI */,
 			);
 			productName = PlanningPoker;
 			productReference = 834B700523D0951800CC3BA2 /* Planning Poker.app */;
@@ -296,6 +299,7 @@
 			packageReferences = (
 				F578883423D0A7380019DF23 /* XCRemoteSwiftPackageReference "Starscream" */,
 				F57B768B23D1CD2700732C71 /* XCRemoteSwiftPackageReference "Nimble" */,
+				F54BEDC623DF3B3B0095E098 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 			);
 			productRefGroup = 834B700623D0951800CC3BA2 /* Products */;
 			projectDirPath = "";
@@ -629,6 +633,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		F54BEDC623DF3B3B0095E098 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.10.2;
+			};
+		};
 		F578883423D0A7380019DF23 /* XCRemoteSwiftPackageReference "Starscream" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/daltoniam/Starscream.git";
@@ -652,6 +664,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F57B768B23D1CD2700732C71 /* XCRemoteSwiftPackageReference "Nimble" */;
 			productName = Nimble;
+		};
+		F54BEDC723DF3B3B0095E098 /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F54BEDC623DF3B3B0095E098 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
 		};
 		F578883523D0A7380019DF23 /* Starscream */ = {
 			isa = XCSwiftPackageProductDependency;

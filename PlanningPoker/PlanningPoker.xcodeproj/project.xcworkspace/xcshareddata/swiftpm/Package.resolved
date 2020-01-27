@@ -11,6 +11,24 @@
         }
       },
       {
+        "package": "SDWebImage",
+        "repositoryURL": "https://github.com/SDWebImage/SDWebImage.git",
+        "state": {
+          "branch": null,
+          "revision": "aa7ff6f060d8f34d2c66a716aefff1a3bc9ef816",
+          "version": "5.5.2"
+        }
+      },
+      {
+        "package": "SDWebImageSwiftUI",
+        "repositoryURL": "https://github.com/SDWebImage/SDWebImageSwiftUI.git",
+        "state": {
+          "branch": null,
+          "revision": "7e92d42ee51c8263a862dce2a7f64f391f98096a",
+          "version": "0.10.2"
+        }
+      },
+      {
         "package": "Starscream",
         "repositoryURL": "https://github.com/daltoniam/Starscream.git",
         "state": {
