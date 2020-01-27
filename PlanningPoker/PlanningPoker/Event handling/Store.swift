@@ -17,6 +17,16 @@ public struct AppState {
     var roomName: String?
     var currentTaskName: String?
     var estimationStart: Date?
+    var isCatConsensus: Bool? {
+        get {
+            guard estimationStatus == .ended, let ourParticipant = participant else {
+                return nil
+            }
+            let allParticipants = [ourParticipant] + otherParticipants
+            let participantsByEstimate = Dictionary(grouping: allParticipants, by: { $0.currentEstimate })
+            return participantsByEstimate.count == 1
+        }
+    }
 
     enum EstimationStatus {
         case notStarted
@@ -38,16 +48,14 @@ struct JoinRoomData {
 }
 
 final class Store: ObservableObject, WebSocketDelegate {
-    @Published var state: AppState = AppState()
+    @Published var state: AppState
 
     // TODO: see how Combine can be used to handle name/room state
 
     private var socket: WebSocket?
     private let decoder = JSONDecoder()
 
-    init() {}
-
-    init(initialState: AppState) {
+    init(initialState: AppState = AppState()) {
         self.state = initialState
     }
 
