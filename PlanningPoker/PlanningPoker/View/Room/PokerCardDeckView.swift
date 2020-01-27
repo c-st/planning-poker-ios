@@ -10,6 +10,7 @@ import SwiftUI
 
 struct PokerCardDeckView<Content: View>: View {
     let threshold: CGFloat = 100
+    let degree: Int = 12
 
     let content: Content
 
@@ -17,26 +18,25 @@ struct PokerCardDeckView<Content: View>: View {
         self.onEstimate = onEstimate
         self.content = content()
     }
-    
-    let possibleEstimates = [
+
+    let possibleEstimates: [String] = [
         "0", "1", "2", "3",
         "5", "8", "13", "20",
         "40", "100", "???"
-    ]
-    
+    ].reversed()
+
     @State private var offset = CGSize.zero
     @State private var draggedCardIndex = 0
 
     let onEstimate: (String) -> Void
 
     var body: some View {
-        ZStack {
-            VStack {
-                content
-                ZStack {
-                    ForEach(0..<possibleEstimates.count, id: \.self) { index in
-                        self.buildPokerCardViewAt(index)
-                    }
+        VStack {
+            content
+            Spacer()
+            ZStack {
+                ForEach(0..<possibleEstimates.count, id: \.self) { index in
+                    self.buildPokerCardViewAt(index)
                 }
             }
         }
@@ -79,11 +79,11 @@ struct PokerCardDeckView<Content: View>: View {
         let middleCardIndex = Int(floor(Double(totalCards) / Double(2)))
 
         if index < middleCardIndex {
-            return Double((middleCardIndex - index) * -10 * percent)
+            return Double((middleCardIndex - index) * self.degree * -1 * percent)
         }
 
         if index > middleCardIndex {
-            return Double((index - middleCardIndex) * 10 * percent)
+            return Double((index - middleCardIndex) * self.degree * percent)
         }
 
         return 0

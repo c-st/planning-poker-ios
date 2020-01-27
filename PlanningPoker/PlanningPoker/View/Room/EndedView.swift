@@ -50,6 +50,11 @@ struct EndedView: View {
                 onStartEstimation: onStartEstimation
             )
         }
+        .padding()
+        .background(Color.blue)
+        .foregroundColor(Color.white)
+        .cornerRadius(10)
+        .padding()
     }
 }
 

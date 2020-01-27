@@ -16,11 +16,16 @@ struct NotYetStartedView: View {
             Text("Estimate a new task")
                 .font(.headline)
                 .fontWeight(.bold)
-            
+                .foregroundColor(Color.white)
+
             StartEstimationFormView(
                 onStartEstimation: onStartEstimation
             )
         }
+        .padding()
+        .background(Color.blue)
+        .cornerRadius(10)
+        .padding()
     }
 }
 
