@@ -10,6 +10,7 @@ import SwiftUI
 
 struct EndedView: View {
     var participants: [Participant]
+    var isCatConsensus: Bool?
     let onStartEstimation: (String) -> Void
 
     var body: some View {
@@ -42,6 +43,8 @@ struct EndedView: View {
                         }
                     }
                 }
+                
+                Text(isCatConsensus.map { $0 ? "😻😻😻" : "🐶🐶🐶"} ?? "")
             }
 
             Divider()
@@ -65,6 +68,7 @@ struct EndedView_Previews: PreviewProvider {
                 Participant(name: "Foo", hasEstimated: true, currentEstimate: "3"),
                 Participant(name: "Bar", hasEstimated: true, currentEstimate: "5")
             ],
+            isCatConsensus: false,
             onStartEstimation: { _ in }
         )
         // .colorScheme(.dark)
