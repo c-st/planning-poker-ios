@@ -10,11 +10,12 @@ import SwiftUI
 
 struct PokerCardView: View {
     let value: String
+    var isCardSelected: Bool
 
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 15)
-                .fill(Color.green)
+                .fill(isCardSelected ? Color.red : Color.green)
                 .shadow(radius: 2)
             VStack {
                 HStack {
@@ -39,6 +40,6 @@ struct PokerCardView: View {
 
 struct PokerCardView_Previews: PreviewProvider {
     static var previews: some View {
-        PokerCardView(value: "5")
+        PokerCardView(value: "5", isCardSelected: true)
     }
 }

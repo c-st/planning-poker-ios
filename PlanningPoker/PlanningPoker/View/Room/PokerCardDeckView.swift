@@ -43,34 +43,37 @@ struct PokerCardDeckView<Content: View>: View {
     }
 
     private func buildPokerCardViewAt(_ index: Int) -> some View {
-        return PokerCardView(value: "\(self.possibleEstimates[index])")
-            .rotationEffect(
-                Angle(
-                    degrees: self.calculateAngle(
-                        index,
-                        totalCards: self.possibleEstimates.count,
-                        isCardDragged: self.draggedCardIndex == index
-                    )
-                ),
-                anchor: .bottom
-            )
-            .offset(self.draggedCardIndex == index ? self.offset : .zero)
-            .opacity(self.draggedCardIndex == index ? 0.9 : 1.0)
-            .animation(.spring())
-            .gesture(
-                DragGesture()
-                    .onChanged { gesture in
-                        self.draggedCardIndex = index
-                        self.offset = gesture.translation
+        return PokerCardView(
+            value: "\(self.possibleEstimates[index])",
+            isCardSelected: self.draggedCardIndex == index && self.isDraggedOverThreshold()
+        )
+        .rotationEffect(
+            Angle(
+                degrees: self.calculateAngle(
+                    index,
+                    totalCards: self.possibleEstimates.count,
+                    isCardDragged: self.draggedCardIndex == index
+                )
+            ),
+            anchor: .bottom
+        )
+        .offset(self.draggedCardIndex == index ? self.offset : .zero)
+        .opacity(self.draggedCardIndex == index ? 0.9 : 1.0)
+        .animation(.spring())
+        .gesture(
+            DragGesture()
+                .onChanged { gesture in
+                    self.draggedCardIndex = index
+                    self.offset = gesture.translation
+                }
+                .onEnded { _ in
+                    if self.isDraggedOverThreshold() {
+                        self.onEstimate(self.possibleEstimates[index])
+                    } else {
+                        self.offset = .zero
                     }
-                    .onEnded { _ in
-                        if abs(self.offset.height) > self.threshold {
-                            self.onEstimate(self.possibleEstimates[index])
-                        } else {
-                            self.offset = .zero
-                        }
-                    }
-            )
+                }
+        )
     }
 
     private func calculateAngle(_ index: Int, totalCards: Int, isCardDragged: Bool = false) -> Double {
@@ -87,6 +90,10 @@ struct PokerCardDeckView<Content: View>: View {
         }
 
         return 0
+    }
+    
+    private func isDraggedOverThreshold() -> Bool {
+        return abs(self.offset.height) > self.threshold
     }
 }
 
