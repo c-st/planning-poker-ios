@@ -46,9 +46,8 @@ struct EndedView: View {
                 }
                 
                 if isCatConsensus != nil && isCatConsensus! {
-                    WebImage(url: URL(string: "https://thecatapi.com/api/images/get?format=src&type=gif"))
+                    AnimatedImage(url: URL(string: "https://thecatapi.com/api/images/get?format=src&type=gif"))
                     .resizable()
-                    .animated() // Supports Animated Image
                     .scaledToFit()
                     .frame(width: 300, height: 300, alignment: .center)
                 }
