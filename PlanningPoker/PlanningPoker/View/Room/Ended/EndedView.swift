@@ -19,6 +19,9 @@ struct EndedView: View {
             Text("Result")
                 .font(.title)
                 .fontWeight(.bold)
+            
+            PieChartView(segmentData: [SegmentData(startAngle: 0, endAngle: 360)])
+                .frame(width: 200, height: 200)
 
             VStack(spacing: 10) {
                 HStack {

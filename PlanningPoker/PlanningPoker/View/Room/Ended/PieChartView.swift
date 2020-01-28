@@ -16,7 +16,7 @@ struct PieSegment: Shape {
         Path { path in
             path.addArc(
                 center: CGPoint(x: 100, y: 100),
-                radius: 50,
+                radius: 100,
                 startAngle: .degrees(startAngle),
                 endAngle: .degrees(endAngle),
                 clockwise: false

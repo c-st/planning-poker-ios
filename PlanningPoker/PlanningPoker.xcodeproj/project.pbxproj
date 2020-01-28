@@ -110,7 +110,6 @@
 		83135B2E23D1EAFB0072F005 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				F54BEDC923DF40CC0095E098 /* PieChart */,
 				834B700C23D0951800CC3BA2 /* JoinRoomView.swift */,
 				83A55E0723D5F0A800496561 /* Room */,
 				8321F6E623D1C6140027A212 /* UserAvatarView.swift */,
@@ -194,14 +193,12 @@
 		83A55E0723D5F0A800496561 /* Room */ = {
 			isa = PBXGroup;
 			children = (
+				F54BEDD023E034B20095E098 /* NotStarted */,
+				F54BEDD123E034BF0095E098 /* InProgress */,
+				F54BEDD223E034DA0095E098 /* Ended */,
 				F578883923D0AA030019DF23 /* RoomView.swift */,
-				83A55E0823D5F0DA00496561 /* NotYetStartedView.swift */,
-				83A55E0A23D5F24E00496561 /* InProgressView.swift */,
-				83A55E0C23D5F28100496561 /* EndedView.swift */,
 				83A55E0E23D7129D00496561 /* ParticipantsView.swift */,
 				8392EA8223D74273005CAE07 /* StartEstimationFormView.swift */,
-				83F8ED1B23D8C168006E76AB /* PokerCardDeckView.swift */,
-				83F8ED1223D8A7C2006E76AB /* PokerCardView.swift */,
 			);
 			path = Room;
 			sourceTree = "<group>";
@@ -226,12 +223,31 @@
 			path = Util;
 			sourceTree = "<group>";
 		};
-		F54BEDC923DF40CC0095E098 /* PieChart */ = {
+		F54BEDD023E034B20095E098 /* NotStarted */ = {
+			isa = PBXGroup;
+			children = (
+				83A55E0823D5F0DA00496561 /* NotYetStartedView.swift */,
+			);
+			path = NotStarted;
+			sourceTree = "<group>";
+		};
+		F54BEDD123E034BF0095E098 /* InProgress */ = {
+			isa = PBXGroup;
+			children = (
+				83A55E0A23D5F24E00496561 /* InProgressView.swift */,
+				83F8ED1B23D8C168006E76AB /* PokerCardDeckView.swift */,
+				83F8ED1223D8A7C2006E76AB /* PokerCardView.swift */,
+			);
+			path = InProgress;
+			sourceTree = "<group>";
+		};
+		F54BEDD223E034DA0095E098 /* Ended */ = {
 			isa = PBXGroup;
 			children = (
 				F54BEDCE23DF41340095E098 /* PieChartView.swift */,
+				83A55E0C23D5F28100496561 /* EndedView.swift */,
 			);
-			path = PieChart;
+			path = Ended;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
