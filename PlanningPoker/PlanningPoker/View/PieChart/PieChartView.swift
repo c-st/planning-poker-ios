@@ -27,18 +27,50 @@ struct PieSegment: Shape {
     }
 }
 
+struct SegmentData: Identifiable {
+    let id: UUID = UUID()
+    let startAngle: Double
+    let endAngle: Double
+}
+
 struct PieChartView: View {
+    let colors: [Color] = [
+        Color.green,
+        Color.blue,
+        Color.yellow,
+        Color.purple,
+        Color.orange,
+        Color.pink,
+        Color.gray,
+        Color.red,
+    ]
+
+    var segmentData: [SegmentData]
+
     var body: some View {
         ZStack {
-            PieSegment(startAngle: 0, endAngle: 120).fill(Color.green)
-            PieSegment(startAngle: 120, endAngle: 220).fill(Color.blue)
-            PieSegment(startAngle: 220, endAngle: 360).fill(Color.yellow)
+            ForEach(0..<segmentData.count, id: \.self) { index in
+                PieSegment(
+                    startAngle: self.segmentData[index].startAngle,
+                    endAngle: self.segmentData[index].endAngle
+                )
+                .fill(self.colors[index % self.colors.count])
+            }
         }
     }
 }
 
 struct PieChartView_Previews: PreviewProvider {
     static var previews: some View {
-        PieChartView()
+        PieChartView(
+            segmentData: [
+                SegmentData(startAngle: 0, endAngle: 120),
+                SegmentData(startAngle: 120, endAngle: 220),
+                SegmentData(startAngle: 220, endAngle: 230),
+                SegmentData(startAngle: 230, endAngle: 240),
+                SegmentData(startAngle: 240, endAngle: 250),
+                SegmentData(startAngle: 250, endAngle: 360),
+            ]
+        )
     }
 }
