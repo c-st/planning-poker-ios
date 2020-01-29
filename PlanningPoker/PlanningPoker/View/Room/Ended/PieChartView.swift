@@ -31,6 +31,19 @@ struct SegmentData: Identifiable {
     let id: UUID = UUID()
     let startAngle: Double
     let endAngle: Double
+    
+    var medianRadians: Double {
+        let medianAngle = (startAngle + endAngle) / 2
+        return medianAngle * .pi / 180
+    }
+    
+    var labelXPosition: CGFloat {
+        return 100 + (60 * CGFloat(cos(medianRadians)))
+    }
+    
+    var labelYPosition: CGFloat {
+        return 100 + (60 * CGFloat(sin(medianRadians)))
+    }
 }
 
 struct PieChartView: View {
@@ -50,11 +63,18 @@ struct PieChartView: View {
     var body: some View {
         ZStack {
             ForEach(0..<segmentData.count, id: \.self) { index in
-                PieSegment(
-                    startAngle: self.segmentData[index].startAngle,
-                    endAngle: self.segmentData[index].endAngle
-                )
-                .fill(self.colors[index % self.colors.count])
+                ZStack {
+                    PieSegment(
+                        startAngle: self.segmentData[index].startAngle,
+                        endAngle: self.segmentData[index].endAngle
+                    )
+                    .fill(self.colors[index % self.colors.count])
+                    Text("\(index)")
+                        .position(
+                            x: self.segmentData[index].labelXPosition,
+                            y: self.segmentData[index].labelYPosition
+                        )
+                }
             }
         }
     }
