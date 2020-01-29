@@ -285,6 +285,11 @@ class EventHandlerTests: XCTestCase {
                     name: "Bar",
                     hasEstimated: true
                 )
+            ],
+            estimations: [
+                "Our user": "1",
+                "Foo": "5",
+                "Bar": "3"
             ]
         )
 
@@ -295,12 +300,10 @@ class EventHandlerTests: XCTestCase {
         )
 
         expect(finalState.estimationStatus).to(equal(.ended))
-        expect(finalState.otherParticipants.first!.name).to(equal("Foo"))
-        expect(finalState.otherParticipants.first!.hasEstimated).to(beTrue())
-        expect(finalState.estimations[finalState.otherParticipants.first!.name]).to(equal("5"))
-
-        expect(finalState.otherParticipants.last!.hasEstimated).to(beTrue())
-        expect(finalState.otherParticipants.last!.name).to(equal("Bar"))
-        expect(finalState.estimations[finalState.otherParticipants.last!.name]).to(equal("3"))
+        expect(finalState.otherParticipants.count).to(equal(1))
+        expect(finalState.otherParticipants.first!.name).to(equal("Bar"))
+        
+        expect(finalState.estimations.count).to(equal(3))
+        expect(finalState.estimations["Foo"]).to(equal("5"))
     }
 }

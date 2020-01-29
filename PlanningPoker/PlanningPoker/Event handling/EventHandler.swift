@@ -30,7 +30,8 @@ public class EventHandler {
                 otherParticipants: newParticipants,
                 roomName: state.roomName,
                 currentTaskName: state.currentTaskName,
-                estimationStart: state.estimationStart
+                estimationStart: state.estimationStart,
+                estimations: state.estimations
             )
 
         case let event as UserLeft:
@@ -44,7 +45,8 @@ public class EventHandler {
                 otherParticipants: newParticipants,
                 roomName: state.roomName,
                 currentTaskName: state.currentTaskName,
-                estimationStart: state.estimationStart
+                estimationStart: state.estimationStart,
+                estimations: state.estimations
             )
 
         case let event as RequestStartEstimation:

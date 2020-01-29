@@ -23,6 +23,7 @@ struct EndedView: View {
 
             PieChartView(segmentData: calculatePieChartAngles())
                 .frame(width: 200, height: 200)
+                .shadow(radius: 10)
 
             Divider()
 
@@ -38,16 +39,16 @@ struct EndedView: View {
                         .fontWeight(.bold)
                 }
 
-//                ForEach(self.participantsByEstimate.keys as [String], id: \.self) { estimate in
-//                    HStack {
-//                        Text(estimate)
-//                            .font(.headline)
-//                        Spacer()
-//
-//                        Text(self.participantsByEstimate[estimate]!.joined(separator: ","))
-//                            .font(.headline)
-//                    }
-//                }
+                ForEach(self.participantsByEstimate.keys.sorted(), id: \.self) { estimate in
+                    HStack {
+                        Text(estimate)
+                            .font(.headline)
+                        Spacer()
+
+                        Text(self.participantsByEstimate[estimate]!.joined(separator: ", "))
+                            .font(.headline)
+                    }
+                }
             }
 
             Divider()
@@ -71,7 +72,7 @@ struct EndedView: View {
     }
 
     private func calculatePieChartAngles() -> [SegmentData] {
-        let totalParticipantCount = Double(participants.count)
+        let totalParticipantCount = Double(participantsByEstimate.values.flatMap({ $0 }).count)
         var lastAngle = 0.0
 
         return participantsByEstimate.map { _, estimators in
@@ -87,12 +88,15 @@ struct EndedView_Previews: PreviewProvider {
     static var previews: some View {
         EndedView(
             participants: [
+                Participant(name: "Our User", hasEstimated: true),
                 Participant(name: "Foo", hasEstimated: true),
-                Participant(name: "Bar", hasEstimated: true)
+                Participant(name: "Bar", hasEstimated: true),
+                Participant(name: "Another", hasEstimated: true)
             ],
             participantsByEstimate: [
-                "3": ["Foo"],
-                "5": ["Bar"]
+                "3": ["Our User", "Foo"],
+                "5": ["Bar"],
+                "8": ["Another"]
             ],
 
             isCatConsensus: true,
