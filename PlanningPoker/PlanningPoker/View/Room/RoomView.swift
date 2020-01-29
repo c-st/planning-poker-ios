@@ -44,6 +44,7 @@ struct RoomView: View {
                 if store.state.estimationStatus == .ended {
                     EndedView(
                         participants: self.store.state.otherParticipants + [self.store.state.participant!],
+                        participantsByEstimate: self.store.state.participantsByEstimate!,
                         isCatConsensus: self.store.state.isCatConsensus,
                         onStartEstimation: { self.store.sendStartEstimationRequestFor($0) }
                     )

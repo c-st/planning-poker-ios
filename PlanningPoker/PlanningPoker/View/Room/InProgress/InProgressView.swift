@@ -21,29 +21,6 @@ struct InProgressView: View {
                 currentTaskName: currentTaskName
             )
 
-//            VStack(alignment: .leading, spacing: 0) {
-//                ForEach(self.possibleEstimates, id: \.self) { estimateRow in
-//                    HStack(spacing: 0) {
-//                        ForEach(estimateRow, id: \.self) { estimate in
-//                            Button(action: { self.onEstimate(estimate) }) {
-//                                Text(estimate)
-//                                    .font(.caption)
-//                                    .fontWeight(.bold)
-//                                    .frame(width: 30, height: 40)
-//                                    .animation(.spring())
-//                                    .padding()
-//                                    .background(
-//                                        self.participantEstimate == estimate ? Color.green : Color.white.opacity(0.4)
-//                                    )
-//                                    .foregroundColor(Color.white)
-//                                    .cornerRadius(10)
-//                                    .padding(5)
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-
             Button(action: self.onShowResult) {
                 Text("Show result")
                     .font(.caption)

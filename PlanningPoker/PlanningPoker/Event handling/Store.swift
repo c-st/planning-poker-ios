@@ -17,14 +17,23 @@ public struct AppState {
     var roomName: String?
     var currentTaskName: String?
     var estimationStart: Date?
-    var isCatConsensus: Bool? {
+    
+    var participantsByEstimate: [String?: [Participant]]? {
         get {
-            guard estimationStatus == .ended, let ourParticipant = participant else {
+            guard let ourParticipant = participant else {
                 return nil
             }
             let allParticipants = [ourParticipant] + otherParticipants
-            let participantsByEstimate = Dictionary(grouping: allParticipants, by: { $0.currentEstimate })
-            return participantsByEstimate.count == 1
+            return Dictionary(grouping: allParticipants, by: { $0.currentEstimate })
+        }
+    }
+    
+    var isCatConsensus: Bool? {
+        get {
+            guard estimationStatus == .ended, let byEstimate = participantsByEstimate else {
+                return nil
+            }
+            return byEstimate.count == 1
         }
     }
 
