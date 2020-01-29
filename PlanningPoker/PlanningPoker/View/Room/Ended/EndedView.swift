@@ -6,12 +6,12 @@
 //  Copyright © 2020 Christian Stangier. All rights reserved.
 //
 
-import SwiftUI
 import SDWebImageSwiftUI
+import SwiftUI
 
 struct EndedView: View {
     var participants: [Participant]
-    var participantsByEstimate: [String? : [Participant]]
+    var participantsByEstimate: [String: [String]]
     var isCatConsensus: Bool?
     let onStartEstimation: (String) -> Void
 
@@ -20,10 +20,10 @@ struct EndedView: View {
             Text("Result")
                 .font(.title)
                 .fontWeight(.bold)
-            
+
             PieChartView(segmentData: calculatePieChartAngles())
                 .frame(width: 200, height: 200)
-            
+
             Divider()
 
             VStack(spacing: 10) {
@@ -38,22 +38,20 @@ struct EndedView: View {
                         .fontWeight(.bold)
                 }
 
-                ForEach(self.participants) { participant in
-                    HStack {
-                        Text(participant.name)
-                            .font(.headline)
-                        Spacer()
-
-                        if participant.currentEstimate != nil {
-                            Text(participant.currentEstimate!)
-                                .font(.headline)
-                        }
-                    }
-                }
+//                ForEach(self.participantsByEstimate.keys as [String], id: \.self) { estimate in
+//                    HStack {
+//                        Text(estimate)
+//                            .font(.headline)
+//                        Spacer()
+//
+//                        Text(self.participantsByEstimate[estimate]!.joined(separator: ","))
+//                            .font(.headline)
+//                    }
+//                }
             }
-            
+
             Divider()
-            
+
 //            if isCatConsensus != nil && isCatConsensus! {
 //                AnimatedImage(url: URL(string: "https://thecatapi.com/api/images/get?format=src&type=gif"))
 //                .resizable()
@@ -71,12 +69,12 @@ struct EndedView: View {
         .cornerRadius(10)
         .padding()
     }
-    
+
     private func calculatePieChartAngles() -> [SegmentData] {
         let totalParticipantCount = Double(participants.count)
         var lastAngle = 0.0
-        
-        return participantsByEstimate.map { (key, estimators) in
+
+        return participantsByEstimate.map { _, estimators in
             let estimateCount = Double(estimators.count)
             let startAngle = lastAngle
             lastAngle = startAngle + estimateCount / totalParticipantCount * 360
@@ -89,13 +87,14 @@ struct EndedView_Previews: PreviewProvider {
     static var previews: some View {
         EndedView(
             participants: [
-                Participant(name: "Foo", hasEstimated: true, currentEstimate: "3"),
-                Participant(name: "Bar", hasEstimated: true, currentEstimate: "5")
+                Participant(name: "Foo", hasEstimated: true),
+                Participant(name: "Bar", hasEstimated: true)
             ],
             participantsByEstimate: [
-                "3": [Participant(name: "Foo", hasEstimated: true, currentEstimate: "3")],
-                "5": [Participant(name: "Bar", hasEstimated: true, currentEstimate: "5")]
+                "3": ["Foo"],
+                "5": ["Bar"]
             ],
+
             isCatConsensus: true,
             onStartEstimation: { _ in }
         )

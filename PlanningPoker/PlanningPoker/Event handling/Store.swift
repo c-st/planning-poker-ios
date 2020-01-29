@@ -17,24 +17,29 @@ public struct AppState {
     var roomName: String?
     var currentTaskName: String?
     var estimationStart: Date?
-    
-    var participantsByEstimate: [String?: [Participant]]? {
-        get {
-            guard let ourParticipant = participant else {
-                return nil
+
+    var estimations: [String: String] = [:]
+
+    var participantsByEstimate: [String: [String]]? {
+        return Dictionary(
+            grouping: self.estimations.keys,
+            by: { key -> String in
+                let value = estimations[key]!
+                return value
             }
-            let allParticipants = [ourParticipant] + otherParticipants
-            return Dictionary(grouping: allParticipants, by: { $0.currentEstimate })
-        }
+        )
     }
-    
+
+    var ourEstimate: String? {
+        guard self.participant != nil else { return nil }
+        return self.estimations[self.participant!.name]
+    }
+
     var isCatConsensus: Bool? {
-        get {
-            guard estimationStatus == .ended, let byEstimate = participantsByEstimate else {
-                return nil
-            }
-            return byEstimate.count == 1
+        guard self.estimationStatus == .ended, let byEstimate = participantsByEstimate else {
+            return nil
         }
+        return byEstimate.count == 1
     }
 
     enum EstimationStatus {
@@ -48,7 +53,6 @@ struct Participant: Identifiable {
     var id: UUID = UUID()
     var name: String
     var hasEstimated: Bool = false
-    var currentEstimate: String?
 }
 
 struct JoinRoomData {
@@ -105,19 +109,19 @@ final class Store: ObservableObject, WebSocketDelegate {
     }
 
     func sendEstimate(_ estimate: String) {
+        let ourName = self.state.participant!.name
         self.state.participant = Participant(
-            name: self.state.participant!.name,
-            hasEstimated: true,
-            currentEstimate: estimate
+            name: ourName,
+            hasEstimated: true
         )
+
+        self.state.estimations[ourName] = estimate
 
         let estimationEvent = UserEstimate(
             userName: state.participant!.name,
             taskName: self.state.currentTaskName!,
             estimate: estimate
         )
-
-        print("Set estimate to \(estimate)")
 
         if let socket = self.socket {
             socket.write(string: EventParser.serialize(estimationEvent))

@@ -48,13 +48,11 @@ public class EventHandler {
             )
 
         case let event as RequestStartEstimation:
-            print("request start estimation: \(event)")
             func resetEstimationStatus(participant: Participant) -> Participant {
                 Participant(
                     id: participant.id,
                     name: participant.name,
-                    hasEstimated: false,
-                    currentEstimate: nil
+                    hasEstimated: false
                 )
             }
 
@@ -64,19 +62,17 @@ public class EventHandler {
                 otherParticipants: state.otherParticipants.map(resetEstimationStatus),
                 roomName: state.roomName,
                 currentTaskName: event.taskName,
-                estimationStart: event.startDate
+                estimationStart: event.startDate,
+                estimations: [:]
             )
 
         case let event as UserHasEstimated:
-            print("User has estimated \(event.userName)")
-
             func markAsEstimatedIfNecessary(participant: Participant) -> Participant {
                 if participant.name == event.userName {
                     return Participant(
                         id: participant.id,
                         name: participant.name,
-                        hasEstimated: true,
-                        currentEstimate: participant.currentEstimate
+                        hasEstimated: true
                     )
                 }
                 return participant
@@ -88,7 +84,8 @@ public class EventHandler {
                 otherParticipants: state.otherParticipants.map(markAsEstimatedIfNecessary),
                 roomName: state.roomName,
                 currentTaskName: state.currentTaskName,
-                estimationStart: state.estimationStart
+                estimationStart: state.estimationStart,
+                estimations: state.estimations
             )
 
         case let event as EstimationResult:
@@ -103,9 +100,14 @@ public class EventHandler {
                 return Participant(
                     id: participant.id,
                     name: participant.name,
-                    hasEstimated: true,
-                    currentEstimate: participantEstimate!.estimate
+                    hasEstimated: true
                 )
+            }
+
+            let estimations = event.estimates.reduce([String: String]()) { (accumulator, estimation) -> [String: String] in
+                var accumulator = accumulator
+                accumulator[estimation.userName] = estimation.estimate
+                return accumulator
             }
 
             return AppState(
@@ -114,7 +116,8 @@ public class EventHandler {
                 otherParticipants: state.otherParticipants.map(updateEstimateIfNecessary),
                 roomName: state.roomName,
                 currentTaskName: state.currentTaskName,
-                estimationStart: state.estimationStart
+                estimationStart: state.estimationStart,
+                estimations: estimations
             )
 
         case is HeartBeat:

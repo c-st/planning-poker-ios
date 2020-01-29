@@ -76,7 +76,7 @@ class EventHandlerTests: XCTestCase {
 
         expect(finalState.otherParticipants).to(haveCount(2))
     }
-    
+
     func testOurUsingJoining() {
         let initialState = AppState(
             participant: Participant(name: "Our user"),
@@ -85,17 +85,17 @@ class EventHandlerTests: XCTestCase {
                 Participant(name: "Bar")
             ]
         )
-        
+
         let userJoinedEvent = UserJoined(
             userName: "Our user",
             isSpectator: false
         )
-        
+
         let finalState = EventHandler.handle(
             userJoinedEvent,
             state: initialState
         )
-        
+
         expect(finalState.otherParticipants).to(haveCount(2))
     }
 
@@ -223,8 +223,8 @@ class EventHandlerTests: XCTestCase {
         let finalState = EventHandler.handle(estimationResultEvent, state: initialState)
 
         expect(finalState.estimationStatus).to(equal(.ended))
-        expect(finalState.otherParticipants.first!.currentEstimate).to(equal("3"))
-        expect(finalState.otherParticipants.last!.currentEstimate).to(equal("5"))
+        expect(finalState.estimations[finalState.otherParticipants.first!.name]).to(equal("3"))
+        expect(finalState.estimations[finalState.otherParticipants.last!.name]).to(equal("5"))
     }
 
     func testStartNextNewEstimation() {
@@ -232,21 +232,19 @@ class EventHandlerTests: XCTestCase {
             estimationStatus: .ended,
             participant: Participant(
                 name: "Our user",
-                hasEstimated: true,
-                currentEstimate: "1"
+                hasEstimated: true
             ),
             otherParticipants: [
                 Participant(
                     name: "Foo",
-                    hasEstimated: true,
-                    currentEstimate: "5"
+                    hasEstimated: true
                 ),
                 Participant(
                     name: "Bar",
-                    hasEstimated: true,
-                    currentEstimate: "3"
+                    hasEstimated: true
                 )
-            ]
+            ],
+            estimations: ["Our user": "1", "Foo": "5", "Bar": "3"]
         )
 
         let requestStartEstimateEvent = RequestStartEstimation(
@@ -262,13 +260,47 @@ class EventHandlerTests: XCTestCase {
 
         expect(finalState.estimationStatus).to(equal(.inProgress))
         expect(finalState.participant?.hasEstimated).to(beFalse())
-        expect(finalState.participant?.currentEstimate).to(beNil())
-        
+        expect(finalState.ourEstimate).to(beNil())
+
         expect(finalState.otherParticipants.first!.hasEstimated).to(beFalse())
-        expect(finalState.otherParticipants.first!.currentEstimate).to(beNil())
-        
+        expect(finalState.estimations[finalState.otherParticipants.first!.name]).to(beNil())
+
         expect(finalState.otherParticipants.last!.hasEstimated).to(beFalse())
-        expect(finalState.otherParticipants.last!.currentEstimate).to(beNil())
-        
+        expect(finalState.estimations[finalState.otherParticipants.last!.name]).to(beNil())
+    }
+
+    func testUserLeavesAfterEstimationHasEnded() {
+        let initialState = AppState(
+            estimationStatus: .ended,
+            participant: Participant(
+                name: "Our user",
+                hasEstimated: true
+            ),
+            otherParticipants: [
+                Participant(
+                    name: "Foo",
+                    hasEstimated: true
+                ),
+                Participant(
+                    name: "Bar",
+                    hasEstimated: true
+                )
+            ]
+        )
+
+        let userLeftEvent = UserLeft(userName: "Foo")
+        let finalState = EventHandler.handle(
+            userLeftEvent,
+            state: initialState
+        )
+
+        expect(finalState.estimationStatus).to(equal(.ended))
+        expect(finalState.otherParticipants.first!.name).to(equal("Foo"))
+        expect(finalState.otherParticipants.first!.hasEstimated).to(beTrue())
+        expect(finalState.estimations[finalState.otherParticipants.first!.name]).to(equal("5"))
+
+        expect(finalState.otherParticipants.last!.hasEstimated).to(beTrue())
+        expect(finalState.otherParticipants.last!.name).to(equal("Bar"))
+        expect(finalState.estimations[finalState.otherParticipants.last!.name]).to(equal("3"))
     }
 }

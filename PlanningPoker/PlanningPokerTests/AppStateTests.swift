@@ -21,15 +21,16 @@ class AppStateTests: XCTestCase {
 
     func testUnknownCatConsensus() {
         let appState = AppState(
-        estimationStatus: .inProgress,
-        participant: Participant(name: "Our user"),
-        otherParticipants: [
-            Participant(name: "Foo"),
-            Participant(name: "Bar")
-        ],
-        roomName: "Test room",
-        currentTaskName: "Test task",
-        estimationStart: Date())
+            estimationStatus: .inProgress,
+            participant: Participant(name: "Our user"),
+            otherParticipants: [
+                Participant(name: "Foo"),
+                Participant(name: "Bar")
+            ],
+            roomName: "Test room",
+            currentTaskName: "Test task",
+            estimationStart: Date()
+        )
 
         expect(appState.isCatConsensus).to(beNil())
     }
@@ -38,40 +39,43 @@ class AppStateTests: XCTestCase {
     ) {
         let appState = AppState(
             estimationStatus: .ended,
-            participant: Participant(name: "Our user", hasEstimated: true, currentEstimate: "5"),
+            participant: Participant(name: "Our user", hasEstimated: true),
             otherParticipants: [],
             roomName: "Test room",
             currentTaskName: "Test task",
-            estimationStart: Date()
+            estimationStart: Date(),
+            estimations: ["Our user": "4"]
         )
-        
+
         expect(appState.isCatConsensus).to(beTrue())
     }
-    
+
     func testCatConsensusWithMultipleParticipants(
     ) {
         let appState = AppState(
             estimationStatus: .ended,
-            participant: Participant(name: "Our user", hasEstimated: true, currentEstimate: "5"),
-            otherParticipants: [Participant(name: "Foo", hasEstimated: true, currentEstimate: "5")],
+            participant: Participant(name: "Our user", hasEstimated: true),
+            otherParticipants: [Participant(name: "Foo", hasEstimated: true)],
             roomName: "Test room",
             currentTaskName: "Test task",
-            estimationStart: Date()
+            estimationStart: Date(),
+            estimations: ["Foo": "5", "Bar": "5"]
         )
-        
+
         expect(appState.isCatConsensus).to(beTrue())
     }
-    
+
     func testCatNonConsensus() {
         let appState = AppState(
             estimationStatus: .ended,
-            participant: Participant(name: "Our user", hasEstimated: true, currentEstimate: "5"),
-            otherParticipants: [Participant(name: "Foo", hasEstimated: true, currentEstimate: "8")],
+            participant: Participant(name: "Our user", hasEstimated: true),
+            otherParticipants: [Participant(name: "Foo", hasEstimated: true)],
             roomName: "Test room",
             currentTaskName: "Test task",
-            estimationStart: Date()
+            estimationStart: Date(),
+            estimations: ["Foo": "5", "Bar": "8"]
         )
-        
+
         expect(appState.isCatConsensus).to(beFalse())
     }
 }
