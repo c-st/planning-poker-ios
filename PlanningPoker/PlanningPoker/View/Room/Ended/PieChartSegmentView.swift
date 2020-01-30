@@ -70,21 +70,11 @@ struct PieChartSegmentView: View {
             .fill(color)
             .animation(.easeInOut(duration: 0.5))
 
-            if self.isSegmentLabelDisplayed() {
-                PieChartSegmentLabelView(segmentData: data)
-                    .zIndex(1)
-            }
+            PieChartSegmentLabelView(data: data, isSelected: isSelected, isAnotherSelected: isAnotherSelected)
+                .zIndex(1)
+                .shadow(radius: 20)
+                .animation(.easeInOut(duration: 0.5))
         }
-    }
-
-    private func isSegmentLabelDisplayed() -> Bool {
-        if isSelected {
-            return true
-        }
-        if isAnotherSelected {
-            return false
-        }
-        return data.endAngle - data.startAngle >= 50
     }
 }
 

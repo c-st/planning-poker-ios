@@ -9,39 +9,65 @@
 import SwiftUI
 
 struct PieChartSegmentLabelView: View {
-    let segmentData: SegmentData
+    let data: SegmentData
+    let isSelected: Bool
+    let isAnotherSelected: Bool
+    
+    var isLabelDisplayed: Bool {
+        if isSelected {
+            return true
+        }
+        if isAnotherSelected {
+            return false
+        }
+        return data.endAngle - data.startAngle >= 50
+    }
 
     var body: some View {
         VStack(spacing: 2) {
             HStack {
                 Image("Stopwatch")
                 Spacer()
-                Text(segmentData.estimate)
+                Text(data.estimate)
             }
             HStack {
                 Image("Person")
                 Spacer()
-                Text("\(segmentData.estimators)")
+                Text("\(data.estimators)")
+            }
+            if isSelected {
+                VStack {
+                    Text("Hans")
+                    Text("Frans")
+                }
             }
         }
-
-        .frame(width: 40, height: 30)
-        .padding(3)
+        .frame(width: !isLabelDisplayed ? 0 : isSelected ? 80 : 40)
+        .padding(!isLabelDisplayed ? 0 : isSelected ? 15 : 3)
         .font(.caption)
         .background(Color.white)
         .foregroundColor(Color.black)
         .cornerRadius(5)
         .position(
-            x: segmentData.labelXPosition,
-            y: segmentData.labelYPosition
+            x: data.labelXPosition,
+            y: data.labelYPosition
         )
     }
 }
 
 struct PieChartSegmentLabelView_Previews: PreviewProvider {
     static var previews: some View {
-        PieChartSegmentLabelView(
-            segmentData: SegmentData(startAngle: 0, endAngle: 50, estimators: 3, estimate: "3")
-        )
+        Group {
+            PieChartSegmentLabelView(
+                data: SegmentData(startAngle: 0, endAngle: 50, estimators: 3, estimate: "3"),
+                isSelected: false,
+                isAnotherSelected: false
+            )
+            PieChartSegmentLabelView(
+                data: SegmentData(startAngle: 0, endAngle: 50, estimators: 3, estimate: "3"),
+                isSelected: true,
+                isAnotherSelected: false
+            )
+        }
     }
 }
