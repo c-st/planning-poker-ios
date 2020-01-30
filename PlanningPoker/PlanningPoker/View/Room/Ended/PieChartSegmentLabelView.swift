@@ -33,12 +33,13 @@ struct PieChartSegmentLabelView: View {
             HStack {
                 Image("Person")
                 Spacer()
-                Text("\(data.estimators)")
+                Text("\(data.estimators.count)")
             }
             if isSelected {
                 VStack {
-                    Text("Hans")
-                    Text("Frans")
+                    ForEach(data.estimators, id: \.self) { estimator in
+                        Text(estimator)
+                    }
                 }
             }
         }
@@ -59,12 +60,12 @@ struct PieChartSegmentLabelView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             PieChartSegmentLabelView(
-                data: SegmentData(startAngle: 0, endAngle: 50, estimators: 3, estimate: "3"),
+                data: SegmentData(startAngle: 0, endAngle: 50, estimators: ["Hans", "Franz", "Johanna"], estimate: "3"),
                 isSelected: false,
                 isAnotherSelected: false
             )
             PieChartSegmentLabelView(
-                data: SegmentData(startAngle: 0, endAngle: 50, estimators: 3, estimate: "3"),
+                data: SegmentData(startAngle: 0, endAngle: 50, estimators: ["Hans", "Franz", "Johanna"], estimate: "3"),
                 isSelected: true,
                 isAnotherSelected: false
             )

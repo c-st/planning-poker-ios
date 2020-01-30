@@ -37,7 +37,7 @@ struct SegmentData: Identifiable {
     let id: UUID = UUID()
     let startAngle: Double
     let endAngle: Double
-    let estimators: Int
+    let estimators: [String]
     let estimate: String
 
     var medianRadians: Double {
@@ -81,7 +81,7 @@ struct PieChartSegmentView: View {
 struct PieChartSegmentView_Previews: PreviewProvider {
     static var previews: some View {
         PieChartSegmentView(
-            data: SegmentData(startAngle: 0, endAngle: 50, estimators: 3, estimate: "3"),
+            data: SegmentData(startAngle: 0, endAngle: 50, estimators: ["Hans", "Franz", "Johanna"], estimate: "3"),
             isSelected: false,
             isAnotherSelected: false,
             color: Color.red

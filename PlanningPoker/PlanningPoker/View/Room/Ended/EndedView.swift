@@ -21,7 +21,7 @@ struct EndedView: View {
                 .font(.title)
                 .fontWeight(.bold)
 
-            PieChartView(segmentData: calculatePieChartAngles())
+            PieChartView(segmentData: calculateSegmentData())
                 .frame(width: 200, height: 200)
 
             VStack(spacing: 10) {
@@ -68,7 +68,7 @@ struct EndedView: View {
         .padding()
     }
 
-    private func calculatePieChartAngles() -> [SegmentData] {
+    private func calculateSegmentData() -> [SegmentData] {
         let totalParticipantCount = participantsByEstimate.values.flatMap({ $0 }).count
         var lastAngle = 0.0
 
@@ -77,7 +77,7 @@ struct EndedView: View {
             let startAngle = lastAngle
             let endAngle = lastAngle + (Double(estimateCount) / Double(totalParticipantCount) * 360)
             lastAngle = endAngle
-            return SegmentData(startAngle: startAngle, endAngle: endAngle, estimators: estimateCount, estimate: estimate)
+            return SegmentData(startAngle: startAngle, endAngle: endAngle, estimators: estimators, estimate: estimate)
         }
         
         return segments
