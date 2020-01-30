@@ -52,7 +52,6 @@ struct RoomView: View {
                     )
                 }
             }
-            .foregroundColor(Color.white)
         }
         .padding()
         .navigationBarTitle(self.joinRoomData.roomName)

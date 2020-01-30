@@ -45,18 +45,15 @@ struct EndedView: View {
             }
             .font(.subheadline)
 
-            Divider()
-
             if isCatConsensus != nil && isCatConsensus! {
-                VStack {
-                    AnimatedImage(url: URL(string: "https://thecatapi.com/api/images/get?format=src&type=gif"))
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 200, height: 200)
-
-                    Divider()
-                }
+                AnimatedImage(url: URL(string: "https://thecatapi.com/api/images/get?format=src&type=gif"))
+                    .resizable()
+                    .scaledToFit()
+                    .frame(maxHeight: 150)
+                    .padding(0)
             }
+
+            Divider()
 
             StartEstimationFormView(
                 onStartEstimation: onStartEstimation
