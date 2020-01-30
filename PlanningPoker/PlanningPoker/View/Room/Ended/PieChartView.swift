@@ -31,18 +31,20 @@ struct SegmentData: Identifiable {
     let id: UUID = UUID()
     let startAngle: Double
     let endAngle: Double
-    
+    let estimators: Int
+    let estimate: String
+
     var medianRadians: Double {
-        let medianAngle = (startAngle + endAngle) / 2
-        return medianAngle * .pi / 180
+        let medianAngle = Angle(degrees: (startAngle + endAngle) / 2)
+        return medianAngle.radians
     }
-    
+
     var labelXPosition: CGFloat {
-        return 100 + (60 * CGFloat(cos(medianRadians)))
+        return 100 + (70 * CGFloat(cos(medianRadians)))
     }
-    
+
     var labelYPosition: CGFloat {
-        return 100 + (60 * CGFloat(sin(medianRadians)))
+        return 100 + (70 * CGFloat(sin(medianRadians)))
     }
 }
 
@@ -69,11 +71,31 @@ struct PieChartView: View {
                         endAngle: self.segmentData[index].endAngle
                     )
                     .fill(self.colors[index % self.colors.count])
-                    Text("\(index)")
+                    if (self.segmentData[index].endAngle - self.segmentData[index].startAngle) >= 50 {
+                        VStack(spacing: 2) {
+                            HStack {
+                                Image("Stopwatch")
+                                Spacer()
+                                Text(self.segmentData[index].estimate)
+                            }
+                            HStack {
+                                Image("Person")
+                                Spacer()
+                                Text("\(self.segmentData[index].estimators)")
+                            }
+                        }
+
+                        .frame(width: 40, height: 30)
+                        .padding(3)
+                        .font(.caption)
+                        .background(Color.white)
+                        .foregroundColor(Color.black)
+                        .cornerRadius(5)
                         .position(
                             x: self.segmentData[index].labelXPosition,
                             y: self.segmentData[index].labelYPosition
                         )
+                    }
                 }
             }
         }
@@ -84,12 +106,12 @@ struct PieChartView_Previews: PreviewProvider {
     static var previews: some View {
         PieChartView(
             segmentData: [
-                SegmentData(startAngle: 0, endAngle: 120),
-                SegmentData(startAngle: 120, endAngle: 220),
-                SegmentData(startAngle: 220, endAngle: 230),
-                SegmentData(startAngle: 230, endAngle: 240),
-                SegmentData(startAngle: 240, endAngle: 250),
-                SegmentData(startAngle: 250, endAngle: 360),
+                SegmentData(startAngle: 0, endAngle: 50, estimators: 3, estimate: "3"),
+                SegmentData(startAngle: 50, endAngle: 220, estimators: 2, estimate: "12"),
+                SegmentData(startAngle: 220, endAngle: 230, estimators: 4, estimate: "8"),
+                SegmentData(startAngle: 230, endAngle: 240, estimators: 1, estimate: "0"),
+                SegmentData(startAngle: 240, endAngle: 250, estimators: 1, estimate: "13"),
+                SegmentData(startAngle: 250, endAngle: 360, estimators: 1, estimate: "???"),
             ]
         )
     }
