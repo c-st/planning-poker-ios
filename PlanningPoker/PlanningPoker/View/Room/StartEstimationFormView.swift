@@ -23,8 +23,8 @@ struct StartEstimationFormView: View {
                 TextField("", text: self.$newTaskName)
             }
             .frame(minHeight: 40)
-            .background(Color.white)
             .foregroundColor(Color.black)
+            .background(Color(UIColor.systemGray).opacity(0.1))
             .cornerRadius(10)
             .padding(.vertical)
             .multilineTextAlignment(.center)
@@ -39,10 +39,10 @@ struct StartEstimationFormView: View {
                 .disabled(newTaskName.isEmpty)
                 .frame(minWidth: 100)
                 .padding(15)
-                .foregroundColor(Color.blue)
-                .background(Color.white)
+                .foregroundColor(Color.white)
+                .background(Color.blue)
                 .cornerRadius(10)
-            .shadow(radius: 10)
+                .shadow(radius: 10)
             }
         }
     }

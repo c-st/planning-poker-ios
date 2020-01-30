@@ -11,12 +11,20 @@ import SwiftUI
 struct PieSegment: Shape {
     let startAngle: Double
     let endAngle: Double
+    let isSelected: Bool
+    
+    var radius: Double
+    
+    var animatableData: Double {
+        get { return radius }
+        set { radius = newValue }
+    }
 
     func path(in rect: CGRect) -> Path {
         Path { path in
             path.addArc(
                 center: CGPoint(x: 100, y: 100),
-                radius: 100,
+                radius: CGFloat(self.radius),
                 startAngle: .degrees(startAngle),
                 endAngle: .degrees(endAngle),
                 clockwise: false
@@ -61,6 +69,7 @@ struct PieChartView: View {
     ]
 
     var segmentData: [SegmentData]
+    @State var selectedSegmentIndex: Int?
 
     var body: some View {
         ZStack {
@@ -68,13 +77,22 @@ struct PieChartView: View {
                 ZStack {
                     PieSegment(
                         startAngle: self.segmentData[index].startAngle,
-                        endAngle: self.segmentData[index].endAngle
+                        endAngle: self.segmentData[index].endAngle,
+                        isSelected: index == self.selectedSegmentIndex,
+                        radius: index == self.selectedSegmentIndex ? 120.0 : 100
                     )
                     .fill(self.colors[index % self.colors.count])
+                        .animation(.easeInOut(duration: 0.5))
+
                     if (self.segmentData[index].endAngle - self.segmentData[index].startAngle) >= 50 {
                         PieChartSegmentLabelView(segmentData: self.segmentData[index])
                     }
                 }
+                .gesture(
+                    TapGesture().onEnded { _ in
+                        self.selectedSegmentIndex = self.selectedSegmentIndex == index ? nil : index
+                    }
+                )
             }
         }
     }
@@ -91,6 +109,6 @@ struct PieChartView_Previews: PreviewProvider {
                 SegmentData(startAngle: 240, endAngle: 250, estimators: 1, estimate: "13"),
                 SegmentData(startAngle: 250, endAngle: 360, estimators: 1, estimate: "???"),
             ]
-        )
+        ).previewLayout(.fixed(width: 200.0, height: 200.0))
     }
 }
