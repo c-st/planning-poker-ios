@@ -21,9 +21,8 @@ struct NotYetStartedView: View {
             StartEstimationFormView(
                 onStartEstimation: onStartEstimation
             )
+            Spacer()
         }
-        .padding()
-        .background(Color.blue)
         .cornerRadius(10)
         .padding()
     }

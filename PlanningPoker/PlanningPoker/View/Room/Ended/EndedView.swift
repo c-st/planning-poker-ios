@@ -16,7 +16,7 @@ struct EndedView: View {
     let onStartEstimation: (String) -> Void
 
     var body: some View {
-        VStack(spacing: 20) {
+        VStack {
             Text("Result")
                 .font(.title)
                 .fontWeight(.bold)
@@ -27,26 +27,23 @@ struct EndedView: View {
             VStack(spacing: 10) {
                 HStack {
                     Text("Estimate")
-                        .font(.headline)
                         .fontWeight(.bold)
 
                     Spacer()
                     Text("Participants")
-                        .font(.headline)
                         .fontWeight(.bold)
                 }
 
                 ForEach(self.participantsByEstimate.keys.sorted(), id: \.self) { estimate in
                     HStack {
                         Text(estimate)
-                            .font(.headline)
                         Spacer()
 
                         Text(self.participantsByEstimate[estimate]!.joined(separator: ", "))
-                            .font(.headline)
                     }
                 }
             }
+            .font(.subheadline)
 
             Divider()
 
@@ -62,10 +59,11 @@ struct EndedView: View {
             StartEstimationFormView(
                 onStartEstimation: onStartEstimation
             )
+            
+            Spacer()
         }
-        .padding()
+        .padding(.horizontal)
         .cornerRadius(10)
-        .padding()
     }
 
     private func calculateSegmentData() -> [SegmentData] {

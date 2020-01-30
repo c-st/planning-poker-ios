@@ -52,7 +52,7 @@ struct RoomView: View {
             }
             .foregroundColor(Color.white)
         }
-        .padding()
+        .padding(.horizontal)
         .navigationBarTitle(self.joinRoomData.roomName)
         .onAppear { self.store.joinRoom(self.joinRoomData) }
         .onDisappear { self.store.leaveRoom() }
