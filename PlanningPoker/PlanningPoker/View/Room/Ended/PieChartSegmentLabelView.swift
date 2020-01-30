@@ -43,7 +43,7 @@ struct PieChartSegmentLabelView: View {
                 }
             }
         }
-        .frame(width: !isLabelDisplayed ? 0 : isSelected ? 80 : 40)
+        .frame(width: !isLabelDisplayed ? 0 : isSelected ? 80 : 40, height: !isLabelDisplayed ? 0 : isSelected ? nil : 30)
         .padding(!isLabelDisplayed ? 0 : isSelected ? 15 : 3)
         .font(.caption)
         .background(Color.white)

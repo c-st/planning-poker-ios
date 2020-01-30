@@ -26,9 +26,10 @@ struct InProgressView: View {
                     .font(.caption)
                     .fontWeight(.bold)
                     .padding(20)
-                    .foregroundColor(Color.blue)
-                    .background(Color.white)
+                    .background(Color.blue)
+                    .foregroundColor(Color.white)
                     .cornerRadius(10)
+                    .shadow(radius: 10)
             }
         }
     }
