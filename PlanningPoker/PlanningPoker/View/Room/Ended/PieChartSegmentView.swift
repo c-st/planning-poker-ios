@@ -57,10 +57,11 @@ struct SegmentData: Identifiable {
 struct PieChartSegmentView: View {
     let data: SegmentData
     let isSelected: Bool
+    let isAnotherSelected: Bool
     let color: Color
 
     var body: some View {
-        ZStack {
+        Group {
             PieSegment(
                 startAngle: data.startAngle,
                 endAngle: data.endAngle,
@@ -69,10 +70,21 @@ struct PieChartSegmentView: View {
             .fill(color)
             .animation(.easeInOut(duration: 0.5))
 
-            if (data.endAngle - data.startAngle) >= 50 {
+            if self.isSegmentLabelDisplayed() {
                 PieChartSegmentLabelView(segmentData: data)
+                    .zIndex(1)
             }
         }
+    }
+
+    private func isSegmentLabelDisplayed() -> Bool {
+        if isSelected {
+            return true
+        }
+        if isAnotherSelected {
+            return false
+        }
+        return data.endAngle - data.startAngle >= 50
     }
 }
 
@@ -81,6 +93,7 @@ struct PieChartSegmentView_Previews: PreviewProvider {
         PieChartSegmentView(
             data: SegmentData(startAngle: 0, endAngle: 50, estimators: 3, estimate: "3"),
             isSelected: false,
+            isAnotherSelected: false,
             color: Color.red
         )
     }

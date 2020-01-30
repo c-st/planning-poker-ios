@@ -34,6 +34,7 @@ struct PieChartView: View {
                 PieChartSegmentView(
                     data: self.segmentData[index],
                     isSelected: index == self.selectedSegmentIndex,
+                    isAnotherSelected: self.selectedSegmentIndex != nil && index != self.selectedSegmentIndex,
                     color: self.colors[index % self.colors.count]
                 )
                 .gesture(
