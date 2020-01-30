@@ -72,29 +72,7 @@ struct PieChartView: View {
                     )
                     .fill(self.colors[index % self.colors.count])
                     if (self.segmentData[index].endAngle - self.segmentData[index].startAngle) >= 50 {
-                        VStack(spacing: 2) {
-                            HStack {
-                                Image("Stopwatch")
-                                Spacer()
-                                Text(self.segmentData[index].estimate)
-                            }
-                            HStack {
-                                Image("Person")
-                                Spacer()
-                                Text("\(self.segmentData[index].estimators)")
-                            }
-                        }
-
-                        .frame(width: 40, height: 30)
-                        .padding(3)
-                        .font(.caption)
-                        .background(Color.white)
-                        .foregroundColor(Color.black)
-                        .cornerRadius(5)
-                        .position(
-                            x: self.segmentData[index].labelXPosition,
-                            y: self.segmentData[index].labelYPosition
-                        )
+                        PieChartSegmentLabelView(segmentData: self.segmentData[index])
                     }
                 }
             }
