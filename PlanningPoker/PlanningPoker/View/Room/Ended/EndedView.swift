@@ -47,27 +47,27 @@ struct EndedView: View {
 
             Divider()
 
-//            if isCatConsensus != nil && isCatConsensus! {
-//                AnimatedImage(url: URL(string: "https://thecatapi.com/api/images/get?format=src&type=gif"))
-//                .resizable()
-//                .scaledToFit()
-//                .frame(width: 200, height: 200, alignment: .center)
-//            }
-//
-//            Divider()
+            if isCatConsensus != nil && isCatConsensus! {
+                VStack {
+                    AnimatedImage(url: URL(string: "https://thecatapi.com/api/images/get?format=src&type=gif"))
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 200, height: 200)
+
+                    Divider()
+                }
+            }
 
             StartEstimationFormView(
                 onStartEstimation: onStartEstimation
             )
-            
+
             Spacer()
         }
-        .padding(.horizontal)
-        .cornerRadius(10)
     }
 
     private func calculateSegmentData() -> [SegmentData] {
-        let totalParticipantCount = participantsByEstimate.values.flatMap({ $0 }).count
+        let totalParticipantCount = participantsByEstimate.values.flatMap { $0 }.count
         var lastAngle = 0.0
 
         let segments: [SegmentData] = participantsByEstimate.map { estimate, estimators in
@@ -77,7 +77,7 @@ struct EndedView: View {
             lastAngle = endAngle
             return SegmentData(startAngle: startAngle, endAngle: endAngle, estimators: estimators, estimate: estimate)
         }
-        
+
         return segments
     }
 }

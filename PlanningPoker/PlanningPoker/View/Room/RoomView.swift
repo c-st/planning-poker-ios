@@ -15,13 +15,15 @@ struct RoomView: View {
 
     var body: some View {
         VStack(alignment: .center) {
-            ParticipantsView(
-                currentParticipant: store.state.participant,
-                otherParticipants: store.state.otherParticipants
-            )
+            if store.state.estimationStatus != .ended {
+                ParticipantsView(
+                    currentParticipant: store.state.participant,
+                    otherParticipants: store.state.otherParticipants
+                )
 
-            Divider()
-
+                Divider()
+            }
+            
             Group {
                 if store.state.estimationStatus == .notStarted {
                     NotYetStartedView(
@@ -52,7 +54,7 @@ struct RoomView: View {
             }
             .foregroundColor(Color.white)
         }
-        .padding(.horizontal)
+        .padding()
         .navigationBarTitle(self.joinRoomData.roomName)
         .onAppear { self.store.joinRoom(self.joinRoomData) }
         .onDisappear { self.store.leaveRoom() }
