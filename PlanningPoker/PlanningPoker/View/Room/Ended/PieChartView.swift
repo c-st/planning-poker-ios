@@ -25,7 +25,7 @@ struct PieChartView: View {
     var segmentIndices: Range<Int> {
         return 0..<segmentData.count
     }
-    
+
     @State var selectedSegmentIndex: Int?
 
     var body: some View {
@@ -51,7 +51,7 @@ struct PieChartView_Previews: PreviewProvider {
     static var previews: some View {
         PieChartView(
             segmentData: [
-                SegmentData(startAngle: 0, endAngle: 50, estimators:  ["Hans", "Franz", "Johanna"], estimate: "3"),
+                SegmentData(startAngle: 0, endAngle: 50, estimators: ["Hans", "Franz", "Johanna"], estimate: "3"),
                 SegmentData(startAngle: 50, endAngle: 220, estimators: ["Hans", "Franz"], estimate: "12"),
                 SegmentData(startAngle: 220, endAngle: 230, estimators: ["Hans"], estimate: "8"),
                 SegmentData(startAngle: 230, endAngle: 240, estimators: ["Hans"], estimate: "0"),
