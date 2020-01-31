@@ -4,16 +4,14 @@ on: [push]
 
 jobs:
   build:
-
-    runs-on: [macos-latest]
+    runs-on: macos-latest
 
     steps:
     - uses: actions/checkout@v2
       
-    - name: Install and run xcodegen
+    - name: Install
       run: |
-        brew install xcodegen
-        xcodegen generate
+        brew install fastlane
         
     - name: Run fastlane beta
       env:
@@ -21,3 +19,4 @@ jobs:
         MATCH_PASSWORD: ${{ secrets.MATCH_PASS }}
         SIGNING_ID: ${{ secrets.SIGNING_ID }}
       run: fastlane beta --verbose
+
