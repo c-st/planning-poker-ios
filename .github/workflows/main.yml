@@ -1,0 +1,23 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: [macos-latest]
+
+    steps:
+    - uses: actions/checkout@v2
+      
+    - name: Install and run xcodegen
+      run: |
+        brew install xcodegen
+        xcodegen generate
+        
+    - name: Run fastlane beta
+      env:
+        MATCH_REPO: ${{ secrets.MATCH_REPO }}
+        MATCH_PASSWORD: ${{ secrets.MATCH_PASS }}
+        SIGNING_ID: ${{ secrets.SIGNING_ID }}
+      run: fastlane beta --verbose
