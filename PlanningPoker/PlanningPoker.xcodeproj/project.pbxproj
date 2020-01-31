@@ -28,7 +28,7 @@
 		83EA2C8923E456F3003DE6AE /* Planning_PokerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EA2C8823E456F3003DE6AE /* Planning_PokerUITests.swift */; };
 		83EA2C9123E457A4003DE6AE /* XCUITest+TextInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EA2C9023E457A4003DE6AE /* XCUITest+TextInput.swift */; };
 		83F8ED1323D8A7C3006E76AB /* PokerCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F8ED1223D8A7C2006E76AB /* PokerCardView.swift */; };
-		83F8ED1523D8A7E5006E76AB /* View+Stacked.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F8ED1423D8A7E5006E76AB /* View+Stacked.swift */; };
+		83F8ED1523D8A7E5006E76AB /* View+HiddenModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F8ED1423D8A7E5006E76AB /* View+HiddenModifier.swift */; };
 		83F8ED1C23D8C168006E76AB /* PokerCardDeckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F8ED1B23D8C168006E76AB /* PokerCardDeckView.swift */; };
 		83F8ED1E23D8C5BC006E76AB /* Haptics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F8ED1D23D8C5BC006E76AB /* Haptics.swift */; };
 		F54BEDC523DF2AEB0095E098 /* AppStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54BEDC423DF2AEB0095E098 /* AppStateTests.swift */; };
@@ -89,7 +89,7 @@
 		83EA2C8A23E456F3003DE6AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		83EA2C9023E457A4003DE6AE /* XCUITest+TextInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCUITest+TextInput.swift"; sourceTree = "<group>"; };
 		83F8ED1223D8A7C2006E76AB /* PokerCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PokerCardView.swift; sourceTree = "<group>"; };
-		83F8ED1423D8A7E5006E76AB /* View+Stacked.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+Stacked.swift"; sourceTree = "<group>"; };
+		83F8ED1423D8A7E5006E76AB /* View+HiddenModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+HiddenModifier.swift"; sourceTree = "<group>"; };
 		83F8ED1B23D8C168006E76AB /* PokerCardDeckView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PokerCardDeckView.swift; sourceTree = "<group>"; };
 		83F8ED1D23D8C5BC006E76AB /* Haptics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Haptics.swift; sourceTree = "<group>"; };
 		F54BEDC423DF2AEB0095E098 /* AppStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStateTests.swift; sourceTree = "<group>"; };
@@ -210,7 +210,7 @@
 		83A55E0423D5BF0E00496561 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				83F8ED1423D8A7E5006E76AB /* View+Stacked.swift */,
+				83F8ED1423D8A7E5006E76AB /* View+HiddenModifier.swift */,
 				83A55E0523D5BF2600496561 /* DateFormatter+CustomFormat.swift */,
 			);
 			path = Extensions;
@@ -435,7 +435,7 @@
 				8321F6E723D1C6140027A212 /* UserAvatarView.swift in Sources */,
 				8392EA8323D74273005CAE07 /* StartEstimationFormView.swift in Sources */,
 				F57B768A23D0CD6000732C71 /* Events.swift in Sources */,
-				83F8ED1523D8A7E5006E76AB /* View+Stacked.swift in Sources */,
+				83F8ED1523D8A7E5006E76AB /* View+HiddenModifier.swift in Sources */,
 				F54BEDD623E324F10095E098 /* PieChartSegmentView.swift in Sources */,
 				F54BEDCF23DF41340095E098 /* PieChartView.swift in Sources */,
 				8321F6E423D1B3C70027A212 /* ICloudUserDefault.swift in Sources */,
@@ -625,7 +625,7 @@
 				CODE_SIGN_ENTITLEMENTS = PlanningPoker/PlanningPoker.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_ASSET_PATHS = "\"PlanningPoker/Preview Content\"";
 				DEVELOPMENT_TEAM = 738626FVRF;
 				ENABLE_PREVIEWS = YES;
@@ -650,7 +650,7 @@
 				CODE_SIGN_ENTITLEMENTS = PlanningPoker/PlanningPoker.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_ASSET_PATHS = "\"PlanningPoker/Preview Content\"";
 				DEVELOPMENT_TEAM = 738626FVRF;
 				ENABLE_PREVIEWS = YES;

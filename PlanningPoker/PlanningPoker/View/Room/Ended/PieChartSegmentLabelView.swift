@@ -12,7 +12,7 @@ struct PieChartSegmentLabelView: View {
     let data: SegmentData
     let isSelected: Bool
     let isAnotherSelected: Bool
-    
+
     var isLabelDisplayed: Bool {
         if isSelected {
             return true
@@ -26,26 +26,30 @@ struct PieChartSegmentLabelView: View {
     var body: some View {
         VStack(spacing: 2) {
             HStack {
-                Image("Stopwatch")
-                Spacer()
+                Image(systemName: "stopwatch.fill")
+                    .font(.headline)
+
                 Text(data.estimate)
-            }
-            HStack {
-                Image("Person")
-                Spacer()
-                Text("\(data.estimators.count)")
+                    .font(.headline)
+                    .fontWeight(.bold)
             }
             if isSelected {
-                VStack {
+                VStack(spacing: 0) {
+                    Divider()
+                        .padding(6)
                     ForEach(data.estimators, id: \.self) { estimator in
                         Text(estimator)
+                            .font(.caption)
+                            .fontWeight(.medium)
                     }
                 }
             }
         }
-        .frame(width: !isLabelDisplayed ? 0 : isSelected ? 80 : 40, height: !isLabelDisplayed ? 0 : isSelected ? nil : 30)
-        .padding(!isLabelDisplayed ? 0 : isSelected ? 15 : 3)
-        .font(.caption)
+        .frame(
+            width: !isLabelDisplayed ? 0 : isSelected ? 80 : 60,
+            height: !isLabelDisplayed ? 0 : isSelected ? nil : 30
+        )
+        .padding(!isLabelDisplayed ? 0 : isSelected ? 10 : 5)
         .background(Color.white)
         .foregroundColor(Color.black)
         .cornerRadius(5)
@@ -60,7 +64,7 @@ struct PieChartSegmentLabelView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             PieChartSegmentLabelView(
-                data: SegmentData(startAngle: 0, endAngle: 50, estimators: ["Hans", "Franz", "Johanna"], estimate: "3"),
+                data: SegmentData(startAngle: 0, endAngle: 50, estimators: ["Hans", "Franz", "Johanna"], estimate: "???"),
                 isSelected: false,
                 isAnotherSelected: false
             )
@@ -70,5 +74,7 @@ struct PieChartSegmentLabelView_Previews: PreviewProvider {
                 isAnotherSelected: false
             )
         }
+        .previewLayout(.sizeThatFits)
+        .colorScheme(.light)
     }
 }

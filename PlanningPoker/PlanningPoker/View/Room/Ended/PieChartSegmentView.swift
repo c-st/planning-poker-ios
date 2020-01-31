@@ -68,12 +68,11 @@ struct PieChartSegmentView: View {
                 radius: isSelected ? 120.0 : 100.0
             )
             .fill(color)
-            .animation(.easeInOut(duration: 0.5))
 
             PieChartSegmentLabelView(data: data, isSelected: isSelected, isAnotherSelected: isAnotherSelected)
                 .zIndex(1)
-                .shadow(radius: 20)
-                .animation(.easeInOut(duration: 0.5))
+                .shadow(radius: 5)
+                .opacity(0.9)
         }
     }
 }

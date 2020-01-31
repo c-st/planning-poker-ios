@@ -37,6 +37,7 @@ struct PieChartView: View {
                     isAnotherSelected: self.selectedSegmentIndex != nil && index != self.selectedSegmentIndex,
                     color: self.colors[index % self.colors.count]
                 )
+                .animation(.spring(response: 0.4, dampingFraction: 0.6))
                 .gesture(
                     TapGesture().onEnded { _ in
                         self.selectedSegmentIndex = self.selectedSegmentIndex == index ? nil : index
