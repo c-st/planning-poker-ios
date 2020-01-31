@@ -38,6 +38,16 @@
                ReferencedContainer = "container:PlanningPoker.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "83EA2C8523E456F3003DE6AE"
+               BuildableName = "Planning PokerUITests.xctest"
+               BlueprintName = "Planning PokerUITests"
+               ReferencedContainer = "container:PlanningPoker.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

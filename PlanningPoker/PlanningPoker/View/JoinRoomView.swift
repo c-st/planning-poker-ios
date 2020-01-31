@@ -20,7 +20,10 @@ struct JoinRoomView: View {
             Form {
                 Section(header: Text("Join an estimation session")) {
                     TextField("Room", text: self.$roomName)
+                        .accessibility(identifier: "roomTextField")
+
                     TextField("Your name", text: self.$participantName)
+                        .accessibility(identifier: "nameTextField")
                 }
 
                 Section {
@@ -31,11 +34,12 @@ struct JoinRoomView: View {
                                 participantName: self.participantName
                             )
                         )
-
-                    ) {
+                    )
+                    {
                         Text("Join the room")
                     }
                     .disabled(roomName.isEmpty || participantName.isEmpty)
+                    .accessibility(identifier: "joinRoomLink")
                 }
             }
             .navigationBarTitle("Planning Poker")
