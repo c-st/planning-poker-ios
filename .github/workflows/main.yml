@@ -18,5 +18,7 @@ jobs:
         MATCH_REPO: ${{ secrets.MATCH_REPO }}
         MATCH_PASSWORD: ${{ secrets.MATCH_PASS }}
         SIGNING_ID: ${{ secrets.SIGNING_ID }}
-      run: fastlane beta --verbose
+      run:  |
+        cd PlanningPoker
+        fastlane beta --verbose
 
