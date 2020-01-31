@@ -67,7 +67,8 @@ struct EndedView: View {
         let totalParticipantCount = participantsByEstimate.values.flatMap { $0 }.count
         var lastAngle = 0.0
 
-        let segments: [SegmentData] = participantsByEstimate.map { estimate, estimators in
+        let segments: [SegmentData] = participantsByEstimate.keys.sorted().map { estimate in
+            let estimators = participantsByEstimate[estimate]!
             let estimateCount = estimators.count
             let startAngle = lastAngle
             let endAngle = lastAngle + (Double(estimateCount) / Double(totalParticipantCount) * 360)
