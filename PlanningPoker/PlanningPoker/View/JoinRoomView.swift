@@ -41,10 +41,22 @@ struct JoinRoomView: View {
                     .disabled(roomName.isEmpty || participantName.isEmpty)
                     .accessibility(identifier: "joinRoomLink")
                 }
+
+                Section {
+                    HStack {
+                        Spacer()
+                        Image("cc-logo")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(height: 150)
+                        Spacer()
+                    }
+                }
             }
             .navigationBarTitle("Planning Poker")
             .listStyle(GroupedListStyle())
             .environment(\.horizontalSizeClass, .regular)
+
         }.navigationViewStyle(StackNavigationViewStyle())
     }
 }
