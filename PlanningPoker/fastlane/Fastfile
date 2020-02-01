@@ -16,15 +16,59 @@
 default_platform(:ios)
 
 platform :ios do
-  desc "Push a new beta build to TestFlight"
+  
   lane :beta do
+    desc "Build a new beta build and push it to TestFlight"
     sync_code_signing(
-        type: "appstore"
+      type: "appstore", 
+      readonly: true
     )
-    increment_build_number(
-        xcodeproj: "./PlanningPoker.xcodeproj"
-    )
+    increment_build_number(xcodeproj: "./PlanningPoker.xcodeproj")
     build_app(scheme: "PlanningPoker")
-    upload_to_testflight
+    upload_to_testflight(
+      beta_app_feedback_email: "mail@christian-stangier.com",
+      distribute_external: false,
+      notify_external_testers: false,
+      demo_account_required: false,
+      localized_app_info: {
+        "en-US": {
+          feedback_email: "mail@christian-stangier.com",
+          marketing_url: "https://planningpoker.cc",
+          privacy_policy_url: "https://planningpoker.cc/privacy",
+          description: "This app is a mobile version of the Planning Poker web application (available at https://planningpoker.cc). It features a real-time environment for agile estimations in a team which is collaborating remotely.
+
+          Planning Poker in Scrum brings together the opinions for the agile estimation of a project. In this type of planning all members of a team are participating.
+          
+          All team members launch the app and join the same room. An estimation round for a task is started and all participants cast their vote for its complexity. Once everyone has voted all estimations are revealed and discussed in the team.
+          The session continues with an estimation for the next task until all tasks are estimated.",
+        }
+      },
+      beta_app_review_info: {
+        contact_email: "mail@christian-stangier.com",
+        contact_first_name: "Christian",
+        contact_last_name: "Stangier",
+        contact_phone: "+4915110867006",
+        demo_account_name: "",
+        demo_account_password: "",
+        notes: "While this app also works with a single participant it is recommended to be used with multiple users. In order to do so it is recommended to either join the same room via the web app at https://planningpoker.cc or to join a second instance of the app on another device."
+      }
+    )
+  end
+
+  lane :screenshots do
+    desc "Capture screenshots"
+    capture_screenshots(stop_after_first_error: true)
+  end
+
+  lane :release do
+    desc "Submit a new build to iOS app review"
+    # ensure_git_status_clean
+    sync_code_signing(type: "appstore")
+    increment_build_number(xcodeproj: "./PlanningPoker.xcodeproj")
+    build_app(scheme: "PlanningPoker")
+    deliver(
+      submit_for_review: false,
+      automatic_release: true
+    )
   end
 end

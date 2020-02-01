@@ -9,8 +9,8 @@
 import SwiftUI
 
 struct JoinRoomView: View {
-    @State var roomName: String = ""
-    @State var participantName: String = ""
+    @State var roomName: String
+    @State var participantName: String
     @State var navigationSelection: Int? = nil
 
     @EnvironmentObject var store: Store
@@ -63,7 +63,7 @@ struct JoinRoomView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        JoinRoomView(participantName: "Jane Doe")
+        JoinRoomView(roomName: "My Project", participantName: "Jane Doe")
         // .colorScheme(.dark)
     }
 }

@@ -20,6 +20,20 @@
                ReferencedContainer = "container:PlanningPoker.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "83EA2C8523E456F3003DE6AE"
+               BuildableName = "PlanningPokerUITests.xctest"
+               BlueprintName = "PlanningPokerUITests"
+               ReferencedContainer = "container:PlanningPoker.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -43,8 +57,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "83EA2C8523E456F3003DE6AE"
-               BuildableName = "Planning PokerUITests.xctest"
-               BlueprintName = "Planning PokerUITests"
+               BuildableName = "PlanningPokerUITests.xctest"
+               BlueprintName = "PlanningPokerUITests"
                ReferencedContainer = "container:PlanningPoker.xcodeproj">
             </BuildableReference>
          </TestableReference>

@@ -30,3 +30,5 @@ DerivedData/
 *.zip
 *.ipa
 /PlanningPoker/fastlane/report.xml
+/PlanningPoker/fastlane/Preview.html
+/PlanningPoker/fastlane/screenshots

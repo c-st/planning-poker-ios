@@ -8,13 +8,14 @@
 
 import XCTest
 
-class Planning_PokerUITests: XCTestCase {
+class PlanningPokerUITests: XCTestCase {
     private var app: XCUIApplication?
 
     override func setUp() {
         app = XCUIApplication()
-        app!.launchArguments.append("--uitesting") // see SceneDelegate
+        app!.launchArguments.append("--uitesting")
         continueAfterFailure = false
+        setupSnapshot(app!)
         app!.launch()
     }
 
@@ -23,9 +24,12 @@ class Planning_PokerUITests: XCTestCase {
     }
 
     func testJoinARoom() {
-        app!.textFields["roomTextField"].clearAndEnterText(text: "Test")
-        app!.textFields["nameTextField"].clearAndEnterText(text: "Franz")
-        app!.buttons["joinRoomLink"].tap()
+        // app!.textFields["roomTextField"].clearAndEnterText(text: "Test")
+        // app!.textFields["nameTextField"].clearAndEnterText(text: "Franz")
+        snapshot("01JoinRoomScreen")
+        
+        // app!.buttons["joinRoomLink"].tap()
+        // snapshot("02NotStartedScreen")
 
         // Leave room:
         // app.navigationBars["Test"].buttons["Planning Poker"].tap()

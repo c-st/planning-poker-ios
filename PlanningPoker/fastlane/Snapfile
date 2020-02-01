@@ -1,0 +1,16 @@
+devices([
+#   "iPhone 8",
+#   "iPhone 8 Plus",
+   "iPhone 11 Pro Max",
+#   "iPad Pro (9.7-inch)"
+])
+
+languages([
+   "en-US",
+   "de-DE"
+])
+
+clear_previous_screenshots(true)
+
+# For more information about all available options run
+# fastlane action snapshot

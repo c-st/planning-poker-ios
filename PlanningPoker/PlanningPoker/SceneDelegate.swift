@@ -6,24 +6,27 @@
 //  Copyright © 2020 Christian Stangier. All rights reserved.
 //
 
-import UIKit
 import SwiftUI
+import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     let isInUITesting = CommandLine.arguments.contains("--uitesting")
-    
+
     var window: UIWindow?
-    
+
+    @iCloudUserDefault("roomName", defaultValue: "") var lastRoomName: String
     @iCloudUserDefault("participantName", defaultValue: "") var lastParticipantName: String
-    
+
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         if isInUITesting {
             print("ToDo: initialize mock store")
         }
-        
+
         let contentView = JoinRoomView(
-            participantName: lastParticipantName)
-            .environmentObject(Store())
+            roomName: lastRoomName,
+            participantName: lastParticipantName
+        )
+        .environmentObject(Store())
 
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
@@ -33,4 +36,3 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
     }
 }
-

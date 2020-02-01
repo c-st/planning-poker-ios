@@ -25,7 +25,8 @@
 		83A55E0B23D5F24E00496561 /* InProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A55E0A23D5F24E00496561 /* InProgressView.swift */; };
 		83A55E0D23D5F28100496561 /* EndedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A55E0C23D5F28100496561 /* EndedView.swift */; };
 		83A55E0F23D7129D00496561 /* ParticipantsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A55E0E23D7129D00496561 /* ParticipantsView.swift */; };
-		83EA2C8923E456F3003DE6AE /* Planning_PokerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EA2C8823E456F3003DE6AE /* Planning_PokerUITests.swift */; };
+		83E89FDB23E4DD910060CDC3 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E89FDA23E4DD910060CDC3 /* SnapshotHelper.swift */; };
+		83EA2C8923E456F3003DE6AE /* PlanningPokerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EA2C8823E456F3003DE6AE /* PlanningPokerUITests.swift */; };
 		83EA2C9123E457A4003DE6AE /* XCUITest+TextInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EA2C9023E457A4003DE6AE /* XCUITest+TextInput.swift */; };
 		83F8ED1323D8A7C3006E76AB /* PokerCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F8ED1223D8A7C2006E76AB /* PokerCardView.swift */; };
 		83F8ED1523D8A7E5006E76AB /* View+HiddenModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F8ED1423D8A7E5006E76AB /* View+HiddenModifier.swift */; };
@@ -84,8 +85,9 @@
 		83A55E0A23D5F24E00496561 /* InProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InProgressView.swift; sourceTree = "<group>"; };
 		83A55E0C23D5F28100496561 /* EndedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndedView.swift; sourceTree = "<group>"; };
 		83A55E0E23D7129D00496561 /* ParticipantsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantsView.swift; sourceTree = "<group>"; };
-		83EA2C8623E456F3003DE6AE /* Planning PokerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Planning PokerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		83EA2C8823E456F3003DE6AE /* Planning_PokerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Planning_PokerUITests.swift; sourceTree = "<group>"; };
+		83E89FDA23E4DD910060CDC3 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
+		83EA2C8623E456F3003DE6AE /* PlanningPokerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlanningPokerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		83EA2C8823E456F3003DE6AE /* PlanningPokerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanningPokerUITests.swift; sourceTree = "<group>"; };
 		83EA2C8A23E456F3003DE6AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		83EA2C9023E457A4003DE6AE /* XCUITest+TextInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCUITest+TextInput.swift"; sourceTree = "<group>"; };
 		83F8ED1223D8A7C2006E76AB /* PokerCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PokerCardView.swift; sourceTree = "<group>"; };
@@ -153,7 +155,7 @@
 			children = (
 				834B700723D0951800CC3BA2 /* PlanningPoker */,
 				834B701E23D0951B00CC3BA2 /* PlanningPokerTests */,
-				83EA2C8723E456F3003DE6AE /* Planning PokerUITests */,
+				83EA2C8723E456F3003DE6AE /* PlanningPokerUITests */,
 				834B700623D0951800CC3BA2 /* Products */,
 				83376DF223D86F4100AFBAEA /* Frameworks */,
 			);
@@ -164,7 +166,7 @@
 			children = (
 				834B700523D0951800CC3BA2 /* Planning Poker.app */,
 				834B701B23D0951B00CC3BA2 /* PlanningPokerTests.xctest */,
-				83EA2C8623E456F3003DE6AE /* Planning PokerUITests.xctest */,
+				83EA2C8623E456F3003DE6AE /* PlanningPokerUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -229,14 +231,15 @@
 			path = Room;
 			sourceTree = "<group>";
 		};
-		83EA2C8723E456F3003DE6AE /* Planning PokerUITests */ = {
+		83EA2C8723E456F3003DE6AE /* PlanningPokerUITests */ = {
 			isa = PBXGroup;
 			children = (
-				83EA2C8823E456F3003DE6AE /* Planning_PokerUITests.swift */,
+				83EA2C8823E456F3003DE6AE /* PlanningPokerUITests.swift */,
 				83EA2C8A23E456F3003DE6AE /* Info.plist */,
+				83E89FDA23E4DD910060CDC3 /* SnapshotHelper.swift */,
 				83EA2C9023E457A4003DE6AE /* XCUITest+TextInput.swift */,
 			);
-			path = "Planning PokerUITests";
+			path = PlanningPokerUITests;
 			sourceTree = "<group>";
 		};
 		83F8ED1F23D8C5CF006E76AB /* Event handling */ = {
@@ -333,9 +336,9 @@
 			productReference = 834B701B23D0951B00CC3BA2 /* PlanningPokerTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		83EA2C8523E456F3003DE6AE /* Planning PokerUITests */ = {
+		83EA2C8523E456F3003DE6AE /* PlanningPokerUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 83EA2C8D23E456F3003DE6AE /* Build configuration list for PBXNativeTarget "Planning PokerUITests" */;
+			buildConfigurationList = 83EA2C8D23E456F3003DE6AE /* Build configuration list for PBXNativeTarget "PlanningPokerUITests" */;
 			buildPhases = (
 				83EA2C8223E456F3003DE6AE /* Sources */,
 				83EA2C8323E456F3003DE6AE /* Frameworks */,
@@ -346,9 +349,9 @@
 			dependencies = (
 				83EA2C8C23E456F3003DE6AE /* PBXTargetDependency */,
 			);
-			name = "Planning PokerUITests";
+			name = PlanningPokerUITests;
 			productName = "Planning PokerUITests";
-			productReference = 83EA2C8623E456F3003DE6AE /* Planning PokerUITests.xctest */;
+			productReference = 83EA2C8623E456F3003DE6AE /* PlanningPokerUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -394,7 +397,7 @@
 			targets = (
 				834B700423D0951800CC3BA2 /* PlanningPoker */,
 				834B701A23D0951B00CC3BA2 /* PlanningPokerTests */,
-				83EA2C8523E456F3003DE6AE /* Planning PokerUITests */,
+				83EA2C8523E456F3003DE6AE /* PlanningPokerUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -473,7 +476,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				83EA2C9123E457A4003DE6AE /* XCUITest+TextInput.swift in Sources */,
-				83EA2C8923E456F3003DE6AE /* Planning_PokerUITests.swift in Sources */,
+				83EA2C8923E456F3003DE6AE /* PlanningPokerUITests.swift in Sources */,
+				83E89FDB23E4DD910060CDC3 /* SnapshotHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -625,7 +629,7 @@
 				CODE_SIGN_ENTITLEMENTS = PlanningPoker/PlanningPoker.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 31;
 				DEVELOPMENT_ASSET_PATHS = "\"PlanningPoker/Preview Content\"";
 				DEVELOPMENT_TEAM = 738626FVRF;
 				ENABLE_PREVIEWS = YES;
@@ -650,7 +654,7 @@
 				CODE_SIGN_ENTITLEMENTS = PlanningPoker/PlanningPoker.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 31;
 				DEVELOPMENT_ASSET_PATHS = "\"PlanningPoker/Preview Content\"";
 				DEVELOPMENT_TEAM = 738626FVRF;
 				ENABLE_PREVIEWS = YES;
@@ -717,7 +721,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 738626FVRF;
-				INFOPLIST_FILE = "Planning PokerUITests/Info.plist";
+				INFOPLIST_FILE = PlanningPokerUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -736,7 +740,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 738626FVRF;
-				INFOPLIST_FILE = "Planning PokerUITests/Info.plist";
+				INFOPLIST_FILE = PlanningPokerUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -780,7 +784,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83EA2C8D23E456F3003DE6AE /* Build configuration list for PBXNativeTarget "Planning PokerUITests" */ = {
+		83EA2C8D23E456F3003DE6AE /* Build configuration list for PBXNativeTarget "PlanningPokerUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83EA2C8E23E456F3003DE6AE /* Debug */,

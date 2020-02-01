@@ -1,0 +1,31 @@
+languages(['en-US','de-DE'])
+
+price_tier 0
+
+keywords({
+    'default' => "planningpoker,planning,poker,agile,estimation,estimating,scrum,codecentric"
+})
+
+privacy_url({
+    'default' => "https://planningpoker.cc/privacy"
+})
+
+support_url({
+    'default' => "https://planningpoker.cc/support"
+})
+
+marketing_url({
+    'default' => "https://planningpoker.cc"
+})
+
+app_review_information(
+  first_name: "Christian",
+  last_name: "Stangier",
+  phone_number: "+4915110867006",
+  email_address: "mail@christian-stangier.com",
+  demo_user: "N/A",
+  demo_password: "N/A",
+  notes: "No demo account needed"
+)
+
+copyright "Copyright 2020 Christian Stangier"
