@@ -63,7 +63,15 @@ struct JoinRoomView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        JoinRoomView(roomName: "My Project", participantName: "Jane Doe")
-        // .colorScheme(.dark)
+        Group {
+            JoinRoomView(
+                roomName: "My Project",
+                participantName: "Jane Doe"
+            )
+            JoinRoomView(
+                roomName: "Mein Projekt",
+                participantName: "Jana Dorr"
+            ).environment(\.locale, .init(identifier: "de"))
+        }
     }
 }

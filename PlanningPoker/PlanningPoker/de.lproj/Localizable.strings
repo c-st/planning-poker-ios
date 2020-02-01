@@ -1,0 +1,20 @@
+/* 
+  Localizable.strings
+  PlanningPoker
+
+  Created by Christian Stangier on 01.02.20.
+  Copyright © 2020 Christian Stangier. All rights reserved.
+*/
+
+"Join an estimation session" = "An einer Schätzung teilnehmen";
+"Room" = "Raum";
+"Your name" = "Dein Name";
+"Join the room" = "Raum jetzt betreten!";
+"Participants" = "Teilnehmer";
+"Enter task" = "Task eingeben";
+"Start" = "Start";
+"Show result" = "Ergebnis zeigen";
+"Result" = "Ergebnis";
+"Estimate" = "Schätzung";
+"Participants" = "Teilnehmer";
+

@@ -36,11 +36,9 @@ platform :ios do
           marketing_url: "https://planningpoker.cc",
           privacy_policy_url: "https://planningpoker.cc/privacy",
           description: "This app is a mobile version of the Planning Poker web application (available at https://planningpoker.cc). It features a real-time environment for agile estimations in a team which is collaborating remotely.
-
-          Planning Poker in Scrum brings together the opinions for the agile estimation of a project. In this type of planning all members of a team are participating.
-          
-          All team members launch the app and join the same room. An estimation round for a task is started and all participants cast their vote for its complexity. Once everyone has voted all estimations are revealed and discussed in the team.
-          The session continues with an estimation for the next task until all tasks are estimated.",
+Planning Poker in Scrum brings together the opinions for the agile estimation of a project. In this type of planning all members of a team are participating.\n
+All team members launch the app and join the same room. An estimation round for a task is started and all participants cast their vote for its complexity. Once everyone has voted all estimations are revealed and discussed in the team.
+The session continues with an estimation for the next task until all tasks are estimated.",
         }
       },
       beta_app_review_info: {

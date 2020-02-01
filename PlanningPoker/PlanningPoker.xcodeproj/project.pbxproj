@@ -26,6 +26,7 @@
 		83A55E0D23D5F28100496561 /* EndedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A55E0C23D5F28100496561 /* EndedView.swift */; };
 		83A55E0F23D7129D00496561 /* ParticipantsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A55E0E23D7129D00496561 /* ParticipantsView.swift */; };
 		83E89FDB23E4DD910060CDC3 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E89FDA23E4DD910060CDC3 /* SnapshotHelper.swift */; };
+		83E89FDE23E59BB80060CDC3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 83E89FE023E59BB80060CDC3 /* Localizable.strings */; };
 		83EA2C8923E456F3003DE6AE /* PlanningPokerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EA2C8823E456F3003DE6AE /* PlanningPokerUITests.swift */; };
 		83EA2C9123E457A4003DE6AE /* XCUITest+TextInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EA2C9023E457A4003DE6AE /* XCUITest+TextInput.swift */; };
 		83F8ED1323D8A7C3006E76AB /* PokerCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F8ED1223D8A7C2006E76AB /* PokerCardView.swift */; };
@@ -86,6 +87,8 @@
 		83A55E0C23D5F28100496561 /* EndedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndedView.swift; sourceTree = "<group>"; };
 		83A55E0E23D7129D00496561 /* ParticipantsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantsView.swift; sourceTree = "<group>"; };
 		83E89FDA23E4DD910060CDC3 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
+		83E89FDF23E59BB80060CDC3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		83E89FE123E59C1F0060CDC3 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		83EA2C8623E456F3003DE6AE /* PlanningPokerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlanningPokerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		83EA2C8823E456F3003DE6AE /* PlanningPokerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanningPokerUITests.swift; sourceTree = "<group>"; };
 		83EA2C8A23E456F3003DE6AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -184,6 +187,7 @@
 				834B701323D0951B00CC3BA2 /* LaunchScreen.storyboard */,
 				834B701623D0951B00CC3BA2 /* Info.plist */,
 				8321F6E523D1B4950027A212 /* PlanningPoker.entitlements */,
+				83E89FE023E59BB80060CDC3 /* Localizable.strings */,
 				834B701023D0951B00CC3BA2 /* Preview Content */,
 			);
 			path = PlanningPoker;
@@ -221,10 +225,10 @@
 		83A55E0723D5F0A800496561 /* Room */ = {
 			isa = PBXGroup;
 			children = (
+				F578883923D0AA030019DF23 /* RoomView.swift */,
 				F54BEDD023E034B20095E098 /* NotStarted */,
 				F54BEDD123E034BF0095E098 /* InProgress */,
 				F54BEDD223E034DA0095E098 /* Ended */,
-				F578883923D0AA030019DF23 /* RoomView.swift */,
 				83A55E0E23D7129D00496561 /* ParticipantsView.swift */,
 				8392EA8223D74273005CAE07 /* StartEstimationFormView.swift */,
 			);
@@ -378,12 +382,13 @@
 				};
 			};
 			buildConfigurationList = 834B700023D0951800CC3BA2 /* Build configuration list for PBXProject "PlanningPoker" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 11.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
+				de,
 			);
 			mainGroup = 834B6FFC23D0951800CC3BA2;
 			packageReferences = (
@@ -408,6 +413,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				834B701523D0951B00CC3BA2 /* LaunchScreen.storyboard in Resources */,
+				83E89FDE23E59BB80060CDC3 /* Localizable.strings in Resources */,
 				834B701223D0951B00CC3BA2 /* Preview Assets.xcassets in Resources */,
 				834B700F23D0951B00CC3BA2 /* Assets.xcassets in Resources */,
 			);
@@ -505,6 +511,15 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
+		83E89FE023E59BB80060CDC3 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				83E89FDF23E59BB80060CDC3 /* en */,
+				83E89FE123E59C1F0060CDC3 /* de */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -512,6 +527,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -572,6 +588,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
