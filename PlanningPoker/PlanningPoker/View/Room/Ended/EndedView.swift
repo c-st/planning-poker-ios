@@ -14,6 +14,7 @@ struct EndedView: View {
     var participantsByEstimate: [String: [String]]
     var isCatConsensus: Bool?
     let onStartEstimation: (String) -> Void
+    
 
     var body: some View {
         VStack {
@@ -23,27 +24,6 @@ struct EndedView: View {
 
             PieChartView(segmentData: calculateSegmentData())
                 .frame(width: 200, height: 200)
-
-            VStack(spacing: 10) {
-                HStack {
-                    Text("Estimate")
-                        .fontWeight(.bold)
-
-                    Spacer()
-                    Text("Participants")
-                        .fontWeight(.bold)
-                }
-
-                ForEach(self.participantsByEstimate.keys.sorted(), id: \.self) { estimate in
-                    HStack {
-                        Text(estimate)
-                        Spacer()
-
-                        Text(self.participantsByEstimate[estimate]!.joined(separator: ", "))
-                    }
-                }
-            }
-            .font(.subheadline)
 
             if isCatConsensus != nil && isCatConsensus! {
                 AnimatedImage(url: URL(string: "https://thecatapi.com/api/images/get?format=src&type=gif"))

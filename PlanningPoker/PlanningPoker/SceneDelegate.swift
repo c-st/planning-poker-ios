@@ -6,6 +6,7 @@
 //  Copyright © 2020 Christian Stangier. All rights reserved.
 //
 
+import SDWebImage
 import SwiftUI
 import UIKit
 
@@ -21,6 +22,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if isInUITesting {
             print("ToDo: initialize mock store")
         }
+
+        // Disable image cache with our custom implementation in order
+        // to have changing cat images:
+        SDImageCacheConfig.default.memoryCacheClass = ImageCache.self
+        SDImageCacheConfig.default.diskCacheClass = ImageCache.self
 
         let contentView = JoinRoomView(
             roomName: lastRoomName,

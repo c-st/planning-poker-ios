@@ -27,6 +27,7 @@
 		83A55E0F23D7129D00496561 /* ParticipantsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A55E0E23D7129D00496561 /* ParticipantsView.swift */; };
 		83E89FDB23E4DD910060CDC3 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E89FDA23E4DD910060CDC3 /* SnapshotHelper.swift */; };
 		83E89FDE23E59BB80060CDC3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 83E89FE023E59BB80060CDC3 /* Localizable.strings */; };
+		83E89FE323E86ECB0060CDC3 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E89FE223E86ECB0060CDC3 /* ImageCache.swift */; };
 		83EA2C8923E456F3003DE6AE /* PlanningPokerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EA2C8823E456F3003DE6AE /* PlanningPokerUITests.swift */; };
 		83EA2C9123E457A4003DE6AE /* XCUITest+TextInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EA2C9023E457A4003DE6AE /* XCUITest+TextInput.swift */; };
 		83F8ED1323D8A7C3006E76AB /* PokerCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F8ED1223D8A7C2006E76AB /* PokerCardView.swift */; };
@@ -89,6 +90,7 @@
 		83E89FDA23E4DD910060CDC3 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
 		83E89FDF23E59BB80060CDC3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		83E89FE123E59C1F0060CDC3 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		83E89FE223E86ECB0060CDC3 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		83EA2C8623E456F3003DE6AE /* PlanningPokerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlanningPokerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		83EA2C8823E456F3003DE6AE /* PlanningPokerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanningPokerUITests.swift; sourceTree = "<group>"; };
 		83EA2C8A23E456F3003DE6AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -262,6 +264,7 @@
 			children = (
 				8321F6E323D1B3C70027A212 /* ICloudUserDefault.swift */,
 				83F8ED1D23D8C5BC006E76AB /* Haptics.swift */,
+				83E89FE223E86ECB0060CDC3 /* ImageCache.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -458,6 +461,7 @@
 				83F8ED1E23D8C5BC006E76AB /* Haptics.swift in Sources */,
 				F578883A23D0AA030019DF23 /* RoomView.swift in Sources */,
 				834B700D23D0951800CC3BA2 /* JoinRoomView.swift in Sources */,
+				83E89FE323E86ECB0060CDC3 /* ImageCache.swift in Sources */,
 				83A55E0F23D7129D00496561 /* ParticipantsView.swift in Sources */,
 				F578883823D0A7A70019DF23 /* Store.swift in Sources */,
 				83135B3023D1EB4E0072F005 /* EventHandler.swift in Sources */,
