@@ -24,7 +24,7 @@ struct ParticipantsView: View {
                         if currentParticipant != nil {
                             UserAvatarView(
                                 participant: currentParticipant!,
-                                backgroundColor: Color.blue
+                                backgroundColor: Color("primary1")
                             )
                         }
 

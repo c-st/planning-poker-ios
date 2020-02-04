@@ -29,11 +29,9 @@ struct EndedView: View {
                 AnimatedImage(url: URL(string: "https://thecatapi.com/api/images/get?format=src&type=gif"))
                     .resizable()
                     .scaledToFit()
-                    .frame(maxHeight: 150)
-                    .padding(0)
+                    .frame(width: 150)
+                    .padding(5)
             }
-
-            Divider()
 
             StartEstimationFormView(
                 onStartEstimation: onStartEstimation

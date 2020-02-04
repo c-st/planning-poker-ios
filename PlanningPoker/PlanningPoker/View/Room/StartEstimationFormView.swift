@@ -23,8 +23,7 @@ struct StartEstimationFormView: View {
                 TextField("", text: self.$newTaskName)
             }
             .frame(minHeight: 40)
-            .foregroundColor(Color.black)
-            .background(Color(UIColor.systemGray).opacity(0.1))
+            .background(Color(UIColor.systemGray6))
             .cornerRadius(10)
             .padding(.vertical)
             .multilineTextAlignment(.center)
@@ -52,6 +51,8 @@ struct StartEstimationFormView_Previews: PreviewProvider {
     static var previews: some View {
         StartEstimationFormView(
             onStartEstimation: { _ in }
-        ).colorScheme(.dark)
+        )
+        .previewLayout(.sizeThatFits)
+        .colorScheme(.dark)
     }
 }

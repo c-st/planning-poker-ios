@@ -50,6 +50,7 @@ struct PieChartSegmentLabelView: View {
             height: !isLabelDisplayed ? 0 : isSelected ? nil : 30
         )
         .padding(!isLabelDisplayed ? 0 : isSelected ? 10 : 5)
+        .opacity(!isLabelDisplayed ? 0 : 1.0)
         .background(Color.white)
         .foregroundColor(Color.black)
         .cornerRadius(5)
