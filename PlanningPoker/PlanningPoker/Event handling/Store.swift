@@ -34,6 +34,10 @@ public struct AppState {
         guard self.participant != nil else { return nil }
         return self.estimations[self.participant!.name]
     }
+    
+    var areEstimationsCompleted: Bool {
+        return (otherParticipants + [participant]).count == estimations.values.count
+    }
 
     var isCatConsensus: Bool? {
         guard self.estimationStatus == .ended, let byEstimate = participantsByEstimate else {

@@ -31,7 +31,7 @@ struct ParticipantsView: View {
                         ForEach(otherParticipants) { participant in
                             UserAvatarView(participant: participant)
                         }
-                    }.frame(minWidth: 50, minHeight: 50)
+                    }.frame(minWidth: 70, minHeight: 70)
                 }
             }
         }

@@ -39,7 +39,7 @@ struct StartEstimationFormView: View {
                 .frame(minWidth: 100)
                 .padding(15)
                 .foregroundColor(Color.white)
-                .background(Color.blue)
+                .background(Color("primary1"))
                 .cornerRadius(10)
                 .shadow(radius: 10)
             }

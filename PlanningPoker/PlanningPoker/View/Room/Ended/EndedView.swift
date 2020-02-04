@@ -14,7 +14,6 @@ struct EndedView: View {
     var participantsByEstimate: [String: [String]]
     var isCatConsensus: Bool?
     let onStartEstimation: (String) -> Void
-    
 
     var body: some View {
         VStack {
@@ -24,6 +23,8 @@ struct EndedView: View {
 
             PieChartView(segmentData: calculateSegmentData())
                 .frame(width: 200, height: 200)
+
+            Spacer()
 
             if isCatConsensus != nil && isCatConsensus! {
                 AnimatedImage(url: URL(string: "https://thecatapi.com/api/images/get?format=src&type=gif"))
@@ -36,8 +37,6 @@ struct EndedView: View {
             StartEstimationFormView(
                 onStartEstimation: onStartEstimation
             )
-
-            Spacer()
         }
     }
 

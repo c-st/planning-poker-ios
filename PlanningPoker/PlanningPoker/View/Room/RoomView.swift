@@ -23,7 +23,7 @@ struct RoomView: View {
 
                 Divider()
             }
-            
+
             Group {
                 if store.state.estimationStatus == .notStarted {
                     NotYetStartedView(
@@ -35,6 +35,7 @@ struct RoomView: View {
                     InProgressView(
                         currentTaskName: self.store.state.currentTaskName!,
                         participantEstimate: self.store.state.ourEstimate,
+                        areEstimationsCompleted: self.store.state.areEstimationsCompleted,
                         onEstimate: {
                             Haptics.medium()
                             self.store.sendEstimate($0)
