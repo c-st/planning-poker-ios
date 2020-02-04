@@ -24,14 +24,16 @@ class PlanningPokerUITests: XCTestCase {
     }
 
     func testJoinARoom() {
-        // app!.textFields["roomTextField"].clearAndEnterText(text: "Test")
-        // app!.textFields["nameTextField"].clearAndEnterText(text: "Franz")
-        snapshot("01JoinRoomScreen")
-        
-        // app!.buttons["joinRoomLink"].tap()
-        // snapshot("02NotStartedScreen")
+        let roomTextField = app!.textFields["roomTextField"]
+        roomTextField.clearAndEnterText(text: "Test")
 
-        // Leave room:
-        // app.navigationBars["Test"].buttons["Planning Poker"].tap()
+        let nameTextField = app!.textFields["nameTextField"]
+        nameTextField.clearAndEnterText(text: "Franz")
+        // ^ UI test fails here
+        
+        snapshot("01JoinRoomScreen")
+
+        app!.buttons["joinRoomLink"].tap()
+        snapshot("02NotStartedScreen")
     }
 }
