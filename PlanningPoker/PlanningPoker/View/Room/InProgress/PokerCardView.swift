@@ -15,22 +15,30 @@ struct PokerCardView: View {
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 15)
-                .fill(isCardSelected ? Color.red : Color.green)
+                .fill(isCardSelected ? Color("secondary-red") : Color("primary2"))
                 .shadow(radius: 2)
+//            RoundedRectangle(cornerRadius: 15)
+//                .stroke(Color.gray, lineWidth: 1)
+//                .frame(width: 100, height: 160)
             VStack {
                 HStack {
                     Text(value)
-                        .font(.headline)
-                        .fontWeight(.bold)
+                        .font(.system(.headline, design: .monospaced))
                         .foregroundColor(Color.white)
                     Spacer()
                 }
                 Spacer()
+                HStack {
+                    Spacer()
+                    Text(value)
+                        .font(.system(.headline, design: .monospaced))
+                        .foregroundColor(Color.white)
+                        .rotationEffect(.degrees(180))
+                }
             }.padding(5)
             VStack {
                 Text(value)
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
+                    .font(.system(size: 80, weight: .medium, design: .monospaced))
                     .foregroundColor(Color.white)
             }
         }
@@ -40,6 +48,10 @@ struct PokerCardView: View {
 
 struct PokerCardView_Previews: PreviewProvider {
     static var previews: some View {
-        PokerCardView(value: "5", isCardSelected: true)
+        Group {
+            PokerCardView(value: "5", isCardSelected: false)
+            PokerCardView(value: "20", isCardSelected: true)
+        }
+        .previewLayout(.sizeThatFits)
     }
 }
