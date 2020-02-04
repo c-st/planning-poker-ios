@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct PokerCardDeckView: View {
-    let threshold: CGFloat = 100
+    let threshold: CGFloat = 200
     let degree: Int = 12
 
     let possibleEstimates: [String] = [
@@ -19,7 +19,7 @@ struct PokerCardDeckView: View {
     ].reversed()
 
     @State private var offset = CGSize.zero
-    @State private var draggedCardIndex = 0
+    @State private var draggedCardIndex: Int? = nil
 
     let onEstimate: (String) -> Void
     var currentTaskName: String
@@ -31,12 +31,12 @@ struct PokerCardDeckView: View {
                     Text(self.currentTaskName)
                         .font(.title)
                         .fontWeight(.bold)
-                        .padding(30)
-                        .lineLimit(4)
+                        .padding(EdgeInsets(top: 80, leading: 50, bottom: 80, trailing: 50))
+                        .lineLimit(2)
                         .multilineTextAlignment(.center)
                         .foregroundColor(.gray)
                 }
-                .frame(minWidth: geometry.size.width - 30, minHeight: 150)
+                .frame(minWidth: geometry.size.width - 30)
                 .overlay(
                     Rectangle()
                         .strokeBorder(
@@ -89,6 +89,7 @@ struct PokerCardDeckView: View {
                     if self.isDraggedOverThreshold() {
                         self.onEstimate(self.possibleEstimates[index])
                     } else {
+                        self.draggedCardIndex = nil
                         self.offset = .zero
                     }
                 }
@@ -120,7 +121,7 @@ struct PokerCardDeckView_Previews: PreviewProvider {
     static var previews: some View {
         PokerCardDeckView(
             onEstimate: { _ in },
-            currentTaskName: "Please estimate this very long deslkjdlksjdkldjslkdsjlkds sadkhdskjhdjskhdsjk skjdhkjdshkjdshjkdsh"
+            currentTaskName: "Please estimate this very long task"
         )
     }
 }
