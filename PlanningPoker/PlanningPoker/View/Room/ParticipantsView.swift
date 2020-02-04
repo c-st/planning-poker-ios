@@ -19,7 +19,7 @@ struct ParticipantsView: View {
                 .fontWeight(.bold)
 
             HStack {
-                ScrollView(.horizontal) {
+                ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
                         if currentParticipant != nil {
                             UserAvatarView(

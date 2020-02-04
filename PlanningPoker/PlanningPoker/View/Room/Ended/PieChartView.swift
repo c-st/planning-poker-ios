@@ -10,14 +10,14 @@ import SwiftUI
 
 struct PieChartView: View {
     let colors: [Color] = [
-        Color.green,
-        Color.blue,
-        Color.yellow,
-        Color.purple,
-        Color.orange,
-        Color.pink,
-        Color.gray,
-        Color.red,
+        Color("Color-1"),
+        Color("Color-2"),
+        Color("Color-3"),
+        Color("Color-4"),
+        Color("Color-5"),
+        Color("Color-6"),
+        Color("Color-7"),
+        Color("Color-8")
     ]
 
     var segmentData: [SegmentData]
