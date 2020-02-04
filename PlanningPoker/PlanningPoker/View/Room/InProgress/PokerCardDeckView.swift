@@ -77,7 +77,7 @@ struct PokerCardDeckView: View {
             anchor: .bottom
         )
         .offset(self.draggedCardIndex == index ? self.offset : .zero)
-        .opacity(self.draggedCardIndex == index ? 0.9 : 1.0)
+        .opacity(self.draggedCardIndex == index ? 0.95 : 1.0)
         .animation(.spring())
         .gesture(
             DragGesture()
