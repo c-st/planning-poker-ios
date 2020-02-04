@@ -10,7 +10,7 @@ import SwiftUI
 
 struct PokerCardDeckView: View {
     let threshold: CGFloat = 200
-    let degree: Int = 12
+    let degree = 12.0
 
     let possibleEstimates: [String] = [
         "0", "1", "2", "3",
@@ -83,7 +83,10 @@ struct PokerCardDeckView: View {
             DragGesture()
                 .onChanged { gesture in
                     self.draggedCardIndex = index
-                    self.offset = gesture.translation
+                    self.offset = CGSize(
+                        width: gesture.translation.width,
+                        height: min(0, gesture.translation.height)
+                    )
                 }
                 .onEnded { _ in
                     if self.isDraggedOverThreshold() {
@@ -97,16 +100,20 @@ struct PokerCardDeckView: View {
     }
 
     private func calculateAngle(_ index: Int, totalCards: Int, isCardDragged: Bool = false) -> Double {
-        let percent = !isCardDragged ? Int(1) : Int(floor(abs(self.offset.height) / self.threshold))
-
-        let middleCardIndex = Int(floor(Double(totalCards) / Double(2)))
+        let fraction = abs(self.offset.height) > self.threshold ?
+            1.0 :
+            abs(Double(self.offset.height)) / Double(self.threshold)
+        
+        let adjustedFraction = !isCardDragged ? 1.0 : fraction
+        
+        let middleCardIndex = Int(floor(Double(totalCards) / 2.0))
 
         if index < middleCardIndex {
-            return Double((middleCardIndex - index) * self.degree * -1 * percent)
+            return Double(middleCardIndex - index) * self.degree * -1.0 * adjustedFraction
         }
 
         if index > middleCardIndex {
-            return Double((index - middleCardIndex) * self.degree * percent)
+            return Double(index - middleCardIndex) * self.degree * adjustedFraction
         }
 
         return 0
