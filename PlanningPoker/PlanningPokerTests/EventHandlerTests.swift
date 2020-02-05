@@ -143,31 +143,6 @@ class EventHandlerTests: XCTestCase {
         expect(finalState.currentTaskName).to(equal("implementing planning poker"))
     }
 
-    func testOurUserHasEstimated() {
-        let initialState = AppState(
-            estimationStatus: .inProgress,
-            participant: Participant(name: "Our user"),
-            otherParticipants: [
-                Participant(name: "Foo"),
-                Participant(name: "Bar")
-            ],
-            roomName: "Test room",
-            currentTaskName: "Test task",
-            estimationStart: Date()
-        )
-
-        let userHasEstimatedEvent = UserHasEstimated(
-            userName: "Our user",
-            taskName: "Test task"
-        )
-
-        let finalState = EventHandler.handle(
-            userHasEstimatedEvent, state: initialState
-        )
-
-        expect(finalState.participant!.hasEstimated).to(beTrue())
-    }
-
     func testOtherUserHasEstimated() {
         let initialState = AppState(
             estimationStatus: .inProgress,
