@@ -87,13 +87,13 @@ final class Store: ObservableObject, WebSocketDelegate {
 
     func rejoinRoom() {
         if let participant = self.state.participant, let roomName = self.state.roomName {
-            let currentTaskName = self.state.currentTaskName
-
             self.state = AppState(
-                estimationStatus: self.state.estimationStatus,
-                participant: participant,
-                roomName: roomName,
-                currentTaskName: currentTaskName
+                participant: Participant(
+                    id: participant.id,
+                    name: participant.name,
+                    hasEstimated: false
+                ),
+                roomName: roomName
             )
 
             self.establishWebSocketConnection()

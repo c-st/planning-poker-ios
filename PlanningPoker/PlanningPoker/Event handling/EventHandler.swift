@@ -69,7 +69,6 @@ public class EventHandler {
             )
 
         case let event as UserHasEstimated:
-
             func markAsEstimatedIfNecessary(participant: Participant) -> Participant {
                 if participant.name == event.userName {
                     return Participant(
@@ -83,7 +82,7 @@ public class EventHandler {
 
             return AppState(
                 estimationStatus: state.estimationStatus,
-                participant: state.participant.map(markAsEstimatedIfNecessary),
+                participant: state.participant,
                 otherParticipants: state.otherParticipants.map(markAsEstimatedIfNecessary),
                 roomName: state.roomName,
                 currentTaskName: state.currentTaskName,
