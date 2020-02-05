@@ -12,7 +12,7 @@ import SwiftUI
 struct EndedView: View {
     var participants: [Participant]
     var participantsByEstimate: [String: [String]]
-    var isCatConsensus: Bool?
+    var isCatConsensus: Bool
     let onStartEstimation: (String) -> Void
 
     var body: some View {
@@ -26,7 +26,7 @@ struct EndedView: View {
 
             Spacer()
 
-            if isCatConsensus != nil && isCatConsensus! {
+            if isCatConsensus {
                 AnimatedImage(url: URL(string: "https://thecatapi.com/api/images/get?format=src&type=gif"))
                     .resizable()
                     .scaledToFit()

@@ -15,6 +15,7 @@ public struct AppState {
     var participant: Participant?
     var otherParticipants: [Participant] = []
     var roomName: String?
+    var isShowCats: Bool = true
     var currentTaskName: String?
     var estimationStart: Date?
 
@@ -45,7 +46,8 @@ public struct AppState {
         guard self.estimationStatus == .ended, let byEstimate = participantsByEstimate else {
             return nil
         }
-        return byEstimate.count == 1
+
+        return self.isShowCats && byEstimate.count == 1
     }
 
     enum EstimationStatus {
@@ -64,6 +66,7 @@ struct Participant: Identifiable {
 struct JoinRoomData {
     var roomName: String = ""
     var participantName: String = ""
+    var isShowCats: Bool = true
 }
 
 final class Store: ObservableObject, WebSocketDelegate {
@@ -81,19 +84,22 @@ final class Store: ObservableObject, WebSocketDelegate {
     func joinRoom(_ roomData: JoinRoomData) {
         self.state.roomName = roomData.roomName
         self.state.participant = Participant(name: roomData.participantName)
-
+        self.state.isShowCats = roomData.isShowCats
+        
         self.establishWebSocketConnection()
     }
 
     func rejoinRoom() {
-        if let participant = self.state.participant, let roomName = self.state.roomName {
+        if let participant = self.state.participant,
+            let roomName = self.state.roomName {
             self.state = AppState(
                 participant: Participant(
                     id: participant.id,
                     name: participant.name,
                     hasEstimated: false
                 ),
-                roomName: roomName
+                roomName: roomName,
+                isShowCats: self.state.isShowCats
             )
 
             self.establishWebSocketConnection()

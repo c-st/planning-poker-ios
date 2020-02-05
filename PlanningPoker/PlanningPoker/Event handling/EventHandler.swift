@@ -29,6 +29,7 @@ public class EventHandler {
                 participant: state.participant,
                 otherParticipants: newParticipants,
                 roomName: state.roomName,
+                isShowCats: state.isShowCats,
                 currentTaskName: state.currentTaskName,
                 estimationStart: state.estimationStart,
                 estimations: state.estimations
@@ -44,6 +45,7 @@ public class EventHandler {
                 participant: state.participant,
                 otherParticipants: newParticipants,
                 roomName: state.roomName,
+                isShowCats: state.isShowCats,
                 currentTaskName: state.currentTaskName,
                 estimationStart: state.estimationStart,
                 estimations: state.estimations
@@ -63,6 +65,7 @@ public class EventHandler {
                 participant: state.participant.map(resetEstimationStatus),
                 otherParticipants: state.otherParticipants.map(resetEstimationStatus),
                 roomName: state.roomName,
+                isShowCats: state.isShowCats,
                 currentTaskName: event.taskName,
                 estimationStart: event.startDate,
                 estimations: [:]
@@ -85,6 +88,7 @@ public class EventHandler {
                 participant: state.participant,
                 otherParticipants: state.otherParticipants.map(markAsEstimatedIfNecessary),
                 roomName: state.roomName,
+                isShowCats: state.isShowCats,
                 currentTaskName: state.currentTaskName,
                 estimationStart: state.estimationStart,
                 estimations: state.estimations
@@ -117,6 +121,7 @@ public class EventHandler {
                 participant: state.participant.map(updateEstimateIfNecessary),
                 otherParticipants: state.otherParticipants.map(updateEstimateIfNecessary),
                 roomName: state.roomName,
+                isShowCats: state.isShowCats,
                 currentTaskName: state.currentTaskName,
                 estimationStart: state.estimationStart,
                 estimations: estimations

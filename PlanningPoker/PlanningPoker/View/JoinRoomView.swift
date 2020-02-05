@@ -11,11 +11,15 @@ import SwiftUI
 struct JoinRoomView: View {
     @State var roomName: String
     @State var participantName: String
+    @State var isShowCats: Bool = true
 
     @EnvironmentObject var store: Store
 
     var body: some View {
-        NavigationView {
+        // Currently this is necessary in order to set the color of Toggles:
+        UISwitch.appearance().onTintColor = UIColor(named: "tintColour")
+        
+        return NavigationView {
             Form {
                 Section(header: Text("Join an estimation session")) {
                     TextField("Room", text: self.$roomName)
@@ -23,6 +27,10 @@ struct JoinRoomView: View {
 
                     TextField("Your name", text: self.$participantName)
                         .accessibility(identifier: "nameTextField")
+
+                    Toggle(isOn: self.$isShowCats) {
+                        Text("Consensus cats")
+                    }
                 }
 
                 Section {
@@ -30,7 +38,8 @@ struct JoinRoomView: View {
                         destination: RoomView(
                             joinRoomData: JoinRoomData(
                                 roomName: self.roomName,
-                                participantName: self.participantName
+                                participantName: self.participantName,
+                                isShowCats: self.isShowCats
                             )
                         )
                     )
@@ -55,8 +64,8 @@ struct JoinRoomView: View {
             .navigationBarTitle("Planning Poker")
             .listStyle(GroupedListStyle())
             .environment(\.horizontalSizeClass, .regular)
-
-        }.navigationViewStyle(StackNavigationViewStyle())
+        }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
