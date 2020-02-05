@@ -20,6 +20,7 @@ struct PokerCardDeckView: View {
 
     @State private var offset = CGSize.zero
     @State private var draggedCardIndex: Int? = nil
+    @State private var selectedCardIndex: Int? = nil
 
     let onEstimate: (String) -> Void
     var currentTaskName: String
@@ -48,7 +49,6 @@ struct PokerCardDeckView: View {
                         .foregroundColor(.gray)
                         .opacity(0.4)
                 )
-//                .background(Color.red)
             }
 
             Spacer()
@@ -64,7 +64,8 @@ struct PokerCardDeckView: View {
     private func buildPokerCardViewAt(_ index: Int) -> some View {
         return PokerCardView(
             value: "\(self.possibleEstimates[index])",
-            isCardSelected: self.draggedCardIndex == index && self.isDraggedOverThreshold()
+            isCardSelected: self.selectedCardIndex == index
+            // isCardSelected: (self.draggedCardIndex == index && self.isDraggedOverThreshold()) || self.selectedCardIndex == index
         )
         .rotationEffect(
             Angle(
@@ -91,6 +92,7 @@ struct PokerCardDeckView: View {
                 .onEnded { _ in
                     if self.isDraggedOverThreshold() {
                         self.onEstimate(self.possibleEstimates[index])
+                        self.selectedCardIndex = index
                     } else {
                         self.draggedCardIndex = nil
                         self.offset = .zero
@@ -105,7 +107,6 @@ struct PokerCardDeckView: View {
             abs(Double(self.offset.height)) / Double(self.threshold)
         
         let adjustedFraction = !isCardDragged ? 1.0 : fraction
-        
         let middleCardIndex = Int(floor(Double(totalCards) / 2.0))
 
         if index < middleCardIndex {
