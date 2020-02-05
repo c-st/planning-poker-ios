@@ -11,7 +11,6 @@ import SwiftUI
 struct JoinRoomView: View {
     @State var roomName: String
     @State var participantName: String
-    @State var navigationSelection: Int? = nil
 
     @EnvironmentObject var store: Store
 
