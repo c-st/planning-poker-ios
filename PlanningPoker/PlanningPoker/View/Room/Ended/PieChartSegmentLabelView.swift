@@ -75,7 +75,7 @@ struct PieChartSegmentLabelView_Previews: PreviewProvider {
                 isAnotherSelected: false
             )
         }
-        .previewLayout(.sizeThatFits)
+        .previewLayout(.fixed(width: 320, height: 250.0))
         .colorScheme(.light)
     }
 }

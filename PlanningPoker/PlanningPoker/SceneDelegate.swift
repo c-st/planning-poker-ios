@@ -14,7 +14,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     let isInUITesting = CommandLine.arguments.contains("--uitesting")
 
     var window: UIWindow?
-    
+
     let store = Store()
 
     @iCloudUserDefault("roomName", defaultValue: "") var lastRoomName: String
@@ -25,16 +25,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             print("ToDo: initialize mock store")
         }
 
-        // Disable image cache with our custom implementation in order
-        // to have changing cat images:
+        // Disable image cache with our custom implementation in order to have changing cat images:
         SDImageCacheConfig.default.memoryCacheClass = ImageCache.self
         SDImageCacheConfig.default.diskCacheClass = ImageCache.self
+        
+        // Currently this is necessary in order to set the color of Toggles:
+        UISwitch.appearance().onTintColor = UIColor(named: "tintColour")
 
         let contentView = JoinRoomView(
             roomName: lastRoomName,
             participantName: lastParticipantName
-        )
-        .environmentObject(store)
+        ).environmentObject(store)
 
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
@@ -44,7 +45,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window.makeKeyAndVisible()
         }
     }
-    
+
     func sceneWillEnterForeground(_ scene: UIScene) {
         store.rejoinRoom()
     }

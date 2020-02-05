@@ -16,10 +16,7 @@ struct JoinRoomView: View {
     @EnvironmentObject var store: Store
 
     var body: some View {
-        // Currently this is necessary in order to set the color of Toggles:
-        UISwitch.appearance().onTintColor = UIColor(named: "tintColour")
-        
-        return NavigationView {
+        NavigationView {
             Form {
                 Section(header: Text("Join an estimation session")) {
                     TextField("Room", text: self.$roomName)

@@ -32,6 +32,6 @@ struct NotYetStartedView_Previews: PreviewProvider {
     static var previews: some View {
         NotYetStartedView(
             onStartEstimation: { _ in print("Start estimating!") }
-        )
+        ).previewLayout(.fixed(width: 350.0, height: 230.0))
     }
 }
