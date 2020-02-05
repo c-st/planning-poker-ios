@@ -69,6 +69,7 @@ public class EventHandler {
             )
 
         case let event as UserHasEstimated:
+
             func markAsEstimatedIfNecessary(participant: Participant) -> Participant {
                 if participant.name == event.userName {
                     return Participant(

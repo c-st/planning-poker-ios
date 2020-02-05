@@ -82,15 +82,22 @@ final class Store: ObservableObject, WebSocketDelegate {
         self.state.roomName = roomData.roomName
         self.state.participant = Participant(name: roomData.participantName)
 
-        let socketUrl = "wss://planningpoker.cc/poker/\(self.state.roomName!)?name=\(self.state.participant!.name)&spectator=False"
-            .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        self.establishWebSocketConnection()
+    }
 
-        let socket = WebSocket(request: URLRequest(url: URL(string: socketUrl)!))
+    func rejoinRoom() {
+        if let participant = self.state.participant, let roomName = self.state.roomName {
+            let currentTaskName = self.state.currentTaskName
 
-        socket.delegate = self
-        socket.connect()
+            self.state = AppState(
+                estimationStatus: self.state.estimationStatus,
+                participant: participant,
+                roomName: roomName,
+                currentTaskName: currentTaskName
+            )
 
-        self.socket = socket
+            self.establishWebSocketConnection()
+        }
     }
 
     func leaveRoom() {
@@ -155,5 +162,17 @@ final class Store: ObservableObject, WebSocketDelegate {
         default:
             print("Not handling event: \(event)")
         }
+    }
+
+    private func establishWebSocketConnection() {
+        let socketUrl = "wss://planningpoker.cc/poker/\(self.state.roomName!)?name=\(self.state.participant!.name)&spectator=False"
+            .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+
+        let socket = WebSocket(request: URLRequest(url: URL(string: socketUrl)!))
+
+        socket.delegate = self
+        socket.connect()
+
+        self.socket = socket
     }
 }

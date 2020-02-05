@@ -14,6 +14,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     let isInUITesting = CommandLine.arguments.contains("--uitesting")
 
     var window: UIWindow?
+    
+    let store = Store()
 
     @iCloudUserDefault("roomName", defaultValue: "") var lastRoomName: String
     @iCloudUserDefault("participantName", defaultValue: "") var lastParticipantName: String
@@ -32,7 +34,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             roomName: lastRoomName,
             participantName: lastParticipantName
         )
-        .environmentObject(Store())
+        .environmentObject(store)
 
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
@@ -41,5 +43,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             self.window = window
             window.makeKeyAndVisible()
         }
+    }
+    
+    func sceneWillEnterForeground(_ scene: UIScene) {
+        store.rejoinRoom()
     }
 }
