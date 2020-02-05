@@ -14,6 +14,9 @@ struct StartEstimationFormView: View {
 
     var body: some View {
         VStack {
+            Text("Start new estimation")
+                .fontWeight(.bold)
+            
             ZStack {
                 if self.newTaskName.isEmpty {
                     Text("Enter task")
@@ -53,6 +56,6 @@ struct StartEstimationFormView_Previews: PreviewProvider {
             onStartEstimation: { _ in }
         )
         .previewLayout(.sizeThatFits)
-        .colorScheme(.dark)
+        //.colorScheme(.dark)
     }
 }

@@ -17,7 +17,13 @@ struct EndedView: View {
 
     var body: some View {
         VStack {
-            Text("Result")
+            StartEstimationFormView(
+                onStartEstimation: onStartEstimation
+            )
+
+            Spacer()
+
+            Text("Estimation result")
                 .font(.title)
                 .fontWeight(.bold)
 
@@ -30,13 +36,9 @@ struct EndedView: View {
                 AnimatedImage(url: URL(string: "https://thecatapi.com/api/images/get?format=src&type=gif"))
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 150)
+                    .frame(width: 200)
                     .padding(5)
             }
-
-            StartEstimationFormView(
-                onStartEstimation: onStartEstimation
-            )
         }
     }
 

@@ -12,11 +12,12 @@
 "Consensus cats" = "Konsens-Katzen";
 "Join the room" = "Raum jetzt betreten";
 "Participants" = "Teilnehmer";
+"Start new estimation" = "Neue Schätzung starten";
 "Enter task" = "Task eingeben";
 "Start" = "Start";
 "Show result" = "Ergebnis zeigen";
 "Voting in progress..." = "Schätzung läuft...";
-"Result" = "Ergebnis";
+"Estimation result" = "Ergebnis";
 "Estimate" = "Schätzung";
 "Participants" = "Teilnehmer";
 
