@@ -35,8 +35,7 @@ class AppStateTests: XCTestCase {
         expect(appState.isCatConsensus).to(beNil())
     }
 
-    func testCatConsensusWithSingleParticipant(
-    ) {
+    func testCatConsensusWithSingleParticipant() {
         let appState = AppState(
             estimationStatus: .ended,
             participant: Participant(name: "Our user", hasEstimated: true),
@@ -50,8 +49,7 @@ class AppStateTests: XCTestCase {
         expect(appState.isCatConsensus).to(beTrue())
     }
 
-    func testCatConsensusWithMultipleParticipants(
-    ) {
+    func testCatConsensusWithMultipleParticipants() {
         let appState = AppState(
             estimationStatus: .ended,
             participant: Participant(name: "Our user", hasEstimated: true),
@@ -74,6 +72,21 @@ class AppStateTests: XCTestCase {
             currentTaskName: "Test task",
             estimationStart: Date(),
             estimations: ["Foo": "5", "Bar": "8"]
+        )
+
+        expect(appState.isCatConsensus).to(beFalse())
+    }
+    
+    func testCatConsensusWhenDisabled() {
+        let appState = AppState(
+            estimationStatus: .ended,
+            participant: Participant(name: "Our user", hasEstimated: true),
+            otherParticipants: [Participant(name: "Foo", hasEstimated: true)],
+            roomName: "Test room",
+            isShowCats: false,
+            currentTaskName: "Test task",
+            estimationStart: Date(),
+            estimations: ["Foo": "5", "Bar": "5"]
         )
 
         expect(appState.isCatConsensus).to(beFalse())
