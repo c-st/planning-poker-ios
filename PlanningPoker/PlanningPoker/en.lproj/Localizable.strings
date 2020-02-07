@@ -10,3 +10,5 @@
  This file is kept empty because English is our source
  language and we are not using localization keys.
  */
+
+"JOIN_ROOM_NOTE" = "You will be meeting with other participants who entered the same room name.\n\nYour team members can also join with a web browser at https://planningpoker.cc";

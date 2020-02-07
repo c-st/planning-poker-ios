@@ -20,4 +20,4 @@
 "Estimation result" = "Ergebnis";
 "Estimate" = "Schätzung";
 "Participants" = "Teilnehmer";
-
+"JOIN_ROOM_NOTE" = "Teilnehmer finden sich anhand des angegebenen Raumnamens im gleichen Raum wieder.\n\nWeitere Teammitglieder können auch über die Website https://planningpoker.cc teilnehmen.";

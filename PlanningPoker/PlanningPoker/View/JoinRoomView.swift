@@ -41,13 +41,21 @@ struct JoinRoomView: View {
                         )
                     )
                     {
-                        Text("Join the room")
+                        HStack {
+                            Text("Join the room")
+                            Spacer()
+                            Image(systemName: "person.3.fill")
+                        }
                     }
                     .disabled(roomName.isEmpty || participantName.isEmpty)
                     .accessibility(identifier: "joinRoomLink")
                 }
 
                 Section {
+                    Text("JOIN_ROOM_NOTE")
+                        .font(.footnote)
+                        .lineLimit(nil)
+
                     HStack {
                         Spacer()
                         Image("cc-logo")
@@ -70,11 +78,11 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             JoinRoomView(
-                roomName: "My Project",
+                roomName: "MyProject",
                 participantName: "Jane Doe"
             )
             JoinRoomView(
-                roomName: "Mein Projekt",
+                roomName: "MeinProjekt",
                 participantName: "Jana Dorr"
             ).environment(\.locale, .init(identifier: "de"))
         }
