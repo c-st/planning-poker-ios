@@ -60,7 +60,6 @@ The session continues with an estimation for the next task until all tasks are e
 
   lane :release do
     desc "Submit a new build to iOS app review"
-    # ensure_git_status_clean
     sync_code_signing(type: "appstore")
     increment_build_number(xcodeproj: "./PlanningPoker.xcodeproj")
     build_app(scheme: "PlanningPoker")
