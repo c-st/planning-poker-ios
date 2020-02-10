@@ -10,53 +10,6 @@ import Combine
 import Foundation
 import Starscream
 
-public struct AppState {
-    var estimationStatus: EstimationStatus = .notStarted
-    var participant: Participant?
-    var otherParticipants: [Participant] = []
-    var roomName: String?
-    var isShowCats: Bool = true
-    var currentTaskName: String?
-    var estimationStart: Date?
-
-    var estimations: [String: String] = [:]
-
-    var participantsByEstimate: [String: [String]]? {
-        return Dictionary(
-            grouping: self.estimations.keys,
-            by: { key -> String in
-                let value = estimations[key]!
-                return value
-            }
-        )
-    }
-
-    var ourEstimate: String? {
-        guard self.participant != nil else { return nil }
-        return self.estimations[self.participant!.name]
-    }
-
-    var areEstimationsCompleted: Bool {
-        guard let ourParticipant = self.participant else { return false }
-        let allParticipants = self.otherParticipants + [ourParticipant]
-        return allParticipants.allSatisfy { $0.hasEstimated }
-    }
-
-    var isCatConsensus: Bool? {
-        guard self.estimationStatus == .ended, let byEstimate = participantsByEstimate else {
-            return nil
-        }
-
-        return self.isShowCats && byEstimate.count == 1
-    }
-
-    enum EstimationStatus {
-        case notStarted
-        case inProgress
-        case ended
-    }
-}
-
 struct Participant: Identifiable {
     var id: UUID = UUID()
     var name: String
@@ -69,7 +22,16 @@ struct JoinRoomData {
     var isShowCats: Bool = true
 }
 
-final class Store: ObservableObject, WebSocketDelegate {
+protocol StoreProtocol {
+    func joinRoom(_ roomData: JoinRoomData)
+    func rejoinRoom()
+    func leaveRoom()
+    func sendStartEstimationRequestFor(_ newTaskName: String)
+    func sendEstimate(_ estimate: String)
+    func sendEstimationResultRequest()
+}
+
+final class Store: StoreProtocol, ObservableObject, WebSocketDelegate {
     @Published var state: AppState
 
     // TODO: see how Combine can be used to handle name/room state
@@ -77,7 +39,7 @@ final class Store: ObservableObject, WebSocketDelegate {
     private var socket: WebSocket?
     private let decoder = JSONDecoder()
 
-    init(initialState: AppState = AppState()) {
+    init(_ initialState: AppState = AppState()) {
         self.state = initialState
     }
 
@@ -90,6 +52,10 @@ final class Store: ObservableObject, WebSocketDelegate {
     }
 
     func rejoinRoom() {
+        if UITestingUtils.isInUITest {
+            return
+        }
+
         if let participant = self.state.participant, let roomName = self.state.roomName {
             self.state = AppState(
                 participant: Participant(
@@ -109,7 +75,6 @@ final class Store: ObservableObject, WebSocketDelegate {
         self.state = AppState()
 
         if let socket = self.socket {
-            print("User left room. Disconnecting socket")
             socket.disconnect()
         }
     }
@@ -170,6 +135,10 @@ final class Store: ObservableObject, WebSocketDelegate {
     }
 
     private func establishWebSocketConnection() {
+        if UITestingUtils.isInUITest {
+            return
+        }
+
         let socketUrl = "wss://planningpoker.cc/poker/\(self.state.roomName!)?name=\(self.state.participant!.name)&spectator=False"
             .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
 

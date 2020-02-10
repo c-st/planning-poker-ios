@@ -12,64 +12,67 @@ struct JoinRoomView: View {
     @State var roomName: String
     @State var participantName: String
     @State var isShowCats: Bool = true
+    
+    @State var shouldNavigateToRoom: Bool = false
 
     @EnvironmentObject var store: Store
 
     var body: some View {
-        NavigationView {
-            Form {
-                Section(header: Text("Join an estimation session")) {
-                    TextField("Room", text: self.$roomName)
-                        .accessibility(identifier: "roomTextField")
+        Form {
+            Section(header: Text("Join an estimation session")) {
+                TextField("Room", text: self.$roomName)
+                    .accessibility(identifier: "roomTextField")
 
-                    TextField("Your name", text: self.$participantName)
-                        .accessibility(identifier: "nameTextField")
+                TextField("Your name", text: self.$participantName)
+                    .accessibility(identifier: "nameTextField")
 
-                    Toggle(isOn: self.$isShowCats) {
-                        Text("Consensus cats")
-                    }
+                Toggle(isOn: self.$isShowCats) {
+                    Text("Consensus cats")
                 }
+                .accessibility(identifier: "consensusCatsToggle")
+            }
 
-                Section {
-                    NavigationLink(
-                        destination: RoomView(
-                            joinRoomData: JoinRoomData(
-                                roomName: self.roomName,
-                                participantName: self.participantName,
-                                isShowCats: self.isShowCats
-                            )
+            Section {
+                NavigationLink(
+                    destination: RoomView(
+                        joinRoomData: JoinRoomData(
+                            roomName: self.roomName,
+                            participantName: self.participantName,
+                            isShowCats: self.isShowCats
                         )
-                    )
-                    {
-                        HStack {
-                            Text("Join the room")
-                            Spacer()
-                            Image(systemName: "person.3.fill")
-                        }
-                    }
-                    .disabled(roomName.isEmpty || participantName.isEmpty)
-                    .accessibility(identifier: "joinRoomLink")
-                }
-
-                Section {
-                    Text("JOIN_ROOM_NOTE")
-                        .font(.footnote)
-                        .lineLimit(nil)
-
+                    ),
+                    isActive: self.$shouldNavigateToRoom
+                )
+                {
                     HStack {
+                        Text("Join the room")
                         Spacer()
-                        Image("cc-logo")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(height: 150)
-                        Spacer()
+                        Image(systemName: "person.3.fill")
                     }
+                }
+                .disabled(roomName.isEmpty || participantName.isEmpty)
+                .accessibility(identifier: "joinRoomLink")
+            }
+
+            Section {
+                Text("JOIN_ROOM_NOTE")
+                    .font(.footnote)
+                    .lineLimit(nil)
+
+                HStack {
+                    Spacer()
+                    Image("cc-logo")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(height: 150)
+                    Spacer()
                 }
             }
-            .navigationBarTitle("Planning Poker")
-            .listStyle(GroupedListStyle())
-            .environment(\.horizontalSizeClass, .regular)
         }
+        .navigationBarTitle("Planning Poker")
+        .listStyle(GroupedListStyle())
+        .environment(\.horizontalSizeClass, .regular)
+        .embedInNavigation()
         .navigationViewStyle(StackNavigationViewStyle())
     }
 }

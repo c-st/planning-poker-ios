@@ -32,7 +32,7 @@ struct PokerCardDeckView: View {
                     Text(self.currentTaskName)
                         .font(.title)
                         .fontWeight(.bold)
-                        .padding(EdgeInsets(top: 80, leading: 50, bottom: 80, trailing: 50))
+                        .padding(EdgeInsets(top: 60, leading: 50, bottom: 60, trailing: 50))
                         .lineLimit(2)
                         .multilineTextAlignment(.center)
                         .foregroundColor(.gray)

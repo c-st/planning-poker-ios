@@ -24,6 +24,9 @@
 		83A55E0B23D5F24E00496561 /* InProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A55E0A23D5F24E00496561 /* InProgressView.swift */; };
 		83A55E0D23D5F28100496561 /* EndedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A55E0C23D5F28100496561 /* EndedView.swift */; };
 		83A55E0F23D7129D00496561 /* ParticipantsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A55E0E23D7129D00496561 /* ParticipantsView.swift */; };
+		83E1D4AB23F167A1007BFADE /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E1D4AA23F167A1007BFADE /* AppState.swift */; };
+		83E1D4AD23F16FAC007BFADE /* View+EmbedInNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E1D4AC23F16FAC007BFADE /* View+EmbedInNavigationView.swift */; };
+		83E1D4AF23F18E1C007BFADE /* UITestingUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E1D4AE23F18E1C007BFADE /* UITestingUtils.swift */; };
 		83E89FDB23E4DD910060CDC3 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E89FDA23E4DD910060CDC3 /* SnapshotHelper.swift */; };
 		83E89FDE23E59BB80060CDC3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 83E89FE023E59BB80060CDC3 /* Localizable.strings */; };
 		83E89FE323E86ECB0060CDC3 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E89FE223E86ECB0060CDC3 /* ImageCache.swift */; };
@@ -85,6 +88,9 @@
 		83A55E0A23D5F24E00496561 /* InProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InProgressView.swift; sourceTree = "<group>"; };
 		83A55E0C23D5F28100496561 /* EndedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndedView.swift; sourceTree = "<group>"; };
 		83A55E0E23D7129D00496561 /* ParticipantsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantsView.swift; sourceTree = "<group>"; };
+		83E1D4AA23F167A1007BFADE /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		83E1D4AC23F16FAC007BFADE /* View+EmbedInNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+EmbedInNavigationView.swift"; sourceTree = "<group>"; };
+		83E1D4AE23F18E1C007BFADE /* UITestingUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestingUtils.swift; sourceTree = "<group>"; };
 		83E89FDA23E4DD910060CDC3 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
 		83E89FDF23E59BB80060CDC3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		83E89FE123E59C1F0060CDC3 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -217,6 +223,7 @@
 			children = (
 				83F8ED1423D8A7E5006E76AB /* View+HiddenModifier.swift */,
 				83A55E0523D5BF2600496561 /* DateFormatter+CustomFormat.swift */,
+				83E1D4AC23F16FAC007BFADE /* View+EmbedInNavigationView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -249,6 +256,7 @@
 			isa = PBXGroup;
 			children = (
 				F578883723D0A7A70019DF23 /* Store.swift */,
+				83E1D4AA23F167A1007BFADE /* AppState.swift */,
 				F57B768923D0CD6000732C71 /* Events.swift */,
 				F57B768E23D1CF5100732C71 /* EventParser.swift */,
 				83135B2F23D1EB4E0072F005 /* EventHandler.swift */,
@@ -262,6 +270,7 @@
 				8321F6E323D1B3C70027A212 /* ICloudUserDefault.swift */,
 				83F8ED1D23D8C5BC006E76AB /* Haptics.swift */,
 				83E89FE223E86ECB0060CDC3 /* ImageCache.swift */,
+				83E1D4AE23F18E1C007BFADE /* UITestingUtils.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -442,6 +451,7 @@
 			files = (
 				83A55E0B23D5F24E00496561 /* InProgressView.swift in Sources */,
 				8321F6E723D1C6140027A212 /* UserAvatarView.swift in Sources */,
+				83E1D4AD23F16FAC007BFADE /* View+EmbedInNavigationView.swift in Sources */,
 				8392EA8323D74273005CAE07 /* StartEstimationFormView.swift in Sources */,
 				F57B768A23D0CD6000732C71 /* Events.swift in Sources */,
 				83F8ED1523D8A7E5006E76AB /* View+HiddenModifier.swift in Sources */,
@@ -456,11 +466,13 @@
 				83F8ED1C23D8C168006E76AB /* PokerCardDeckView.swift in Sources */,
 				F54BEDD423E2FAD00095E098 /* PieChartSegmentLabelView.swift in Sources */,
 				83F8ED1E23D8C5BC006E76AB /* Haptics.swift in Sources */,
+				83E1D4AB23F167A1007BFADE /* AppState.swift in Sources */,
 				F578883A23D0AA030019DF23 /* RoomView.swift in Sources */,
 				834B700D23D0951800CC3BA2 /* JoinRoomView.swift in Sources */,
 				83E89FE323E86ECB0060CDC3 /* ImageCache.swift in Sources */,
 				83A55E0F23D7129D00496561 /* ParticipantsView.swift in Sources */,
 				F578883823D0A7A70019DF23 /* Store.swift in Sources */,
+				83E1D4AF23F18E1C007BFADE /* UITestingUtils.swift in Sources */,
 				83135B3023D1EB4E0072F005 /* EventHandler.swift in Sources */,
 				83F8ED1323D8A7C3006E76AB /* PokerCardView.swift in Sources */,
 				83A55E0923D5F0DA00496561 /* NotYetStartedView.swift in Sources */,
