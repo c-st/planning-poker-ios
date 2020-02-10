@@ -1,0 +1,22 @@
+/* 
+  Localizable.strings
+  PlanningPoker
+
+  Created by Christian Stangier on 01.02.20.
+  Copyright © 2020 Christian Stangier. All rights reserved.
+*/
+
+"Join an estimation session" = "Participa en una estimación";
+"Room" = "Sala";
+"Your name" = "Tu nombre";
+"Consensus cats" = "Gatos de consenso";
+"Join the room" = "Entra en la sala";
+"Participants" = "Participantes";
+"Start new estimation" = "Comienza una nueva estimación";
+"Enter task" = "Introduce la tarea";
+"Start" = "Comenzar";
+"Show result" = "Mostrar resultados";
+"Voting in progress..." = "Votación en curso...";
+"Estimation result" = "Resultados";
+"Estimate" = "Estimación";
+"JOIN_ROOM_NOTE" = "Únete a otros participantes que hayan entrado en la misma sala.\n\nTus compañeros también pueden participar accediendo https://planningpoker.cc";

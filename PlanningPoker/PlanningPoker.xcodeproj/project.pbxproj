@@ -91,6 +91,7 @@
 		83E1D4AA23F167A1007BFADE /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		83E1D4AC23F16FAC007BFADE /* View+EmbedInNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+EmbedInNavigationView.swift"; sourceTree = "<group>"; };
 		83E1D4AE23F18E1C007BFADE /* UITestingUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestingUtils.swift; sourceTree = "<group>"; };
+		83E1D4B023F1CDD8007BFADE /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		83E89FDA23E4DD910060CDC3 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
 		83E89FDF23E59BB80060CDC3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		83E89FE123E59C1F0060CDC3 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -398,6 +399,7 @@
 				en,
 				Base,
 				de,
+				es,
 			);
 			mainGroup = 834B6FFC23D0951800CC3BA2;
 			packageReferences = (
@@ -528,6 +530,7 @@
 			children = (
 				83E89FDF23E59BB80060CDC3 /* en */,
 				83E89FE123E59C1F0060CDC3 /* de */,
+				83E1D4B023F1CDD8007BFADE /* es */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

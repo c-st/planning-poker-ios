@@ -1,13 +1,16 @@
+# See https://help.apple.com/app-store-connect/#/devd274dd925
+
 devices([
-#   "iPhone 8",
-#   "iPhone 8 Plus",
+   "iPhone 8",
+   "iPhone 8 Plus",
    "iPhone 11 Pro",
-#   "iPad Pro (9.7-inch)"
+   "iPad Pro (12.9-inch) (3rd generation)"
 ])
 
 languages([
    "en-US",
-   "de-DE"
+   "de-DE",
+   "es-ES"
 ])
 
 clear_previous_screenshots(true)
