@@ -21,7 +21,7 @@ struct EndedView: View {
                 onStartEstimation: onStartEstimation
             )
 
-            Spacer()
+            Divider()
 
             Text("Estimation result")
                 .font(.title)
@@ -30,8 +30,6 @@ struct EndedView: View {
             PieChartView(segmentData: calculateSegmentData())
                 .frame(width: 200, height: 200)
 
-            Spacer()
-
             if isCatConsensus {
                 AnimatedImage(url: URL(string: "https://thecatapi.com/api/images/get?format=src&type=gif"))
                     .resizable()
@@ -39,6 +37,8 @@ struct EndedView: View {
                     .frame(width: 200)
                     .padding(5)
             }
+            
+            Spacer()
         }
     }
 
