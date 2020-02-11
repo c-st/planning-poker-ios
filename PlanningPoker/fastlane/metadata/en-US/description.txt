@@ -1,1 +1,9 @@
-en-US Description
+Planning Poker enables you to perform estimations in an agile team. It is a fun way to collaborate in real-time and works for local teams as well as for completely distributed team members. 
+
+How it works:
+* meet your teammates in a private room exclusively for your project
+* in each estimation round players choose the complexity of a task. This estimation is hidden from the others
+* when all players have chosen all estimations are uncovered at once
+* the result is visualized and discussed in the team
+
+This app is compatible with the web app which you can find at https://planningpoker.cc. Players joining through the app will meet others joining with the website.

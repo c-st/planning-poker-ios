@@ -1,1 +1,9 @@
-es-ES Description
+Planning Poker te permite realizar estimaciones en un equipo ágil. Es una forma divertida de colaborar en tiempo real y funciona tanto para equipos locales como para miembros del equipo completamente distribuidos.
+
+Cómo funciona:
+* Conozca a sus compañeros de equipo en una sala privada exclusiva para su proyecto
+* en cada ronda de estimación, los jugadores eligen la complejidad de una tarea. Esta estimación está oculta de las demás
+* cuando todos los jugadores han elegido todas las estimaciones se descubren a la vez
+* el resultado es visualizado y discutido en el equipo
+
+Esta aplicación es compatible con la aplicación web que puede encontrar en https://planningpoker.cc. Los jugadores que se unan a través de la aplicación conocerán a otros que se unan al sitio web.
