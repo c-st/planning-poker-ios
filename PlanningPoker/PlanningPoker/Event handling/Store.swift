@@ -141,14 +141,33 @@ final class Store: StoreProtocol, ObservableObject, WebSocketDelegate {
             return
         }
 
-        let socketUrl = "wss://planningpoker.cc/poker/\(self.state.roomName!)?name=\(self.state.participant!.name)&spectator=False"
-            .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-
-        let socket = WebSocket(request: URLRequest(url: URL(string: socketUrl)!))
+        let urlString = buildURL(
+            roomName: self.state.roomName!,
+            participant: self.state.participant!
+        )
+    
+        let socket = WebSocket(request: URLRequest(url: URL(string: urlString)!))
 
         socket.delegate = self
         socket.connect()
 
         self.socket = socket
+    }
+    
+    private func buildURL(roomName: String, participant: Participant) -> String {
+        var url = URLComponents()
+        
+        url.scheme = "wss"
+        url.host = "planningpoker.cc"
+        url.path = "/poker/\(roomName)"
+        url.queryItems = [
+            URLQueryItem(name: "name", value: participant.name),
+            URLQueryItem(name: "spectator", value: participant.isSpectator ? "true" : "false")
+        ]
+        
+        return url
+            .url!
+            .absoluteString
+            .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
     }
 }

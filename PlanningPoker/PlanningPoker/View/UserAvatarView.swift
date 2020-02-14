@@ -20,10 +20,22 @@ struct UserAvatarView: View {
             .multilineTextAlignment(.center)
             .frame(width: 60, height: 60)
             .padding(5)
-            .background(participant.hasEstimated ? Color("secondary-red") : backgroundColor)
+            .background(colorForParticipant(participant))
             .foregroundColor(Color.white)
             .clipShape(Circle())
     }
+}
+
+func colorForParticipant(_ participant: Participant) -> Color {
+    if (participant.isSpectator) {
+        return Color.gray
+    }
+    
+    if (participant.hasEstimated) {
+        return Color("secondary-red")
+    }
+    
+    return Color("primary2")
 }
 
 struct UserAvatarView_Previews: PreviewProvider {
@@ -33,6 +45,7 @@ struct UserAvatarView_Previews: PreviewProvider {
             UserAvatarView(participant: Participant(name: "Christian S.", hasEstimated: false))
             UserAvatarView(participant: Participant(name: "Christian L.", hasEstimated: false))
             UserAvatarView(participant: Participant(name: "Herr Doktor Oberhagemann", hasEstimated: true))
+            UserAvatarView(participant: Participant(name: "Scrum Master Master", isSpectator: true ))
         }
     }
 }

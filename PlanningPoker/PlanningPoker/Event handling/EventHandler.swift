@@ -56,7 +56,8 @@ public class EventHandler {
                 Participant(
                     id: participant.id,
                     name: participant.name,
-                    hasEstimated: false
+                    hasEstimated: false,
+                    isSpectator: participant.isSpectator
                 )
             }
 
@@ -77,7 +78,8 @@ public class EventHandler {
                     return Participant(
                         id: participant.id,
                         name: participant.name,
-                        hasEstimated: true
+                        hasEstimated: true,
+                        isSpectator: participant.isSpectator
                     )
                 }
                 return participant
@@ -106,7 +108,8 @@ public class EventHandler {
                 return Participant(
                     id: participant.id,
                     name: participant.name,
-                    hasEstimated: true
+                    hasEstimated: true,
+                    isSpectator: participant.isSpectator
                 )
             }
 

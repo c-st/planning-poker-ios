@@ -91,4 +91,53 @@ class AppStateTests: XCTestCase {
 
         expect(appState.isCatConsensus).to(beFalse())
     }
+    
+    func testEstimationsNotCompleted() {
+        let appState = AppState(
+            estimationStatus: .inProgress,
+            participant: Participant(name: "Our user", hasEstimated: true),
+            otherParticipants: [
+                Participant(name: "Foo", hasEstimated: true),
+                Participant(name: "Bar", hasEstimated: false)
+            ],
+            roomName: "Test room",
+            currentTaskName: "Test task",
+            estimationStart: Date()
+        )
+        
+        expect(appState.areEstimationsCompleted).to(beFalse())
+    }
+    
+    func testEstimationsCompleted() {
+        let appState = AppState(
+            estimationStatus: .inProgress,
+            participant: Participant(name: "Our user", hasEstimated: true),
+            otherParticipants: [
+                Participant(name: "Foo", hasEstimated: true),
+                Participant(name: "Bar", hasEstimated: true)
+            ],
+            roomName: "Test room",
+            currentTaskName: "Test task",
+            estimationStart: Date()
+        )
+        
+        expect(appState.areEstimationsCompleted).to(beTrue())
+    }
+    
+    func testEstimationsCompletedWithSpectator() {
+        let appState = AppState(
+            estimationStatus: .inProgress,
+            participant: Participant(name: "Our user", hasEstimated: true),
+            otherParticipants: [
+                Participant(name: "Foo", hasEstimated: true),
+                Participant(name: "Bar", hasEstimated: true),
+                Participant(name: "Scrum Master", hasEstimated: false, isSpectator: true),
+            ],
+            roomName: "Test room",
+            currentTaskName: "Test task",
+            estimationStart: Date()
+        )
+        
+        expect(appState.areEstimationsCompleted).to(beTrue())
+    }
 }

@@ -37,7 +37,7 @@ public struct AppState {
     var areEstimationsCompleted: Bool {
         guard let ourParticipant = self.participant else { return false }
         let allParticipants = self.otherParticipants + [ourParticipant]
-        return allParticipants.allSatisfy { $0.hasEstimated }
+        return allParticipants.allSatisfy { $0.isSpectator || $0.hasEstimated }
     }
 
     var isCatConsensus: Bool? {
