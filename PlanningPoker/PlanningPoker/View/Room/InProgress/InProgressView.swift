@@ -19,9 +19,15 @@ struct InProgressView: View {
     var body: some View {
         VStack(alignment: .center, spacing: 10) {
             if isSpectator {
-                Image(systemName: "hourglass")
-                    .font(.system(size: 150))
-                    .padding()
+                VStack {
+                    Spacer()
+                    Text(currentTaskName)
+                        .font(.title)
+                    Image(systemName: "hourglass")
+                        .font(.system(size: 150))
+                        .padding()
+                    Spacer()
+                }
             } else {
                 PokerCardDeckView(
                     onEstimate: { estimate in self.onEstimate(estimate) },
