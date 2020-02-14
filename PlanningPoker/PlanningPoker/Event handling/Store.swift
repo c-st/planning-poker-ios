@@ -33,12 +33,12 @@ protocol StoreProtocol {
     func sendEstimationResultRequest()
 }
 
-final class Store: StoreProtocol, ObservableObject, WebSocketDelegate {
+final class Store: StoreProtocol, ObservableObject {
     @Published var state: AppState
 
     // TODO: see how Combine can be used to handle name/room state
 
-    private var socket: WebSocket?
+    private var socketClient: SocketClient?
     private let decoder = JSONDecoder()
 
     init(_ initialState: AppState = AppState()) {
@@ -49,8 +49,14 @@ final class Store: StoreProtocol, ObservableObject, WebSocketDelegate {
         self.state.roomName = roomData.roomName
         self.state.participant = Participant(name: roomData.participantName, isSpectator: roomData.isSpectator)
         self.state.isShowCats = roomData.isShowCats
-
-        self.establishWebSocketConnection()
+        
+        self.socketClient = SocketClient(handleEvent: { event in
+            self.state = EventHandler.handle(event, state: self.state)
+        })
+        
+        if let socketClient = self.socketClient {
+            socketClient.connect(roomName: self.state.roomName!, participant: self.state.participant!)
+        }
     }
 
     func rejoinRoom() {
@@ -68,16 +74,18 @@ final class Store: StoreProtocol, ObservableObject, WebSocketDelegate {
                 roomName: roomName,
                 isShowCats: self.state.isShowCats
             )
-
-            self.establishWebSocketConnection()
+            
+            if let socketClient = self.socketClient {
+                socketClient.connect(roomName: roomName, participant: participant)
+            }
         }
     }
 
     func leaveRoom() {
         self.state = AppState()
-
-        if let socket = self.socket {
-            socket.disconnect()
+        
+        if let socketClient = self.socketClient {
+            socketClient.disconnect()
         }
     }
 
@@ -87,9 +95,9 @@ final class Store: StoreProtocol, ObservableObject, WebSocketDelegate {
             taskName: newTaskName,
             startDate: Date()
         )
-
-        if let socket = self.socket {
-            socket.write(string: EventParser.serialize(requestStartEstimationEvent))
+        
+        if let socketClient = self.socketClient {
+            socketClient.send(requestStartEstimationEvent)
         }
     }
 
@@ -107,9 +115,9 @@ final class Store: StoreProtocol, ObservableObject, WebSocketDelegate {
             taskName: self.state.currentTaskName!,
             estimate: estimate
         )
-
-        if let socket = self.socket {
-            socket.write(string: EventParser.serialize(estimationEvent))
+        
+        if let socketClient = self.socketClient {
+            socketClient.send(estimationEvent)
         }
     }
 
@@ -117,57 +125,9 @@ final class Store: StoreProtocol, ObservableObject, WebSocketDelegate {
         let event = RequestShowEstimationResult(
             userName: state.participant!.name
         )
-
-        if let socket = self.socket {
-            socket.write(string: EventParser.serialize(event))
-        }
-    }
-
-    func didReceive(event: WebSocketEvent, client: WebSocket) {
-        switch event {
-        case .text(let jsonString):
-            if let parsedEvent = EventParser.parse(jsonString) {
-                self.state = EventHandler.handle(parsedEvent, state: self.state)
-            } else {
-                print("Event could not be parsed: \(jsonString)")
-            }
-        default:
-            print("Not handling event: \(event)")
-        }
-    }
-
-    private func establishWebSocketConnection() {
-        if UITestingUtils.isInUITest {
-            return
-        }
-
-        let urlString = buildURL(
-            roomName: self.state.roomName!,
-            participant: self.state.participant!
-        )
-    
-        let socket = WebSocket(request: URLRequest(url: URL(string: urlString)!))
-
-        socket.delegate = self
-        socket.connect()
-
-        self.socket = socket
-    }
-    
-    private func buildURL(roomName: String, participant: Participant) -> String {
-        var url = URLComponents()
         
-        url.scheme = "wss"
-        url.host = "planningpoker.cc"
-        url.path = "/poker/\(roomName)"
-        url.queryItems = [
-            URLQueryItem(name: "name", value: participant.name),
-            URLQueryItem(name: "spectator", value: participant.isSpectator ? "true" : "false")
-        ]
-        
-        return url
-            .url!
-            .absoluteString
-            .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        if let socketClient = self.socketClient {
+            socketClient.send(event)
+        }
     }
 }

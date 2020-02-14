@@ -35,6 +35,7 @@ struct RoomView: View {
                     InProgressView(
                         currentTaskName: self.store.state.currentTaskName!,
                         participantEstimate: self.store.state.ourEstimate,
+                        isSpectator: self.store.state.participant!.isSpectator,
                         areEstimationsCompleted: self.store.state.areEstimationsCompleted,
                         onEstimate: {
                             Haptics.medium()

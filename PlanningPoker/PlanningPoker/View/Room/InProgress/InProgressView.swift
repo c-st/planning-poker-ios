@@ -11,17 +11,24 @@ import SwiftUI
 struct InProgressView: View {
     var currentTaskName: String
     var participantEstimate: String?
+    var isSpectator: Bool
     var areEstimationsCompleted: Bool
     let onEstimate: (String) -> Void
     let onShowResult: () -> Void
 
     var body: some View {
         VStack(alignment: .center, spacing: 10) {
-            PokerCardDeckView(
-                onEstimate: { estimate in self.onEstimate(estimate) },
-                currentTaskName: currentTaskName
-            )
-            .offset(x: 0, y: -20)
+            if isSpectator {
+                Image(systemName: "hourglass")
+                    .font(.system(size: 150))
+                    .padding()
+            } else {
+                PokerCardDeckView(
+                    onEstimate: { estimate in self.onEstimate(estimate) },
+                    currentTaskName: currentTaskName
+                )
+                .offset(x: 0, y: -20)
+            }
 
             Button(action: self.onShowResult) {
                 Text(areEstimationsCompleted ? "Show result" : "Voting in progress...")
@@ -42,12 +49,23 @@ struct InProgressView: View {
 
 struct InProgressView_Previews: PreviewProvider {
     static var previews: some View {
-        InProgressView(
-            currentTaskName: "Implement the feature",
-            participantEstimate: "5",
-            areEstimationsCompleted: false,
-            onEstimate: { _ in },
-            onShowResult: {}
-        )
+        Group {
+            InProgressView(
+                currentTaskName: "Implement the feature",
+                participantEstimate: "5",
+                isSpectator: false,
+                areEstimationsCompleted: false,
+                onEstimate: { _ in },
+                onShowResult: {}
+            )
+            InProgressView(
+                currentTaskName: "Implement the feature",
+                participantEstimate: "5",
+                isSpectator: true,
+                areEstimationsCompleted: false,
+                onEstimate: { _ in },
+                onShowResult: {}
+            )
+        }
     }
 }

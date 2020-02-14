@@ -41,6 +41,7 @@
 		F54BEDCF23DF41340095E098 /* PieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54BEDCE23DF41340095E098 /* PieChartView.swift */; };
 		F54BEDD423E2FAD00095E098 /* PieChartSegmentLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54BEDD323E2FAD00095E098 /* PieChartSegmentLabelView.swift */; };
 		F54BEDD623E324F10095E098 /* PieChartSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54BEDD523E324F10095E098 /* PieChartSegmentView.swift */; };
+		F565155F23F6DF76008AB6F9 /* SocketClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F565155E23F6DF76008AB6F9 /* SocketClient.swift */; };
 		F578883623D0A7380019DF23 /* Starscream in Frameworks */ = {isa = PBXBuildFile; productRef = F578883523D0A7380019DF23 /* Starscream */; };
 		F578883823D0A7A70019DF23 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = F578883723D0A7A70019DF23 /* Store.swift */; };
 		F578883A23D0AA030019DF23 /* RoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F578883923D0AA030019DF23 /* RoomView.swift */; };
@@ -108,6 +109,7 @@
 		F54BEDCE23DF41340095E098 /* PieChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartView.swift; sourceTree = "<group>"; };
 		F54BEDD323E2FAD00095E098 /* PieChartSegmentLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartSegmentLabelView.swift; sourceTree = "<group>"; };
 		F54BEDD523E324F10095E098 /* PieChartSegmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartSegmentView.swift; sourceTree = "<group>"; };
+		F565155E23F6DF76008AB6F9 /* SocketClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketClient.swift; sourceTree = "<group>"; };
 		F578883723D0A7A70019DF23 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		F578883923D0AA030019DF23 /* RoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomView.swift; sourceTree = "<group>"; };
 		F57B768923D0CD6000732C71 /* Events.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
@@ -261,6 +263,7 @@
 				F57B768923D0CD6000732C71 /* Events.swift */,
 				F57B768E23D1CF5100732C71 /* EventParser.swift */,
 				83135B2F23D1EB4E0072F005 /* EventHandler.swift */,
+				F565155E23F6DF76008AB6F9 /* SocketClient.swift */,
 			);
 			path = "Event handling";
 			sourceTree = "<group>";
@@ -468,6 +471,7 @@
 				83F8ED1C23D8C168006E76AB /* PokerCardDeckView.swift in Sources */,
 				F54BEDD423E2FAD00095E098 /* PieChartSegmentLabelView.swift in Sources */,
 				83F8ED1E23D8C5BC006E76AB /* Haptics.swift in Sources */,
+				F565155F23F6DF76008AB6F9 /* SocketClient.swift in Sources */,
 				83E1D4AB23F167A1007BFADE /* AppState.swift in Sources */,
 				F578883A23D0AA030019DF23 /* RoomView.swift in Sources */,
 				834B700D23D0951800CC3BA2 /* JoinRoomView.swift in Sources */,
