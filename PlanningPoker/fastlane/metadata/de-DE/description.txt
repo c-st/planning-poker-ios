@@ -1,9 +1,14 @@
-Planning Poker ermöglicht es, Aufwandsschätzungen in einem agilen Team durchzuführen. Teammitglieder können in Echtzeit zusammenarbeiten, somit eignet sich die App sowohl für lokale Teams als auch für komplett verteilte Teilnehmer.
+Entgegen anderer Planning Poker Apps, die einfach nur das Kartenspiel nachbilden, geht diese App einen Schritt weiter und bringt die Teilnehmer in einem virtuellen Pokerraum zusammen.
+Sie ermöglicht die Zusammenarbeit in Echtzeit und eignet sich somit sowohl für lokale Teams als auch für komplett verteilte Teilnehmer.
+
+Planning Poker ist eine bewährte und weit verbreitete Technik, um Aufwandsschätzungen in einem agilen Team durchzuführen.
 
 So funktionierts:
 * triff deine Kollegen in einem privaten, virtuellen Projektraum
-* zu Beginn jeder Schätzrunde wählt jeder für sich die geschätzte Komplexität eines Tasks. Diese ist anfangs verdeckt
-* erst wenn alle Spieler ihre Wahl getroffen haben, werden die Schätzungen aller Spieler auf einmal aufgedeckt
-* das Ergebnis wird für alle gleichzeitig angezeigt und wird anschließend im Team diskutiert
+* teile die Arbeit in Aufgaben ein, die jeweils geschätzt werden
+* zu Beginn jeder Schätzrunde wählt jeder für sich die geschätzte Komplexität eines Tasks
+* die Schätzung wird vor den anderen Teilnehmern verborgen
+* erst wenn alle Spieler ihre Wahl abgesendet haben, werden die Schätzungen aller Spieler auf einmal aufgedeckt und im Team diskutiert
+* wenn sich das Team geeinigt hat, geht es mit der nächsten Schätzung weiter; ansonsten wird der Prozess wiederholt
 
 Diese App ist kompatibel mit der Website https://planningpoker.cc. Teilnehmer der App und Website sehen sich, wenn sie im gleichen Raum sind.
