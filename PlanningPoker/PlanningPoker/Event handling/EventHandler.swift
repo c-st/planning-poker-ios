@@ -22,7 +22,7 @@ public class EventHandler {
             }
 
             let newParticipants = state.otherParticipants +
-                [Participant(name: event.userName)]
+                [Participant(name: event.userName, isSpectator: event.isSpectator)]
 
             return AppState(
                 estimationStatus: state.estimationStatus,

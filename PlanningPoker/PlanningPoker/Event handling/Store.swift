@@ -13,13 +13,15 @@ import Starscream
 struct Participant: Identifiable {
     var id: UUID = UUID()
     var name: String
-    var hasEstimated: Bool = false
+    var hasEstimated = false
+    var isSpectator = false
 }
 
 struct JoinRoomData {
-    var roomName: String = ""
-    var participantName: String = ""
-    var isShowCats: Bool = true
+    var roomName = ""
+    var participantName = ""
+    var isSpectator = false
+    var isShowCats = true
 }
 
 protocol StoreProtocol {
@@ -45,7 +47,7 @@ final class Store: StoreProtocol, ObservableObject, WebSocketDelegate {
 
     func joinRoom(_ roomData: JoinRoomData) {
         self.state.roomName = roomData.roomName
-        self.state.participant = Participant(name: roomData.participantName)
+        self.state.participant = Participant(name: roomData.participantName, isSpectator: roomData.isSpectator)
         self.state.isShowCats = roomData.isShowCats
 
         self.establishWebSocketConnection()

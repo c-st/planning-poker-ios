@@ -11,8 +11,9 @@ import SwiftUI
 struct JoinRoomView: View {
     @State var roomName: String
     @State var participantName: String
+    @State var isSpectator: Bool = false
     @State var isShowCats: Bool = true
-    
+
     @State var shouldNavigateToRoom: Bool = false
 
     @EnvironmentObject var store: Store
@@ -26,6 +27,11 @@ struct JoinRoomView: View {
                 TextField("Your name", text: self.$participantName)
                     .accessibility(identifier: "nameTextField")
 
+                Toggle(isOn: self.$isSpectator) {
+                    Text("Join as spectator")
+                }
+                .accessibility(identifier: "spectatorToggle")
+
                 Toggle(isOn: self.$isShowCats) {
                     Text("Consensus cats")
                 }
@@ -38,6 +44,7 @@ struct JoinRoomView: View {
                         joinRoomData: JoinRoomData(
                             roomName: self.roomName,
                             participantName: self.participantName,
+                            isSpectator: self.isSpectator,
                             isShowCats: self.isShowCats
                         )
                     ),

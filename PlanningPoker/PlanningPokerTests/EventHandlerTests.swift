@@ -25,6 +25,23 @@ class EventHandlerTests: XCTestCase {
             )
 
         expect(newState.otherParticipants).to(haveCount(1))
+        expect(newState.otherParticipants.first!.isSpectator).to(beFalse())
+    }
+    
+    func testSpectatorJoining() {
+        let userJoinedEvent = UserJoined(
+            userName: "Foo",
+            isSpectator: true
+        )
+        
+        let newState =
+            EventHandler.handle(
+                userJoinedEvent,
+                state: AppState()
+            )
+
+        expect(newState.otherParticipants).to(haveCount(1))
+        expect(newState.otherParticipants.first!.isSpectator).to(beTrue())
     }
 
     func testMultipleUsersJoining() {
