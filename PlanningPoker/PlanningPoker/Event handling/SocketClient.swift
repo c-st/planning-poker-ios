@@ -10,7 +10,6 @@ import Foundation
 import Starscream
 
 final class SocketClient: WebSocketDelegate {
-    
     let handleEvent: (Any) -> Void
     
     private var socket: WebSocket?
@@ -19,6 +18,28 @@ final class SocketClient: WebSocketDelegate {
         self.handleEvent = handleEvent
     }
     
+    func connect(roomName: String, participant: Participant) {
+        if UITestingUtils.isInUITest {
+            return
+        }
+
+        let urlString = self.buildURL(
+            roomName: roomName,
+            participant: participant
+        )
+
+        let socket = WebSocket(request: URLRequest(url: URL(string: urlString)!))
+        socket.delegate = self
+        socket.connect()
+        self.socket = socket
+    }
+    
+    func send(_ event: Encodable) {
+        if let socket = self.socket {
+            socket.write(string: EventParser.serialize(event))
+        }
+    }
+
     func didReceive(event: WebSocketEvent, client: WebSocket) {
         switch event {
         case .text(let jsonString):
@@ -32,39 +53,15 @@ final class SocketClient: WebSocketDelegate {
         }
     }
     
-    func send(_ event: Encodable) {
-        if let socket = self.socket {
-            socket.write(string: EventParser.serialize(event))
-        }
-    }
-
-    func connect(roomName: String, participant: Participant) {
-        if UITestingUtils.isInUITest {
-            return
-        }
-
-        let urlString = self.buildURL(
-            roomName: roomName,
-            participant: participant
-        )
-
-        let socket = WebSocket(request: URLRequest(url: URL(string: urlString)!))
-
-        socket.delegate = self
-        socket.connect()
-
-        self.socket = socket
-    }
-    
     func disconnect() {
         if let socket = self.socket {
             socket.disconnect()
+            self.socket = nil
         }
     }
 
     private func buildURL(roomName: String, participant: Participant) -> String {
         var url = URLComponents()
-
         url.scheme = "wss"
         url.host = "planningpoker.cc"
         url.path = "/poker/\(roomName)"

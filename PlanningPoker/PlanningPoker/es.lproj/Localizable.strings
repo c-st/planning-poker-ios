@@ -6,7 +6,7 @@
   Copyright © 2020 Christian Stangier. All rights reserved.
 */
 
-"Join an estimation session" = "Participa en una estimación";
+"JOIN_ROOM_HEADER" = "Participa en una estimación";
 "Room" = "Sala";
 "Your name" = "Tu nombre";
 "Join as spectator"="Únete como espectador";

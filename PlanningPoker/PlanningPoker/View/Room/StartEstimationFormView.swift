@@ -9,7 +9,9 @@
 import SwiftUI
 
 struct StartEstimationFormView: View {
-    @State var newTaskName: String = ""
+    @State var newTaskName = ""
+    
+    var errorMessage: String? = nil
     let onStartEstimation: (String) -> Void
 
     var body: some View {
@@ -28,9 +30,21 @@ struct StartEstimationFormView: View {
             .frame(minHeight: 40)
             .background(Color(UIColor.systemGray6))
             .cornerRadius(10)
-            .padding(.vertical)
+            .padding()
             .multilineTextAlignment(.center)
 
+            if (errorMessage != nil) {
+                HStack {
+                    Image(systemName: "exclamationmark.triangle")
+                    Text(errorMessage!)
+                        .font(.body)
+                        .fontWeight(.semibold)
+                        .padding(.vertical)
+                }
+                .foregroundColor(Color(UIColor.systemRed))
+                .transition(.fade)
+            }
+            
             VStack(alignment: .center) {
                 Button(action: { self.onStartEstimation(self.newTaskName) }) {
                     Image(systemName: "play.fill")
@@ -52,10 +66,17 @@ struct StartEstimationFormView: View {
 
 struct StartEstimationFormView_Previews: PreviewProvider {
     static var previews: some View {
-        StartEstimationFormView(
-            onStartEstimation: { _ in }
-        )
-        .previewLayout(.sizeThatFits)
-        //.colorScheme(.dark)
+        Group {
+            StartEstimationFormView(
+                onStartEstimation: { _ in }
+            )
+            .previewLayout(.sizeThatFits)
+            
+            StartEstimationFormView(
+                errorMessage: "Something went wrong",
+                onStartEstimation: { _ in }
+            )
+            .previewLayout(.sizeThatFits)
+        }
     }
 }

@@ -24,7 +24,7 @@ struct InProgressView: View {
                     Text(currentTaskName)
                         .font(.title)
                     Image(systemName: "hourglass")
-                        .font(.system(size: 150))
+                        .font(.system(size: 90))
                         .padding()
                     Spacer()
                 }

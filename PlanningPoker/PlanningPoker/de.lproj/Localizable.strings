@@ -6,7 +6,7 @@
   Copyright © 2020 Christian Stangier. All rights reserved.
 */
 
-"Join an estimation session" = "An einer Schätzung teilnehmen";
+"JOIN_ROOM_HEADER" = "Raum betreten";
 "Room" = "Raum";
 "Your name" = "Dein Name";
 "Join as spectator"="Als Beobachter beitreten";

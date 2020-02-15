@@ -20,13 +20,15 @@ struct JoinRoomView: View {
 
     var body: some View {
         Form {
-            Section(header: Text("Join an estimation session")) {
+            Section(header: Text("Start or join a new session")) {
                 TextField("Room", text: self.$roomName)
                     .accessibility(identifier: "roomTextField")
 
                 TextField("Your name", text: self.$participantName)
                     .accessibility(identifier: "nameTextField")
 
+            }
+            Section {
                 Toggle(isOn: self.$isSpectator) {
                     Text("Join as spectator")
                 }
@@ -36,9 +38,7 @@ struct JoinRoomView: View {
                     Text("Consensus cats")
                 }
                 .accessibility(identifier: "consensusCatsToggle")
-            }
-
-            Section {
+                
                 NavigationLink(
                     destination: RoomView(
                         joinRoomData: JoinRoomData(
@@ -53,8 +53,10 @@ struct JoinRoomView: View {
                 {
                     HStack {
                         Text("Join the room")
+                            .font(.headline)
                         Spacer()
                         Image(systemName: "person.3.fill")
+                            .frame(minHeight: 75)
                     }
                 }
                 .disabled(roomName.isEmpty || participantName.isEmpty)
@@ -62,17 +64,16 @@ struct JoinRoomView: View {
             }
 
             Section {
-                Text("JOIN_ROOM_NOTE")
-                    .font(.footnote)
-                    .lineLimit(nil)
-
                 HStack {
-                    Spacer()
+                    Text("JOIN_ROOM_NOTE")
+                        .font(.footnote)
+                        .frame(minHeight: 150)
+                        .lineLimit(nil)
+
                     Image("cc-logo")
                         .resizable()
                         .scaledToFit()
-                        .frame(height: 150)
-                    Spacer()
+                        .frame(width: 90)
                 }
             }
         }
