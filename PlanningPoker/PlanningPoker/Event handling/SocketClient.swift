@@ -56,7 +56,6 @@ final class SocketClient: WebSocketDelegate {
     func disconnect() {
         if let socket = self.socket {
             socket.disconnect()
-            self.socket = nil
         }
     }
 
