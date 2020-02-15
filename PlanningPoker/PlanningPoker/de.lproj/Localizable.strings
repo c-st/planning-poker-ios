@@ -7,9 +7,9 @@
 */
 
 "JOIN_ROOM_HEADER" = "Raum betreten";
-"Room" = "Raum";
+"Room name" = "Name des Raums";
 "Your name" = "Dein Name";
-"Join as spectator"="Als Beobachter beitreten";
+"Join as spectator"="Als Beobachter teilnehmen";
 "Consensus cats" = "Konsens-Katzen";
 "Join the room" = "Raum jetzt betreten";
 "Participants" = "Teilnehmer";

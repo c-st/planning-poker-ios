@@ -17,16 +17,25 @@ struct JoinRoomView: View {
     @State var shouldNavigateToRoom: Bool = false
 
     @EnvironmentObject var store: Store
-
+    
     var body: some View {
         Form {
-            Section(header: Text("Start or join a new session")) {
-                TextField("Room", text: self.$roomName)
-                    .accessibility(identifier: "roomTextField")
+            Section(header: Text("JOIN_ROOM_HEADER")) {
+                HStack {
+                    TextField("Room name", text: self.$roomName)
+                        .accessibility(identifier: "roomTextField")
+                        
+                    buildCheckmarkView()
+                        .hidden(roomName.count < 4)
+                }
 
-                TextField("Your name", text: self.$participantName)
-                    .accessibility(identifier: "nameTextField")
-
+                HStack {
+                    TextField("Your name", text: self.$participantName)
+                        .accessibility(identifier: "nameTextField")
+                    
+                    buildCheckmarkView()
+                        .hidden(participantName.count < 1)
+                }
             }
             Section {
                 Toggle(isOn: self.$isSpectator) {
@@ -56,10 +65,13 @@ struct JoinRoomView: View {
                             .font(.headline)
                         Spacer()
                         Image(systemName: "person.3.fill")
-                            .frame(minHeight: 75)
+                            .frame(minHeight: 60)
                     }
                 }
-                .disabled(roomName.isEmpty || participantName.isEmpty)
+                .disabled(!canJoinRoom(
+                    roomName: roomName,
+                    participantName: participantName)
+                )
                 .accessibility(identifier: "joinRoomLink")
             }
 
@@ -83,11 +95,35 @@ struct JoinRoomView: View {
         .embedInNavigation()
         .navigationViewStyle(StackNavigationViewStyle())
     }
+    
+    private func buildCheckmarkView() -> some View {
+        Image(systemName: "checkmark.circle.fill")
+            .foregroundColor(Color("tintColour"))
+            .opacity(0.7)
+            .transition(AnyTransition.scale.animation(.spring()))
+    }
+    
+    private func canJoinRoom(roomName: String, participantName: String) -> Bool {
+        let allowedCharactersRegex = try! NSRegularExpression(
+            pattern: "[a-zA-Z0-9-]{4,}"
+        )
+        let roomNameMatched = allowedCharactersRegex.firstMatch(
+            in: roomName,
+            options: [],
+            range: NSRange(location: 0, length: roomName.utf16.count)
+        ) != nil
+        
+        return !roomName.isEmpty && !participantName.isEmpty && roomNameMatched
+    }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
+            JoinRoomView(
+                roomName: "M",
+                participantName: ""
+            )
             JoinRoomView(
                 roomName: "MyProject",
                 participantName: "Jane Doe"

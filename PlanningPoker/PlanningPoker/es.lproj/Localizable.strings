@@ -7,7 +7,7 @@
 */
 
 "JOIN_ROOM_HEADER" = "Participa en una estimación";
-"Room" = "Sala";
+"Room name" = "Nombre de la sala";
 "Your name" = "Tu nombre";
 "Join as spectator"="Únete como espectador";
 "Consensus cats" = "Gatos de consenso";
