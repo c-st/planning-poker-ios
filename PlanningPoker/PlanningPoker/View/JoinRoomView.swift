@@ -26,7 +26,7 @@ struct JoinRoomView: View {
                         .accessibility(identifier: "roomTextField")
                         
                     buildCheckmarkView()
-                        .hidden(roomName.count < 4)
+                        .hidden(roomName.count < 3)
                 }
 
                 HStack {
@@ -105,7 +105,7 @@ struct JoinRoomView: View {
     
     private func canJoinRoom(roomName: String, participantName: String) -> Bool {
         let allowedCharactersRegex = try! NSRegularExpression(
-            pattern: "[a-zA-Z0-9-]{4,}"
+            pattern: "[a-zA-Z0-9-]{3,}"
         )
         let roomNameMatched = allowedCharactersRegex.firstMatch(
             in: roomName,
