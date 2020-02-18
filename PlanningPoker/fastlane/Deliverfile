@@ -25,7 +25,27 @@ app_review_information(
   email_address: "mail@christian-stangier.com",
   demo_user: "N/A",
   demo_password: "N/A",
-  notes: "No demo account needed"
+  notes: "The app simulates a planning poker environment. Multiple users meet in a room and estimate tasks.
+
+This app is a multiplayer app. For the best experience it is recommended to test it with at least 2 devices by joining the same room using different names.
+
+How to start:
+
+After launching the app you're presented with a form for joining a room. The following two fields are mandatory:
+
+-Room name: The room name can be freely choosen and the user either creates a new room and joins it or joins a room which has already been created by someone else.
+- Your name: In order to identify yourself to the other players you also need to set how you want to be seen by the other participants. This could for example be your nick name or your first name.
+
+=> In order to join, tap Join the room.
+
+* You are now in a planning poker room. Estimations happen in rounds. Either you have just joined a running estimation round or it has not been started yet. You can start one by entering a task name and tapping on Start.
+* You are now in a running game. Pick the card which (according to your opinion and gut feeling) represents the expected complexity of a task. Normally this is done based on a reference task with a given complexity. Your estimation is hidden until the results are revealed for the round. The cards of each player are revealed.
+* You can now start the next round to estimate the next task.
+
+Additional Notes:
+- Joining as a read-only user is also possible using specator mode. This is intended for users who just want to see other players (for example Scrum masters or Product owners). Note that it is not possible to finish a game with only 1 player who is a spectator.
+- When a consensus is reached, an animated cat gif is played. This option can be turned off. It is also possible to reach a consensus with just 1 player.
+"
 )
 
 copyright "Copyright 2020 Christian Stangier"
