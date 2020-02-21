@@ -82,6 +82,8 @@ struct JoinRoomView: View {
                         .frame(minHeight: 150)
                         .lineLimit(nil)
 
+                    Spacer()
+                    
                     Image("cc-logo")
                         .resizable()
                         .scaledToFit()
