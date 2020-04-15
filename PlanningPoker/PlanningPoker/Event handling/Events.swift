@@ -9,6 +9,7 @@
 import Foundation
 
 enum EventType: String, Codable {
+    case joinRoom
     case userJoined
     case userLeft
     case startEstimation
@@ -30,6 +31,13 @@ struct UserJoined: Codable {
 
 struct UserLeft: Codable {
     let userName: String
+}
+
+struct JoinRoom: Codable {
+    let userName: String
+    let roomName: String
+    let isSpectator: Bool
+    let eventType = EventType.joinRoom
 }
 
 struct RequestStartEstimation: Codable {

@@ -14,6 +14,8 @@ final class EventParser {
         let baseEvent = try! JSON.decoder.decode(BaseEvent.self, from: jsonData)
 
         switch baseEvent.eventType {
+            case .joinRoom:
+                return try? JSON.decoder.decode(JoinRoom.self, from: jsonData)
             case .userJoined:
                 return try? JSON.decoder.decode(UserJoined.self, from: jsonData)
             case .userLeft:
@@ -43,13 +45,13 @@ final class EventParser {
 struct JSON {
     static let encoder: JSONEncoder = {
         let encoder = JSONEncoder()
-        encoder.dateEncodingStrategy = .formatted(DateFormatter.iso8601WithoutTimezone)
+        encoder.dateEncodingStrategy = .formatted(DateFormatter.iso8601WithTimezone)
         return encoder
     }()
 
     static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601WithoutTimezone)
+        decoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601WithTimezone)
         return decoder
     }()
 }

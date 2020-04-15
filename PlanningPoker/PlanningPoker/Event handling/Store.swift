@@ -49,13 +49,24 @@ final class Store: StoreProtocol, ObservableObject {
         self.state.roomName = roomData.roomName
         self.state.participant = Participant(name: roomData.participantName, isSpectator: roomData.isSpectator)
         self.state.isShowCats = roomData.isShowCats
-        
-        self.socketClient = SocketClient(handleEvent: { event in
-            self.state = EventHandler.handle(event, state: self.state)
-        })
-        
+
+        self.socketClient = SocketClient(
+            handleEvent: { event in
+                self.state = EventHandler.handle(event, state: self.state)
+            },
+            onConnect: {
+                let joinRoomEvent = JoinRoom(
+                    userName: roomData.participantName,
+                    roomName: roomData.roomName,
+                    isSpectator: roomData.isSpectator
+                )
+                self.socketClient!.send(joinRoomEvent)
+                print("oh hai", joinRoomEvent)
+            }
+        )
+
         if let socketClient = self.socketClient {
-            socketClient.connect(roomName: self.state.roomName!, participant: self.state.participant!)
+            socketClient.connect()
         }
     }
 
@@ -74,16 +85,16 @@ final class Store: StoreProtocol, ObservableObject {
                 roomName: roomName,
                 isShowCats: self.state.isShowCats
             )
-            
+
             if let socketClient = self.socketClient {
-                socketClient.connect(roomName: roomName, participant: participant)
+                socketClient.connect()
             }
         }
     }
 
     func leaveRoom() {
         self.state = AppState()
-        
+
         if let socketClient = self.socketClient {
             socketClient.disconnect()
         }
@@ -95,7 +106,7 @@ final class Store: StoreProtocol, ObservableObject {
             taskName: newTaskName,
             startDate: Date()
         )
-        
+
         if let socketClient = self.socketClient {
             socketClient.send(requestStartEstimationEvent)
         }
@@ -115,7 +126,7 @@ final class Store: StoreProtocol, ObservableObject {
             taskName: self.state.currentTaskName!,
             estimate: estimate
         )
-        
+
         if let socketClient = self.socketClient {
             socketClient.send(estimationEvent)
         }
@@ -125,7 +136,7 @@ final class Store: StoreProtocol, ObservableObject {
         let event = RequestShowEstimationResult(
             userName: state.participant!.name
         )
-        
+
         if let socketClient = self.socketClient {
             socketClient.send(event)
         }

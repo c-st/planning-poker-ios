@@ -10,30 +10,29 @@ import Foundation
 import Starscream
 
 final class SocketClient: WebSocketDelegate {
+    let endpoint = "wss://api.planningpoker.cc/dev"
+
     let handleEvent: (Any) -> Void
-    
+    let onConnect: () -> Void
+
     private var socket: WebSocket?
-    
-    init(handleEvent: @escaping (Any) -> Void) {
+
+    init(handleEvent: @escaping (Any) -> Void, onConnect: @escaping () -> Void) {
         self.handleEvent = handleEvent
+        self.onConnect = onConnect
     }
-    
-    func connect(roomName: String, participant: Participant) {
+
+    func connect() {
         if UITestingUtils.isInUITest {
             return
         }
 
-        let urlString = self.buildURL(
-            roomName: roomName,
-            participant: participant
-        )
-
-        let socket = WebSocket(request: URLRequest(url: URL(string: urlString)!))
+        let socket = WebSocket(request: URLRequest(url: URL(string: endpoint)!))
         socket.delegate = self
         socket.connect()
         self.socket = socket
     }
-    
+
     func send(_ event: Encodable) {
         if let socket = self.socket {
             socket.write(string: EventParser.serialize(event))
@@ -48,30 +47,18 @@ final class SocketClient: WebSocketDelegate {
             } else {
                 print("Event could not be parsed: \(jsonString)")
             }
+
+        case .connected:
+            self.onConnect()
+
         default:
             print("Not handling event: \(event)")
         }
     }
-    
+
     func disconnect() {
         if let socket = self.socket {
             socket.disconnect()
         }
-    }
-
-    private func buildURL(roomName: String, participant: Participant) -> String {
-        var url = URLComponents()
-        url.scheme = "wss"
-        url.host = "planningpoker.cc"
-        url.path = "/poker/\(roomName)"
-        url.queryItems = [
-            URLQueryItem(name: "name", value: participant.name),
-            URLQueryItem(name: "spectator", value: participant.isSpectator ? "true" : "false")
-        ]
-
-        return url
-            .url!
-            .absoluteString
-            .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
     }
 }
