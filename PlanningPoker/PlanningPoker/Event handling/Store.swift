@@ -61,7 +61,6 @@ final class Store: StoreProtocol, ObservableObject {
                     isSpectator: roomData.isSpectator
                 )
                 self.socketClient!.send(joinRoomEvent)
-                print("oh hai", joinRoomEvent)
             }
         )
 

@@ -142,7 +142,7 @@ class EventHandlerTests: XCTestCase {
             ]
         )
 
-        let date = DateFormatter.iso8601WithoutTimezone.date(from: "2020-01-17T14:13:07")
+        let date = DateFormatter.iso8601WithTimezone.date(from: "2020-01-17T14:13:07.122Z")
 
         let requestStartEstimateEvent = RequestStartEstimation(
             userName: "Foo",
